@@ -9,12 +9,21 @@ function TechList({ items }: { items: TechItem[] }) {
   return (
     <div className="mt-2 flex flex-wrap gap-2">
       {items.map((item) => (
-        <span
-          key={item.name}
-          className="rounded-xl border border-navy-50 bg-surface px-4 py-2 text-sm font-medium text-ink"
-        >
-          {item.name}
-        </span>
+        <div key={item.name} className="group relative">
+          <span
+            tabIndex={0}
+            className="cursor-help rounded-xl border border-navy-50 bg-surface px-4 py-2 text-sm font-medium text-ink outline-none"
+          >
+            {item.name}
+          </span>
+          <div
+            role="tooltip"
+            className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-max max-w-[220px] -translate-x-1/2 rounded-lg bg-navy px-3 py-2 text-center text-xs leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+          >
+            {item.note}
+            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-navy" />
+          </div>
+        </div>
       ))}
     </div>
   );
