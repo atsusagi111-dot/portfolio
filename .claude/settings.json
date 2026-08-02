@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session-start-requirements.sh",
+            "timeout": 15,
+            "statusMessage": "要件定義書を確認中..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/stop-auto-commit-push.sh",
+            "timeout": 120,
+            "statusMessage": "変更をコミット・プッシュ中..."
+          }
+        ]
+      }
+    ]
+  }
+}
