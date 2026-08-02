@@ -33,10 +33,10 @@ export function CursorFollowHint({
         <Image
           src="/cursors/rabbit-ask.png"
           alt=""
-          width={1774}
-          height={749}
+          width={1767}
+          height={745}
           priority
-          className="pointer-events-none absolute z-50 w-44 max-w-none -translate-x-1/2 -translate-y-1/2 select-none sm:w-56"
+          className="pointer-events-none absolute z-50 w-[59px] max-w-none -translate-x-1/2 -translate-y-1/2 select-none sm:w-[75px]"
           style={{ left: pos.x, top: pos.y }}
         />
       )}
