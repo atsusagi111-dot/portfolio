@@ -4,15 +4,9 @@ type ServiceCardProps = {
   id: string;
   name: string;
   shortDescription: string;
-  readMoreLabel: string;
 };
 
-export function ServiceCard({
-  id,
-  name,
-  shortDescription,
-  readMoreLabel,
-}: ServiceCardProps) {
+export function ServiceCard({ id, name, shortDescription }: ServiceCardProps) {
   return (
     <Link
       href={`/services#${id}`}
@@ -24,7 +18,6 @@ export function ServiceCard({
       <p className="mt-2 text-sm leading-relaxed text-ink-muted">
         {shortDescription}
       </p>
-      <span className="mt-4 text-sm font-medium text-gold">{readMoreLabel}</span>
     </Link>
   );
 }

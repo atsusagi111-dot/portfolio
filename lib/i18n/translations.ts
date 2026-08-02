@@ -20,6 +20,20 @@ export type ServiceContent = {
   examples?: string[];
 };
 
+export type TechItem = {
+  name: string;
+  note: string;
+};
+
+export type AchievementItem = {
+  id: string;
+  title: string;
+  description: string;
+  techStack: TechItem[];
+  supportTools: TechItem[];
+  urls: string[];
+};
+
 export type Translations = {
   languageName: string;
   nav: {
@@ -35,7 +49,6 @@ export type Translations = {
     ctaSecondary: string;
   };
   targetAudience: {
-    eyebrow: string;
     title: string;
     description: string;
     items: string[];
@@ -47,6 +60,13 @@ export type Translations = {
     readMore: string;
   };
   services: Record<ServiceId, ServiceContent>;
+  achievementsSection: {
+    title: string;
+    techStackLabel: string;
+    supportToolsLabel: string;
+    urlLabel: string;
+  };
+  achievements: AchievementItem[];
   contact: {
     eyebrow: string;
     title: string;
@@ -86,8 +106,7 @@ const ja: Translations = {
     ctaSecondary: "サービスを見る",
   },
   targetAudience: {
-    eyebrow: "こんな方におすすめ",
-    title: "ターゲット",
+    title: "こんな方におすすめ",
     description: "Web制作からAI活用まで、幅広いご要望に対応しています。",
     items: [
       "LP（ランディングページ）の制作を依頼したい個人・企業",
@@ -167,6 +186,36 @@ const ja: Translations = {
       ],
     },
   },
+  achievementsSection: {
+    title: "実績",
+    techStackLabel: "技術構成",
+    supportToolsLabel: "補助ツール",
+    urlLabel: "制作URL",
+  },
+  achievements: [
+    {
+      id: "momuri-lp",
+      title: "退職代行モームリ｜LP制作",
+      description:
+        "退職代行モームリ紹介LPを制作(メール問い合わせ・メール＆LINE問い合わせの2種)。デザイン・コーディング・レスポンシブ対応・公開まで担当。",
+      techStack: [
+        { name: "Vite", note: "開発を高速に進めるためのツール" },
+        { name: "React", note: "部品を組み合わせて画面を作るツール" },
+        { name: "TypeScript", note: "バグを防ぎやすくする言語" },
+        {
+          name: "Tailwind CSS",
+          note: "あらかじめ用意されたスタイルを組み合わせてCSSを書く手間を減らすツール",
+        },
+        { name: "lucide-react", note: "Webサイトで使えるアイコン集" },
+        { name: "ESLint", note: "コードチェックツール" },
+        { name: "Render", note: "インターネット上へ公開するサービス" },
+      ],
+      supportTools: [
+        { name: "Bolt.new", note: "AIとの対話でページを作成するツール" },
+      ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+    },
+  ],
   contact: {
     eyebrow: "Contact",
     title: "お問い合わせ",
@@ -210,8 +259,7 @@ const en: Translations = {
     ctaSecondary: "View Services",
   },
   targetAudience: {
-    eyebrow: "Who We Help",
-    title: "Target Audience",
+    title: "Who We Help",
     description:
       "We support a wide range of needs, from web production to AI adoption.",
     items: [
@@ -292,6 +340,36 @@ const en: Translations = {
       ],
     },
   },
+  achievementsSection: {
+    title: "Achievements",
+    techStackLabel: "Tech Stack",
+    supportToolsLabel: "Supporting Tools",
+    urlLabel: "Live URLs",
+  },
+  achievements: [
+    {
+      id: "momuri-lp",
+      title: "Moumuri Resignation Agency | Landing Page Production",
+      description:
+        "Produced the introductory landing page for Moumuri, a resignation-proxy agency (two versions: email-only inquiries, and email + LINE inquiries). Handled design, coding, responsive support, and publishing.",
+      techStack: [
+        { name: "Vite", note: "A tool for fast development" },
+        { name: "React", note: "A tool for building UIs from reusable components" },
+        { name: "TypeScript", note: "A language that helps prevent bugs" },
+        {
+          name: "Tailwind CSS",
+          note: "A tool that reduces the effort of writing CSS by combining pre-built styles",
+        },
+        { name: "lucide-react", note: "An icon set for websites" },
+        { name: "ESLint", note: "A code-checking tool" },
+        { name: "Render", note: "A service for publishing to the internet" },
+      ],
+      supportTools: [
+        { name: "Bolt.new", note: "A tool for building pages through conversation with AI" },
+      ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+    },
+  ],
   contact: {
     eyebrow: "Contact",
     title: "Contact",
@@ -335,8 +413,7 @@ const es: Translations = {
     ctaSecondary: "Ver Servicios",
   },
   targetAudience: {
-    eyebrow: "A quién ayudamos",
-    title: "Público objetivo",
+    title: "A quién ayudamos",
     description:
       "Atendemos una amplia variedad de necesidades, desde el desarrollo web hasta la adopción de IA.",
     items: [
@@ -417,6 +494,36 @@ const es: Translations = {
       ],
     },
   },
+  achievementsSection: {
+    title: "Logros",
+    techStackLabel: "Stack Tecnológico",
+    supportToolsLabel: "Herramientas de Apoyo",
+    urlLabel: "URLs del Proyecto",
+  },
+  achievements: [
+    {
+      id: "momuri-lp",
+      title: "Moumuri (Agencia de Renuncias) | Creación de Landing Page",
+      description:
+        "Creación de la landing page de presentación de Moumuri, una agencia de renuncias (dos versiones: solo consultas por correo, y consultas por correo y LINE). Responsable del diseño, la programación, la adaptación responsiva y la publicación.",
+      techStack: [
+        { name: "Vite", note: "Herramienta para un desarrollo más rápido" },
+        { name: "React", note: "Herramienta para construir interfaces combinando componentes" },
+        { name: "TypeScript", note: "Lenguaje que ayuda a prevenir errores" },
+        {
+          name: "Tailwind CSS",
+          note: "Herramienta que reduce el esfuerzo de escribir CSS combinando estilos predefinidos",
+        },
+        { name: "lucide-react", note: "Conjunto de iconos para sitios web" },
+        { name: "ESLint", note: "Herramienta de revisión de código" },
+        { name: "Render", note: "Servicio para publicar en internet" },
+      ],
+      supportTools: [
+        { name: "Bolt.new", note: "Herramienta para crear páginas mediante conversación con IA" },
+      ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+    },
+  ],
   contact: {
     eyebrow: "Contacto",
     title: "Contacto",

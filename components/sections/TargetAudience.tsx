@@ -10,7 +10,6 @@ export function TargetAudience() {
   return (
     <Section
       className="bg-surface-card"
-      eyebrow={t.targetAudience.eyebrow}
       title={t.targetAudience.title}
       description={t.targetAudience.description}
     >
