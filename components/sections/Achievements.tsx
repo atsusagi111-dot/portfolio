@@ -7,20 +7,16 @@ import type { TechItem } from "@/lib/i18n/translations";
 
 function TechList({ items }: { items: TechItem[] }) {
   return (
-    <ul className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+    <div className="mt-2 flex flex-wrap gap-2">
       {items.map((item) => (
-        <li
+        <span
           key={item.name}
-          className="flex items-start gap-2 text-sm leading-relaxed text-ink"
+          className="rounded-xl border border-navy-50 bg-surface px-4 py-2 text-sm font-medium text-ink"
         >
-          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-          <span>
-            <span className="font-medium">{item.name}</span>
-            {" "}({item.note})
-          </span>
-        </li>
+          {item.name}
+        </span>
       ))}
-    </ul>
+    </div>
   );
 }
 
@@ -41,20 +37,6 @@ export function Achievements() {
             <p className="mt-4 leading-relaxed text-ink-muted">
               {item.description}
             </p>
-
-            <h4 className="mt-6 text-sm font-semibold text-gold">
-              {t.achievementsSection.techStackLabel}
-            </h4>
-            <TechList items={item.techStack} />
-
-            {item.supportTools.length > 0 && (
-              <>
-                <h4 className="mt-6 text-sm font-semibold text-gold">
-                  {t.achievementsSection.supportToolsLabel}
-                </h4>
-                <TechList items={item.supportTools} />
-              </>
-            )}
 
             {item.screenshots.length > 0 && (
               <>
@@ -80,6 +62,20 @@ export function Achievements() {
                     </figure>
                   ))}
                 </div>
+              </>
+            )}
+
+            <h4 className="mt-6 text-sm font-semibold text-gold">
+              {t.achievementsSection.techStackLabel}
+            </h4>
+            <TechList items={item.techStack} />
+
+            {item.supportTools.length > 0 && (
+              <>
+                <h4 className="mt-6 text-sm font-semibold text-gold">
+                  {t.achievementsSection.supportToolsLabel}
+                </h4>
+                <TechList items={item.supportTools} />
               </>
             )}
           </article>
