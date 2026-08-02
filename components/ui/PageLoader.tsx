@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
-const DISPLAY_MS = 1500;
+const DISPLAY_MS = 3000;
 const FADE_MS = 300;
 const REDUCED_MOTION_DISPLAY_MS = 400;
 
