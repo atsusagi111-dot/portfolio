@@ -18,7 +18,7 @@ function TechList({ items }: { items: TechItem[] }) {
           </span>
           <div
             role="tooltip"
-            className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 w-max max-w-[200px] -translate-x-1/2 translate-y-0.5 rounded-md bg-ink/80 px-2.5 py-1 text-center text-[11px] leading-relaxed text-white opacity-0 transition-all duration-300 delay-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+            className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 w-max max-w-[200px] -translate-x-1/2 translate-y-0.5 rounded-md bg-ink/80 px-2.5 py-1 text-center text-[11px] leading-relaxed text-white opacity-0 transition-all duration-150 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
           >
             {item.note}
           </div>
