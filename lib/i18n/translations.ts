@@ -39,6 +39,13 @@ export type AchievementItem = {
   screenshots: AchievementScreenshot[];
 };
 
+export type ProfileTimelineItem = {
+  year: string;
+  heading: string;
+  body: string;
+  highlight?: string;
+};
+
 export type Translations = {
   languageName: string;
   nav: {
@@ -72,6 +79,11 @@ export type Translations = {
     screenshotsLabel: string;
   };
   achievements: AchievementItem[];
+  profileSection: {
+    title: string;
+    photoAlt: string;
+  };
+  profileTimeline: ProfileTimelineItem[];
   contact: {
     eyebrow: string;
     title: string;
@@ -224,6 +236,33 @@ const ja: Translations = {
           src: "/achievements/lp-email-line-flow.png",
         },
       ],
+    },
+  ],
+  profileSection: {
+    title: "プロフィール",
+    photoAlt: "ATSUSAGI LAB プロフィール写真",
+  },
+  profileTimeline: [
+    {
+      year: "2017",
+      heading: "Webライターとして活動開始",
+      body: "クラウドソーシングサイトでライティング案件の受注を開始。Webコンテンツ制作を通じて、ユーザー視点で情報を整理し、価値を届ける力を培う。",
+    },
+    {
+      year: "2024",
+      heading: "SEOライター｜ベンチャー企業",
+      body: "SEO記事の企画・構成・執筆に加え、オウンドメディアの運営を担当。コンテンツ戦略から記事制作まで携わり、検索結果上位の記事を複数制作。通常平均約300PVのサイトで、月間約7,000PVを生み出す記事を制作。",
+      highlight: "月間約300PV → 約7,000PV",
+    },
+    {
+      year: "2026",
+      heading: "AIエンジニアとしての活動を開始",
+      body: "AI・Web開発の学習を開始。AIチャットボットやWebアプリケーション、業務効率化システムなど、AIを活用した開発に取り組む。同年、現職企業のLP制作を担当。企画・構成から実装、公開まで、実際の企業サービスをWeb上で形にする経験を積む。",
+    },
+    {
+      year: "NOW",
+      heading: "AI開発パートナー｜ATSUSAGI LAB",
+      body: "Web・SEOで培った「ユーザーの課題を捉える力」と、AI・Web開発の技術を掛け合わせ、課題整理からAIを活用したシステム開発まで支援。",
     },
   ],
   contact: {
@@ -385,6 +424,33 @@ const en: Translations = {
       ],
     },
   ],
+  profileSection: {
+    title: "Profile",
+    photoAlt: "ATSUSAGI LAB profile photo",
+  },
+  profileTimeline: [
+    {
+      year: "2017",
+      heading: "Started Working as a Web Writer",
+      body: "Began taking on writing projects through crowdsourcing platforms. Through web content creation, developed the ability to organize information from the user's perspective and deliver real value.",
+    },
+    {
+      year: "2024",
+      heading: "SEO Writer | Venture Company",
+      body: "Planned, structured, and wrote SEO articles, and also managed owned media. Involved in everything from content strategy to article production, creating multiple articles that ranked at the top of search results. On a site that typically averaged around 300 PV per month, produced articles that grew traffic to about 7,000 PV per month.",
+      highlight: "About 300 PV/month → About 7,000 PV/month",
+    },
+    {
+      year: "2026",
+      heading: "Began Working as an AI Engineer",
+      body: "Started learning AI and web development, working on AI-powered projects such as chatbots, web applications, and business-efficiency systems. That same year, took charge of the landing page production for my current company, gaining hands-on experience turning a real business service into a live website, from planning through implementation and launch.",
+    },
+    {
+      year: "NOW",
+      heading: "AI Development Partner | ATSUSAGI LAB",
+      body: "Combining the ability to grasp user challenges cultivated through web and SEO work with technical skills in AI and web development, I support clients from organizing their challenges through to building AI-powered systems.",
+    },
+  ],
   contact: {
     eyebrow: "Contact",
     title: "Contact",
@@ -542,6 +608,33 @@ const es: Translations = {
           src: "/achievements/lp-email-line-flow.png",
         },
       ],
+    },
+  ],
+  profileSection: {
+    title: "Perfil",
+    photoAlt: "Foto de perfil de ATSUSAGI LAB",
+  },
+  profileTimeline: [
+    {
+      year: "2017",
+      heading: "Inicio como Redactora Web",
+      body: "Comencé a aceptar proyectos de redacción a través de plataformas de crowdsourcing. A través de la creación de contenido web, desarrollé la capacidad de organizar información desde la perspectiva del usuario y aportar valor real.",
+    },
+    {
+      year: "2024",
+      heading: "Redactora SEO | Empresa Emergente",
+      body: "Planifiqué, estructuré y redacté artículos SEO, además de gestionar medios propios. Participé desde la estrategia de contenido hasta la producción de artículos, creando varios que alcanzaron los primeros puestos en los resultados de búsqueda. En un sitio con un promedio habitual de unas 300 PV mensuales, logré crear artículos que generaron alrededor de 7,000 PV al mes.",
+      highlight: "Aprox. 300 PV/mes → Aprox. 7,000 PV/mes",
+    },
+    {
+      year: "2026",
+      heading: "Inicio como Ingeniera de IA",
+      body: "Comencé a aprender IA y desarrollo web, trabajando en proyectos con IA como chatbots, aplicaciones web y sistemas de eficiencia empresarial. Ese mismo año, asumí la producción de la landing page de mi empresa actual, ganando experiencia práctica en convertir un servicio empresarial real en un sitio web, desde la planificación hasta la implementación y publicación.",
+    },
+    {
+      year: "NOW",
+      heading: "Socia de Desarrollo de IA | ATSUSAGI LAB",
+      body: "Combinando la capacidad de comprender los desafíos del usuario, cultivada a través del trabajo web y SEO, con habilidades técnicas en IA y desarrollo web, apoyo a los clientes desde la organización de sus desafíos hasta la construcción de sistemas impulsados por IA.",
     },
   ],
   contact: {
