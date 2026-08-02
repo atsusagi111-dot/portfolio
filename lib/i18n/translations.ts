@@ -235,6 +235,10 @@ const ja: Translations = {
           label: "メール・LINE動線",
           src: "/achievements/lp-email-line-flow.png",
         },
+        {
+          label: "メール動線",
+          src: "/achievements/lp-email-flow.png",
+        },
       ],
     },
   ],
@@ -421,6 +425,10 @@ const en: Translations = {
           label: "Email & LINE Flow",
           src: "/achievements/lp-email-line-flow.png",
         },
+        {
+          label: "Email Flow",
+          src: "/achievements/lp-email-flow.png",
+        },
       ],
     },
   ],
@@ -606,6 +614,10 @@ const es: Translations = {
         {
           label: "Flujo por Correo y LINE",
           src: "/achievements/lp-email-line-flow.png",
+        },
+        {
+          label: "Flujo por Correo",
+          src: "/achievements/lp-email-flow.png",
         },
       ],
     },
