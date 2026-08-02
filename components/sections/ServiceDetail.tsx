@@ -1,3 +1,12 @@
+import Image from "next/image";
+import type { AchievementScreenshot } from "@/lib/i18n/translations";
+
+type RelatedAchievement = {
+  labelPrefix: string;
+  title: string;
+  screenshots: AchievementScreenshot[];
+};
+
 type ServiceDetailProps = {
   id: string;
   name: string;
@@ -5,6 +14,7 @@ type ServiceDetailProps = {
   price: string;
   priceLabel: string;
   examples?: string[];
+  relatedAchievement?: RelatedAchievement;
 };
 
 export function ServiceDetail({
@@ -14,6 +24,7 @@ export function ServiceDetail({
   price,
   priceLabel,
   examples,
+  relatedAchievement,
 }: ServiceDetailProps) {
   return (
     <article
@@ -40,6 +51,34 @@ export function ServiceDetail({
             </li>
           ))}
         </ul>
+      )}
+
+      {relatedAchievement && (
+        <div className="mt-6 border-t border-navy-50 pt-6">
+          <p className="text-sm font-semibold text-gold">
+            {relatedAchievement.labelPrefix}
+            {relatedAchievement.title}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-4">
+            {relatedAchievement.screenshots.map((shot) => (
+              <figure
+                key={shot.label}
+                className="w-52 overflow-hidden rounded-lg border border-navy-50 bg-surface sm:w-64"
+              >
+                <figcaption className="border-b border-navy-50 bg-surface-card px-2 py-1 text-xs font-semibold text-ink">
+                  {shot.label}
+                </figcaption>
+                <Image
+                  src={shot.src}
+                  alt={shot.label}
+                  width={787}
+                  height={786}
+                  className="h-auto w-full"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
       )}
     </article>
   );

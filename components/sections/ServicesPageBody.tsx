@@ -7,6 +7,9 @@ import { SERVICE_IDS } from "@/lib/i18n/translations";
 
 export function ServicesPageBody() {
   const t = useTranslations();
+  const lpAchievement = t.achievements.find(
+    (item) => item.id === "resignation-agency-lp"
+  );
 
   return (
     <Section
@@ -23,6 +26,15 @@ export function ServicesPageBody() {
             price={t.services[id].price}
             priceLabel={t.servicesSection.priceLabel}
             examples={t.services[id].examples}
+            relatedAchievement={
+              id === "lp" && lpAchievement
+                ? {
+                    labelPrefix: t.servicesSection.achievementLabel,
+                    title: lpAchievement.title,
+                    screenshots: lpAchievement.screenshots,
+                  }
+                : undefined
+            }
           />
         ))}
       </div>

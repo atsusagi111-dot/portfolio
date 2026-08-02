@@ -87,6 +87,7 @@ export type Translations = {
     pageDescription: string;
     readMore: string;
     priceLabel: string;
+    achievementLabel: string;
   };
   services: Record<ServiceId, ServiceContent>;
   achievementsSection: {
@@ -166,6 +167,7 @@ const ja: Translations = {
       "ホームページ制作からAIを活用した業務自動化まで、お客様の目的に合わせてワンストップでご対応します。",
     readMore: "詳しく見る →",
     priceLabel: "料金目安",
+    achievementLabel: "実績：",
   },
   services: {
     homepage: {
@@ -457,6 +459,7 @@ const en: Translations = {
       "From website creation to AI-powered business automation, we provide one-stop support tailored to your goals.",
     readMore: "Learn more →",
     priceLabel: "Starting Price",
+    achievementLabel: "Case Study: ",
   },
   services: {
     homepage: {
@@ -748,6 +751,7 @@ const es: Translations = {
       "Desde la creación de sitios web hasta la automatización empresarial con IA, ofrecemos un servicio integral adaptado a tus objetivos.",
     readMore: "Ver más →",
     priceLabel: "Precio Estimado",
+    achievementLabel: "Logro: ",
   },
   services: {
     homepage: {

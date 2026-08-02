@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ServicesPageBody } from "@/components/sections/ServicesPageBody";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 export const metadata: Metadata = {
   title: "サービス内容｜AI開発パートナー ATSUSAGI LAB",
@@ -12,7 +13,9 @@ export default function ServicesPage() {
   return (
     <>
       <ServicesPageBody />
-      <CtaBanner />
+      <RevealOnScroll>
+        <CtaBanner />
+      </RevealOnScroll>
     </>
   );
 }

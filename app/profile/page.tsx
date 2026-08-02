@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Profile } from "@/components/sections/Profile";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 export const metadata: Metadata = {
   title: "開発者プロフィール｜AI開発パートナー ATSUSAGI LAB",
@@ -12,7 +13,9 @@ export default function ProfilePage() {
   return (
     <>
       <Profile />
-      <CtaBanner />
+      <RevealOnScroll>
+        <CtaBanner />
+      </RevealOnScroll>
     </>
   );
 }
