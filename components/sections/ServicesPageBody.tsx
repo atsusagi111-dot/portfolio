@@ -1,26 +1,26 @@
 "use client";
 
 import { Section } from "@/components/layout/Section";
-import { ServiceCard } from "@/components/ui/ServiceCard";
+import { ServiceDetail } from "@/components/sections/ServiceDetail";
 import { useTranslations } from "@/components/i18n/LanguageProvider";
 import { SERVICE_IDS } from "@/lib/i18n/translations";
 
-export function ServicesSummaryGrid() {
+export function ServicesPageBody() {
   const t = useTranslations();
 
   return (
     <Section
       title={t.servicesSection.title}
-      description={t.servicesSection.homeDescription}
+      description={t.servicesSection.pageDescription}
     >
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-col gap-6">
         {SERVICE_IDS.map((id) => (
-          <ServiceCard
+          <ServiceDetail
             key={id}
             id={id}
             name={t.services[id].name}
-            shortDescription={t.services[id].shortDescription}
-            readMoreLabel={t.servicesSection.readMore}
+            fullDescription={t.services[id].fullDescription}
+            examples={t.services[id].examples}
           />
         ))}
       </div>

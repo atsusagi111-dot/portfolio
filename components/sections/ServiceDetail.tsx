@@ -1,16 +1,26 @@
-import type { Service } from "@/lib/content";
+type ServiceDetailProps = {
+  id: string;
+  name: string;
+  fullDescription: string;
+  examples?: string[];
+};
 
-export function ServiceDetail({ service }: { service: Service }) {
+export function ServiceDetail({
+  id,
+  name,
+  fullDescription,
+  examples,
+}: ServiceDetailProps) {
   return (
     <article
-      id={service.id}
+      id={id}
       className="scroll-mt-24 rounded-2xl border border-navy-50 bg-surface-card p-8"
     >
-      <h3 className="text-xl font-bold text-ink sm:text-2xl">{service.name}</h3>
-      <p className="mt-4 leading-relaxed text-ink-muted">{service.fullDescription}</p>
-      {service.examples && service.examples.length > 0 && (
+      <h3 className="text-xl font-bold text-ink sm:text-2xl">{name}</h3>
+      <p className="mt-4 leading-relaxed text-ink-muted">{fullDescription}</p>
+      {examples && examples.length > 0 && (
         <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {service.examples.map((example) => (
+          {examples.map((example) => (
             <li
               key={example}
               className="flex items-start gap-2 text-sm leading-relaxed text-ink"

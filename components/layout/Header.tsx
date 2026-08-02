@@ -4,15 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
-
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations();
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/contact", label: t.nav.achievements },
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-navy-50 bg-surface/90 backdrop-blur">
@@ -22,7 +25,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -31,8 +34,9 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <LanguageSwitcher />
           <Button href="/contact" className="px-5 py-2 text-sm">
-            お問い合わせ
+            {t.nav.contactCta}
           </Button>
         </nav>
 
@@ -74,7 +78,7 @@ export function Header() {
       {open && (
         <nav className="border-t border-navy-50 bg-surface px-4 py-4 md:hidden">
           <ul className="flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -86,8 +90,11 @@ export function Header() {
               </li>
             ))}
             <li>
+              <LanguageSwitcher />
+            </li>
+            <li>
               <Button href="/contact" className="w-full">
-                お問い合わせ
+                {t.nav.contactCta}
               </Button>
             </li>
           </ul>

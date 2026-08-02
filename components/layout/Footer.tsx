@@ -1,14 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
+import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const t = useTranslations();
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/contact", label: t.nav.achievements },
+  ];
 
   return (
     <footer className="border-t border-navy-50 bg-surface-card">
@@ -17,12 +21,12 @@ export function Footer() {
           <Logo variant="badge" className="h-12 w-12" />
           <div>
             <p className="text-sm font-semibold text-ink">ATSUSAGI LAB</p>
-            <p className="text-xs text-ink-muted">AI開発パートナー</p>
+            <p className="text-xs text-ink-muted">{t.footer.tagline}</p>
           </div>
         </div>
 
         <nav className="flex gap-6">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}

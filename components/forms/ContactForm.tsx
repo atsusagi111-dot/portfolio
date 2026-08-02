@@ -2,12 +2,14 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 const inputClasses =
   "w-full rounded-lg border border-navy-50 bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-muted focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const t = useTranslations();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,7 +21,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div>
         <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink">
-          お名前 <span className="text-gold">*</span>
+          {t.contact.nameLabel} <span className="text-gold">*</span>
         </label>
         <input
           id="name"
@@ -28,13 +30,13 @@ export function ContactForm() {
           required
           autoComplete="name"
           className={inputClasses}
-          placeholder="山田 太郎"
+          placeholder={t.contact.namePlaceholder}
         />
       </div>
 
       <div>
         <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink">
-          メールアドレス <span className="text-gold">*</span>
+          {t.contact.emailLabel} <span className="text-gold">*</span>
         </label>
         <input
           id="email"
@@ -43,13 +45,13 @@ export function ContactForm() {
           required
           autoComplete="email"
           className={inputClasses}
-          placeholder="you@example.com"
+          placeholder={t.contact.emailPlaceholder}
         />
       </div>
 
       <div>
         <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
-          お問い合わせ内容 <span className="text-gold">*</span>
+          {t.contact.messageLabel} <span className="text-gold">*</span>
         </label>
         <textarea
           id="message"
@@ -57,17 +59,17 @@ export function ContactForm() {
           required
           rows={6}
           className={inputClasses}
-          placeholder="ご相談内容やご要望をご記入ください"
+          placeholder={t.contact.messagePlaceholder}
         />
       </div>
 
       <Button type="submit" variant="primary" className="w-full sm:w-auto">
-        送信する
+        {t.contact.submit}
       </Button>
 
       {submitted && (
         <p className="rounded-lg bg-gold-50 px-4 py-3 text-sm text-ink">
-          ご入力ありがとうございます。現在、送信機能は準備中です。お急ぎの場合はお手数ですが別途ご連絡方法をご案内するまでお待ちください。
+          {t.contact.submitted}
         </p>
       )}
     </form>
