@@ -21,6 +21,8 @@ export function ServicesSummaryGrid() {
             id={id}
             name={t.services[id].name}
             shortDescription={t.services[id].shortDescription}
+            price={t.services[id].price}
+            priceLabel={t.servicesSection.priceLabel}
           />
         ))}
       </div>

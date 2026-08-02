@@ -17,6 +17,7 @@ export type ServiceContent = {
   name: string;
   shortDescription: string;
   fullDescription: string;
+  price: string;
   examples?: string[];
 };
 
@@ -85,6 +86,7 @@ export type Translations = {
     homeDescription: string;
     pageDescription: string;
     readMore: string;
+    priceLabel: string;
   };
   services: Record<ServiceId, ServiceContent>;
   achievementsSection: {
@@ -163,6 +165,7 @@ const ja: Translations = {
     pageDescription:
       "ホームページ制作からAIを活用した業務自動化まで、お客様の目的に合わせてワンストップでご対応します。",
     readMore: "詳しく見る →",
+    priceLabel: "料金目安",
   },
   services: {
     homepage: {
@@ -171,6 +174,7 @@ const ja: Translations = {
         "企業・店舗・個人向けのホームページ制作。スマートフォンにも対応した、見やすく使いやすいデザイン。",
       fullDescription:
         "企業・店舗・個人事業主向けに、目的に合わせたホームページを制作します。スマートフォンにも対応した、見やすく使いやすいデザインをご提供します。",
+      price: "10万円〜",
     },
     lp: {
       name: "LP制作",
@@ -178,6 +182,7 @@ const ja: Translations = {
         "商品・サービスを紹介し、お問い合わせや申し込みにつなげる1ページのWebサイト制作。",
       fullDescription:
         "商品やサービスの魅力を分かりやすく伝え、お問い合わせや申し込みにつながるページを制作します。",
+      price: "5万円〜",
     },
     "web-system": {
       name: "Webシステム開発",
@@ -185,6 +190,7 @@ const ja: Translations = {
         "予約・顧客管理・問い合わせ管理など、業務を便利にするWebシステムの開発。",
       fullDescription:
         "予約管理・顧客管理・お問い合わせ管理など、日々の業務を効率化するオリジナルシステムを開発します。",
+      price: "15万円〜",
       examples: [
         "データ管理・予約管理システムの開発",
         "お客様の目的に合わせたオリジナルシステムの開発",
@@ -196,6 +202,7 @@ const ja: Translations = {
         "ホームページやLINEで、お客様の質問に24時間自動で回答するAIチャットボットの構築。",
       fullDescription:
         "ホームページやLINEにAIを導入し、お客様からの質問に24時間自動で回答できる仕組みを構築します。",
+      price: "10万円〜",
       examples: [
         "商品についての質問",
         "サービス内容の案内",
@@ -209,6 +216,7 @@ const ja: Translations = {
         "AIを利用して、お問い合わせ対応や情報検索などを自動化する仕組みを構築。",
       fullDescription:
         "AIを活用して、お問い合わせ対応や情報検索など、これまで人が行っていた作業を自動化します。業務の負担を減らし、より効率的な運営をサポートします。",
+      price: "10万円〜",
     },
     "system-integration": {
       name: "システム連携・業務自動化",
@@ -216,6 +224,7 @@ const ja: Translations = {
         "複数のサービスを連携し、データ入力・通知・情報共有などの作業を自動化。",
       fullDescription:
         "複数のサービスを連携し、データ入力や通知などの繰り返し作業を自動化します。お客様の業務に合わせたシステムを構築します。",
+      price: "10万円〜",
       examples: [
         "フォームの内容を自動で管理表へ登録",
         "LINEやメールへ自動通知",
@@ -447,6 +456,7 @@ const en: Translations = {
     pageDescription:
       "From website creation to AI-powered business automation, we provide one-stop support tailored to your goals.",
     readMore: "Learn more →",
+    priceLabel: "Starting Price",
   },
   services: {
     homepage: {
@@ -455,6 +465,7 @@ const en: Translations = {
         "Website production for businesses, shops, and individuals. Clear, user-friendly designs that also work great on smartphones.",
       fullDescription:
         "We build websites tailored to your goals for businesses, shops, and sole proprietors, with clear, user-friendly designs that work great on smartphones too.",
+      price: "From ¥100,000",
     },
     lp: {
       name: "Landing Page Production",
@@ -462,6 +473,7 @@ const en: Translations = {
         "A single-page website that showcases your product or service and drives inquiries and sign-ups.",
       fullDescription:
         "We create pages that clearly communicate the appeal of your products and services and lead to inquiries and applications.",
+      price: "From ¥50,000",
     },
     "web-system": {
       name: "Web System Development",
@@ -469,6 +481,7 @@ const en: Translations = {
         "Web systems for reservations, customer management, inquiry management, and more to streamline your operations.",
       fullDescription:
         "We develop custom systems for reservation management, customer management, inquiry management, and more to streamline your day-to-day operations.",
+      price: "From ¥150,000",
       examples: [
         "Development of data and reservation management systems",
         "Custom systems built around your specific goals",
@@ -480,6 +493,7 @@ const en: Translations = {
         "AI chatbots that automatically answer customer questions 24/7 on your website or LINE.",
       fullDescription:
         "We integrate AI into your website or LINE to automatically answer customer questions around the clock.",
+      price: "From ¥100,000",
       examples: [
         "Questions about products",
         "Information about services",
@@ -493,6 +507,7 @@ const en: Translations = {
         "We use AI to automate tasks like inquiry response and information search.",
       fullDescription:
         "We use AI to automate tasks that used to be done manually, such as handling inquiries and searching for information — reducing workload and supporting more efficient operations.",
+      price: "From ¥100,000",
     },
     "system-integration": {
       name: "System Integration & Automation",
@@ -500,6 +515,7 @@ const en: Translations = {
         "We connect multiple services to automate data entry, notifications, information sharing, and more.",
       fullDescription:
         "We connect multiple services to automate repetitive tasks like data entry and notifications, building systems tailored to your business.",
+      price: "From ¥100,000",
       examples: [
         "Automatically registering form submissions into a management spreadsheet",
         "Automatic notifications via LINE or email",
@@ -731,6 +747,7 @@ const es: Translations = {
     pageDescription:
       "Desde la creación de sitios web hasta la automatización empresarial con IA, ofrecemos un servicio integral adaptado a tus objetivos.",
     readMore: "Ver más →",
+    priceLabel: "Precio Estimado",
   },
   services: {
     homepage: {
@@ -739,6 +756,7 @@ const es: Translations = {
         "Creación de sitios web para empresas, comercios y particulares. Diseños claros y fáciles de usar, también optimizados para móviles.",
       fullDescription:
         "Creamos sitios web adaptados a tus objetivos para empresas, comercios y autónomos, con diseños claros y fáciles de usar que también funcionan muy bien en móviles.",
+      price: "Desde ¥100,000",
     },
     lp: {
       name: "Creación de Landing Pages",
@@ -746,6 +764,7 @@ const es: Translations = {
         "Un sitio web de una sola página que presenta tu producto o servicio y genera consultas y registros.",
       fullDescription:
         "Creamos páginas que comunican claramente el atractivo de tus productos y servicios, generando consultas y solicitudes.",
+      price: "Desde ¥50,000",
     },
     "web-system": {
       name: "Desarrollo de Sistemas Web",
@@ -753,6 +772,7 @@ const es: Translations = {
         "Sistemas web para reservas, gestión de clientes, gestión de consultas y más, para optimizar tus operaciones.",
       fullDescription:
         "Desarrollamos sistemas personalizados para la gestión de reservas, clientes, consultas y más, optimizando tus operaciones diarias.",
+      price: "Desde ¥150,000",
       examples: [
         "Desarrollo de sistemas de gestión de datos y reservas",
         "Sistemas personalizados adaptados a tus objetivos específicos",
@@ -764,6 +784,7 @@ const es: Translations = {
         "Chatbots con IA que responden automáticamente a las preguntas de los clientes las 24 horas en tu sitio web o LINE.",
       fullDescription:
         "Integramos IA en tu sitio web o LINE para responder automáticamente a las preguntas de los clientes las 24 horas.",
+      price: "Desde ¥100,000",
       examples: [
         "Preguntas sobre productos",
         "Información sobre servicios",
@@ -777,6 +798,7 @@ const es: Translations = {
         "Utilizamos IA para automatizar tareas como la respuesta a consultas y la búsqueda de información.",
       fullDescription:
         "Utilizamos IA para automatizar tareas que antes se hacían manualmente, como la atención de consultas y la búsqueda de información, reduciendo la carga de trabajo y apoyando una operación más eficiente.",
+      price: "Desde ¥100,000",
     },
     "system-integration": {
       name: "Integración de Sistemas y Automatización",
@@ -784,6 +806,7 @@ const es: Translations = {
         "Conectamos varios servicios para automatizar la entrada de datos, notificaciones, el intercambio de información y más.",
       fullDescription:
         "Conectamos varios servicios para automatizar tareas repetitivas como la entrada de datos y las notificaciones, creando sistemas adaptados a tu negocio.",
+      price: "Desde ¥100,000",
       examples: [
         "Registro automático de formularios en una hoja de gestión",
         "Notificaciones automáticas por LINE o correo electrónico",

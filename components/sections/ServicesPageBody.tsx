@@ -20,6 +20,8 @@ export function ServicesPageBody() {
             id={id}
             name={t.services[id].name}
             fullDescription={t.services[id].fullDescription}
+            price={t.services[id].price}
+            priceLabel={t.servicesSection.priceLabel}
             examples={t.services[id].examples}
           />
         ))}

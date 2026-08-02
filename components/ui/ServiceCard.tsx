@@ -4,9 +4,17 @@ type ServiceCardProps = {
   id: string;
   name: string;
   shortDescription: string;
+  price: string;
+  priceLabel: string;
 };
 
-export function ServiceCard({ id, name, shortDescription }: ServiceCardProps) {
+export function ServiceCard({
+  id,
+  name,
+  shortDescription,
+  price,
+  priceLabel,
+}: ServiceCardProps) {
   return (
     <Link
       href={`/services#${id}`}
@@ -18,6 +26,10 @@ export function ServiceCard({ id, name, shortDescription }: ServiceCardProps) {
       <p className="mt-2 text-sm leading-relaxed text-ink-muted">
         {shortDescription}
       </p>
+      <div className="mt-4 flex items-baseline gap-2 border-t border-navy-50 pt-3">
+        <span className="text-xs text-ink-muted">{priceLabel}</span>
+        <span className="text-base font-bold text-navy">{price}</span>
+      </div>
     </Link>
   );
 }
