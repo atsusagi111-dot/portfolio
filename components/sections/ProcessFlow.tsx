@@ -5,6 +5,7 @@ import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function ProcessFlow() {
   const t = useTranslations();
+  const steps = t.processSteps;
 
   return (
     <Section
@@ -12,25 +13,25 @@ export function ProcessFlow() {
       title={t.processSection.title}
       description={t.processSection.description}
     >
-      <ol className="flex flex-col gap-8">
-        {t.processSteps.map((step) => (
-          <li
-            key={step.number}
-            className="flex flex-col gap-4 rounded-2xl border border-navy-50 bg-surface p-6 sm:flex-row sm:gap-6 sm:p-8"
-          >
-            <div className="shrink-0 text-2xl font-bold text-gold sm:text-3xl">
-              {step.number}
+      <ol className="mx-auto flex max-w-3xl flex-col">
+        {steps.map((step, index) => (
+          <li key={step.number} className="flex gap-5 sm:gap-6">
+            <div className="flex flex-col items-center">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-white sm:h-12 sm:w-12 sm:text-base">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && (
+                <span className="w-0.5 flex-1 bg-navy-50" />
+              )}
             </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-bold text-ink sm:text-xl">
+
+            <div className={`flex-1 ${index < steps.length - 1 ? "pb-10" : ""}`}>
+              <h3 className="pt-2 text-lg font-bold text-ink sm:text-xl">
                 {step.title}
               </h3>
               <div className="mt-2 flex flex-col gap-2">
                 {step.body.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="leading-relaxed text-ink-muted"
-                  >
+                  <p key={paragraph} className="leading-relaxed text-ink-muted">
                     {paragraph}
                   </p>
                 ))}
@@ -47,10 +48,7 @@ export function ProcessFlow() {
                       {bullet.subItems && (
                         <ul className="mt-1.5 ml-3.5 flex flex-col gap-1 border-l border-navy-50 pl-3">
                           {bullet.subItems.map((sub) => (
-                            <li
-                              key={sub}
-                              className="text-sm text-ink-muted"
-                            >
+                            <li key={sub} className="text-sm text-ink-muted">
                               {sub}
                             </li>
                           ))}
