@@ -58,3 +58,17 @@ body {
 .animate-rabbit-hop {
   animation: rabbit-hop 0.55s ease-in-out infinite;
 }
+
+@keyframes logo-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-logo-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: logo-reveal 1.1s ease-out 1.5s both;
+}

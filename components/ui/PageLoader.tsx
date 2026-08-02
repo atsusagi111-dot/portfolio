@@ -62,21 +62,34 @@ export function PageLoader() {
       }`}
       aria-hidden="true"
     >
-      <div className="relative h-32 w-full overflow-hidden sm:h-40">
-        <div
-          className={`absolute top-1/2 left-0 -translate-y-1/2 ${
-            motionOk ? "animate-rabbit-run" : "left-1/2 -translate-x-1/2"
-          }`}
-        >
-          <div className={motionOk ? "animate-rabbit-hop" : ""}>
-            <Image
-              src="/animations/rabbit-run.png"
-              alt=""
-              width={652}
-              height={378}
-              priority
-              className="h-auto w-28 sm:w-36"
-            />
+      <div className="flex w-full flex-col items-center gap-6">
+        <div className="overflow-hidden">
+          <Image
+            src="/logo/atsusagi-lab-horizontal.png"
+            alt="ATSUSAGI LAB"
+            width={1331}
+            height={294}
+            priority
+            className={`h-auto w-48 sm:w-64 ${motionOk ? "animate-logo-reveal" : ""}`}
+          />
+        </div>
+
+        <div className="relative h-32 w-full overflow-hidden sm:h-40">
+          <div
+            className={`absolute top-1/2 left-0 -translate-y-1/2 ${
+              motionOk ? "animate-rabbit-run" : "left-1/2 -translate-x-1/2"
+            }`}
+          >
+            <div className={motionOk ? "animate-rabbit-hop" : ""}>
+              <Image
+                src="/animations/rabbit-run.png"
+                alt=""
+                width={652}
+                height={378}
+                priority
+                className="h-auto w-28 sm:w-36"
+              />
+            </div>
           </div>
         </div>
       </div>
