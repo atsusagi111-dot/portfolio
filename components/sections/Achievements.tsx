@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Section } from "@/components/layout/Section";
 import { useTranslations } from "@/components/i18n/LanguageProvider";
 import type { TechItem } from "@/lib/i18n/translations";
@@ -55,23 +56,32 @@ export function Achievements() {
               </>
             )}
 
-            <h4 className="mt-6 text-sm font-semibold text-gold">
-              {t.achievementsSection.urlLabel}
-            </h4>
-            <ul className="mt-2 flex flex-col gap-1">
-              {item.urls.map((url) => (
-                <li key={url}>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm break-all text-navy underline hover:text-navy-700"
-                  >
-                    {url}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {item.screenshots.length > 0 && (
+              <>
+                <h4 className="mt-6 text-sm font-semibold text-gold">
+                  {t.achievementsSection.screenshotsLabel}
+                </h4>
+                <div className="mt-3 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  {item.screenshots.map((shot) => (
+                    <figure
+                      key={shot.label}
+                      className="overflow-hidden rounded-xl border border-navy-50 bg-surface"
+                    >
+                      <figcaption className="border-b border-navy-50 bg-surface-card px-4 py-2 text-sm font-semibold text-ink">
+                        {shot.label}
+                      </figcaption>
+                      <Image
+                        src={shot.src}
+                        alt={shot.label}
+                        width={787}
+                        height={786}
+                        className="h-auto w-full"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </>
+            )}
           </article>
         ))}
       </div>

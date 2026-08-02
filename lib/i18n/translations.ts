@@ -25,13 +25,18 @@ export type TechItem = {
   note: string;
 };
 
+export type AchievementScreenshot = {
+  label: string;
+  src: string;
+};
+
 export type AchievementItem = {
   id: string;
   title: string;
   description: string;
   techStack: TechItem[];
   supportTools: TechItem[];
-  urls: string[];
+  screenshots: AchievementScreenshot[];
 };
 
 export type Translations = {
@@ -64,7 +69,7 @@ export type Translations = {
     title: string;
     techStackLabel: string;
     supportToolsLabel: string;
-    urlLabel: string;
+    screenshotsLabel: string;
   };
   achievements: AchievementItem[];
   contact: {
@@ -190,14 +195,14 @@ const ja: Translations = {
     title: "実績",
     techStackLabel: "技術構成",
     supportToolsLabel: "補助ツール",
-    urlLabel: "制作URL",
+    screenshotsLabel: "制作画面",
   },
   achievements: [
     {
-      id: "momuri-lp",
-      title: "退職代行モームリ｜LP制作",
+      id: "resignation-agency-lp",
+      title: "某大手退職代行業者｜LP制作",
       description:
-        "退職代行モームリ紹介LPを制作(メール問い合わせ・メール＆LINE問い合わせの2種)。デザイン・コーディング・レスポンシブ対応・公開まで担当。",
+        "某大手退職代行業者紹介LPを制作(メール問い合わせ・メール＆LINE問い合わせの2種)。デザイン・コーディング・レスポンシブ対応・公開まで担当。",
       techStack: [
         { name: "Vite", note: "開発を高速に進めるためのツール" },
         { name: "React", note: "部品を組み合わせて画面を作るツール" },
@@ -213,7 +218,12 @@ const ja: Translations = {
       supportTools: [
         { name: "Bolt.new", note: "AIとの対話でページを作成するツール" },
       ],
-      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+      screenshots: [
+        {
+          label: "メール・LINE動線",
+          src: "/achievements/lp-email-line-flow.png",
+        },
+      ],
     },
   ],
   contact: {
@@ -344,14 +354,14 @@ const en: Translations = {
     title: "Achievements",
     techStackLabel: "Tech Stack",
     supportToolsLabel: "Supporting Tools",
-    urlLabel: "Live URLs",
+    screenshotsLabel: "Screenshots",
   },
   achievements: [
     {
-      id: "momuri-lp",
-      title: "Moumuri Resignation Agency | Landing Page Production",
+      id: "resignation-agency-lp",
+      title: "Major Resignation Agency | Landing Page Production",
       description:
-        "Produced the introductory landing page for Moumuri, a resignation-proxy agency (two versions: email-only inquiries, and email + LINE inquiries). Handled design, coding, responsive support, and publishing.",
+        "Produced the introductory landing page for a major resignation-proxy agency (two versions: email-only inquiries, and email + LINE inquiries). Handled design, coding, responsive support, and publishing.",
       techStack: [
         { name: "Vite", note: "A tool for fast development" },
         { name: "React", note: "A tool for building UIs from reusable components" },
@@ -367,7 +377,12 @@ const en: Translations = {
       supportTools: [
         { name: "Bolt.new", note: "A tool for building pages through conversation with AI" },
       ],
-      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+      screenshots: [
+        {
+          label: "Email & LINE Flow",
+          src: "/achievements/lp-email-line-flow.png",
+        },
+      ],
     },
   ],
   contact: {
@@ -498,14 +513,14 @@ const es: Translations = {
     title: "Logros",
     techStackLabel: "Stack Tecnológico",
     supportToolsLabel: "Herramientas de Apoyo",
-    urlLabel: "URLs del Proyecto",
+    screenshotsLabel: "Capturas de Pantalla",
   },
   achievements: [
     {
-      id: "momuri-lp",
-      title: "Moumuri (Agencia de Renuncias) | Creación de Landing Page",
+      id: "resignation-agency-lp",
+      title: "Importante Agencia de Renuncias | Creación de Landing Page",
       description:
-        "Creación de la landing page de presentación de Moumuri, una agencia de renuncias (dos versiones: solo consultas por correo, y consultas por correo y LINE). Responsable del diseño, la programación, la adaptación responsiva y la publicación.",
+        "Creación de la landing page de presentación de una importante agencia de renuncias (dos versiones: solo consultas por correo, y consultas por correo y LINE). Responsable del diseño, la programación, la adaptación responsiva y la publicación.",
       techStack: [
         { name: "Vite", note: "Herramienta para un desarrollo más rápido" },
         { name: "React", note: "Herramienta para construir interfaces combinando componentes" },
@@ -521,7 +536,12 @@ const es: Translations = {
       supportTools: [
         { name: "Bolt.new", note: "Herramienta para crear páginas mediante conversación con IA" },
       ],
-      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
+      screenshots: [
+        {
+          label: "Flujo por Correo y LINE",
+          src: "/achievements/lp-email-line-flow.png",
+        },
+      ],
     },
   ],
   contact: {
