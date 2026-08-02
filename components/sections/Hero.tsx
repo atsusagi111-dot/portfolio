@@ -29,7 +29,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div className="hidden justify-center sm:flex lg:justify-end">
           <CodeShowcase />
         </div>
       </div>
