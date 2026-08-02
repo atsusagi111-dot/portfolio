@@ -32,6 +32,12 @@ export function ServicesPageBody() {
                     labelPrefix: t.servicesSection.achievementLabel,
                     title: lpAchievement.title,
                     screenshots: lpAchievement.screenshots,
+                    techStack: lpAchievement.techStack,
+                    techStackLabel: t.achievementsSection.techStackLabel,
+                    supportTools: lpAchievement.supportTools,
+                    supportToolsLabel: t.achievementsSection.supportToolsLabel,
+                    urls: lpAchievement.urls,
+                    urlLabel: t.achievementsSection.urlLabel,
                   }
                 : undefined
             }

@@ -38,6 +38,7 @@ export type AchievementItem = {
   techStack: TechItem[];
   supportTools: TechItem[];
   screenshots: AchievementScreenshot[];
+  urls: string[];
 };
 
 export type ProfileTimelineItem = {
@@ -95,6 +96,7 @@ export type Translations = {
     techStackLabel: string;
     supportToolsLabel: string;
     screenshotsLabel: string;
+    urlLabel: string;
   };
   achievements: AchievementItem[];
   profileSection: {
@@ -240,6 +242,7 @@ const ja: Translations = {
     techStackLabel: "技術構成",
     supportToolsLabel: "補助ツール",
     screenshotsLabel: "制作画面",
+    urlLabel: "制作URL",
   },
   achievements: [
     {
@@ -272,6 +275,7 @@ const ja: Translations = {
           src: "/achievements/lp-email-flow.png",
         },
       ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
     },
   ],
   profileSection: {
@@ -532,6 +536,7 @@ const en: Translations = {
     techStackLabel: "Tech Stack",
     supportToolsLabel: "Supporting Tools",
     screenshotsLabel: "Screenshots",
+    urlLabel: "Live URLs",
   },
   achievements: [
     {
@@ -564,6 +569,7 @@ const en: Translations = {
           src: "/achievements/lp-email-flow.png",
         },
       ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
     },
   ],
   profileSection: {
@@ -824,6 +830,7 @@ const es: Translations = {
     techStackLabel: "Stack Tecnológico",
     supportToolsLabel: "Herramientas de Apoyo",
     screenshotsLabel: "Capturas de Pantalla",
+    urlLabel: "URLs del Proyecto",
   },
   achievements: [
     {
@@ -856,6 +863,7 @@ const es: Translations = {
           src: "/achievements/lp-email-flow.png",
         },
       ],
+      urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
     },
   ],
   profileSection: {

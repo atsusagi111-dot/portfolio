@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const SNIPPET = `type Client = {
   name: string;
@@ -53,10 +54,12 @@ function highlight(line: string): ReactNode[] {
 
 export function CodeShowcase() {
   const prefersReduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
+  const skipAnimation = prefersReduced || isMobile;
   const [visibleCount, setVisibleCount] = useState(0);
 
   useEffect(() => {
-    if (prefersReduced) {
+    if (skipAnimation) {
       return;
     }
 
@@ -79,9 +82,9 @@ export function CodeShowcase() {
 
     timer = setTimeout(tick, TYPE_SPEED_MS);
     return () => clearTimeout(timer);
-  }, [prefersReduced]);
+  }, [skipAnimation]);
 
-  const effectiveCount = prefersReduced ? SNIPPET.length : visibleCount;
+  const effectiveCount = skipAnimation ? SNIPPET.length : visibleCount;
   const lines = SNIPPET.slice(0, effectiveCount).split("\n");
 
   return (
@@ -92,7 +95,7 @@ export function CodeShowcase() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-3 text-xs text-white/40">solution.ts</span>
       </div>
-      <pre className="overflow-hidden px-5 py-5 text-left font-mono text-[13px] leading-relaxed sm:text-sm">
+      <pre className="overflow-x-auto px-5 py-5 text-left font-mono text-[13px] leading-relaxed sm:text-sm">
         <code>
           {lines.map((line, i) => (
             <div key={i} className="flex">
@@ -101,7 +104,7 @@ export function CodeShowcase() {
               </span>
               <span className="text-slate-200">
                 {highlight(line)}
-                {i === lines.length - 1 && (
+                {!skipAnimation && i === lines.length - 1 && (
                   <span className="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-gold align-middle" />
                 )}
               </span>

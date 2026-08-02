@@ -1,10 +1,16 @@
 import Image from "next/image";
-import type { AchievementScreenshot } from "@/lib/i18n/translations";
+import type { AchievementScreenshot, TechItem } from "@/lib/i18n/translations";
 
 type RelatedAchievement = {
   labelPrefix: string;
   title: string;
   screenshots: AchievementScreenshot[];
+  techStack: TechItem[];
+  techStackLabel: string;
+  supportTools: TechItem[];
+  supportToolsLabel: string;
+  urls: string[];
+  urlLabel: string;
 };
 
 type ServiceDetailProps = {
@@ -16,6 +22,21 @@ type ServiceDetailProps = {
   examples?: string[];
   relatedAchievement?: RelatedAchievement;
 };
+
+function TagList({ items }: { items: TechItem[] }) {
+  return (
+    <div className="mt-2 flex flex-wrap gap-2">
+      {items.map((item) => (
+        <span
+          key={item.name}
+          className="rounded-xl border border-navy-50 bg-surface px-3 py-1.5 text-xs font-medium text-ink"
+        >
+          {item.name}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export function ServiceDetail({
   id,
@@ -59,25 +80,68 @@ export function ServiceDetail({
             {relatedAchievement.labelPrefix}
             {relatedAchievement.title}
           </p>
-          <div className="mt-3 flex flex-wrap gap-4">
-            {relatedAchievement.screenshots.map((shot) => (
-              <figure
-                key={shot.label}
-                className="w-52 overflow-hidden rounded-lg border border-navy-50 bg-surface sm:w-64"
-              >
-                <figcaption className="border-b border-navy-50 bg-surface-card px-2 py-1 text-xs font-semibold text-ink">
-                  {shot.label}
-                </figcaption>
-                <Image
-                  src={shot.src}
-                  alt={shot.label}
-                  width={787}
-                  height={786}
-                  className="h-auto w-full"
-                />
-              </figure>
-            ))}
-          </div>
+
+          {relatedAchievement.screenshots.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-4">
+              {relatedAchievement.screenshots.map((shot) => (
+                <figure
+                  key={shot.label}
+                  className="w-52 overflow-hidden rounded-lg border border-navy-50 bg-surface sm:w-64"
+                >
+                  <figcaption className="border-b border-navy-50 bg-surface-card px-2 py-1 text-xs font-semibold text-ink">
+                    {shot.label}
+                  </figcaption>
+                  <Image
+                    src={shot.src}
+                    alt={shot.label}
+                    width={787}
+                    height={786}
+                    className="h-auto w-full"
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {relatedAchievement.techStack.length > 0 && (
+            <>
+              <h4 className="mt-5 text-xs font-semibold text-gold">
+                {relatedAchievement.techStackLabel}
+              </h4>
+              <TagList items={relatedAchievement.techStack} />
+            </>
+          )}
+
+          {relatedAchievement.supportTools.length > 0 && (
+            <>
+              <h4 className="mt-5 text-xs font-semibold text-gold">
+                {relatedAchievement.supportToolsLabel}
+              </h4>
+              <TagList items={relatedAchievement.supportTools} />
+            </>
+          )}
+
+          {relatedAchievement.urls.length > 0 && (
+            <>
+              <h4 className="mt-5 text-xs font-semibold text-gold">
+                {relatedAchievement.urlLabel}
+              </h4>
+              <ul className="mt-2 flex flex-col gap-1">
+                {relatedAchievement.urls.map((url) => (
+                  <li key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm break-all text-navy underline hover:text-navy-700"
+                    >
+                      {url}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       )}
     </article>
