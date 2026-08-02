@@ -1,8 +1,8 @@
 import { Hero } from "@/components/sections/Hero";
 import { Achievements } from "@/components/sections/Achievements";
-import { Profile } from "@/components/sections/Profile";
 import { TargetAudience } from "@/components/sections/TargetAudience";
 import { ServicesSummaryGrid } from "@/components/sections/ServicesSummaryGrid";
+import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 
 export default function Home() {
@@ -10,9 +10,9 @@ export default function Home() {
     <>
       <Hero />
       <Achievements />
-      <Profile />
       <TargetAudience />
       <ServicesSummaryGrid />
+      <ProcessFlow />
       <CtaBanner />
     </>
   );

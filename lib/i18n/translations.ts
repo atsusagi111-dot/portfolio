@@ -46,6 +46,20 @@ export type ProfileTimelineItem = {
   highlight?: string;
 };
 
+export type ProcessBullet = {
+  label: string;
+  subItems?: string[];
+};
+
+export type ProcessStep = {
+  number: string;
+  title: string;
+  body: string[];
+  bullets?: ProcessBullet[];
+  afterBullets?: string;
+  note?: string;
+};
+
 export type Translations = {
   languageName: string;
   nav: {
@@ -59,6 +73,7 @@ export type Translations = {
     description: string;
     ctaPrimary: string;
     ctaSecondary: string;
+    developerProfileCta: string;
   };
   targetAudience: {
     title: string;
@@ -84,6 +99,11 @@ export type Translations = {
     photoAlt: string;
   };
   profileTimeline: ProfileTimelineItem[];
+  processSection: {
+    title: string;
+    description: string;
+  };
+  processSteps: ProcessStep[];
   contact: {
     eyebrow: string;
     title: string;
@@ -121,6 +141,7 @@ const ja: Translations = {
       "LP・ホームページ制作、Webシステム開発、AIチャットボット構築、業務自動化まで。初めてのご依頼でも安心してお任せいただけます。",
     ctaPrimary: "お問い合わせ",
     ctaSecondary: "サービスを見る",
+    developerProfileCta: "開発者プロフィールはこちら",
   },
   targetAudience: {
     title: "こんな方におすすめ",
@@ -269,6 +290,99 @@ const ja: Translations = {
       body: "Web・SEOで培った「ユーザーの課題を捉える力」と、AI・Web開発の技術を掛け合わせ、課題整理からAIを活用したシステム開発まで支援。",
     },
   ],
+  processSection: {
+    title: "ご依頼の流れ",
+    description:
+      "お問い合わせから納品、納品後のアフターフォローまで、安心してご依頼いただけるよう丁寧にサポートいたします。",
+  },
+  processSteps: [
+    {
+      number: "01",
+      title: "お問い合わせ",
+      body: [
+        "まずは「お問い合わせフォーム」よりお気軽にご連絡ください。",
+        "ご相談段階でのご連絡も歓迎しております。「こんなことはAIでできる？」「何を作ればいいか分からない」といったご相談もお気軽にお問い合わせください。",
+      ],
+    },
+    {
+      number: "02",
+      title: "ヒアリング",
+      body: [
+        "お問い合わせ内容を確認後、メールにてご連絡いたします。",
+        "以下の内容をお伺いします。",
+      ],
+      bullets: [
+        { label: "個人・法人の区分" },
+        {
+          label: "ご希望のサービス・開発内容",
+          subItems: [
+            "LP・Webサイト制作",
+            "AIチャットボット開発",
+            "AIを活用した業務効率化システム",
+            "その他のAI・Web開発",
+          ],
+        },
+        { label: "ご希望の納品物・完成イメージ" },
+        { label: "参考サイトや参考資料" },
+        { label: "ご希望の納期" },
+        { label: "オンライン面談のご希望日時" },
+      ],
+    },
+    {
+      number: "03",
+      title: "オンライン面談",
+      body: [
+        "ヒアリング内容をもとに、オンラインで詳しいご要望や課題をお伺いします。",
+        "「何を作れば課題を解決できるか分からない」という場合も、目的や現状をお聞きしたうえで、最適な方法をご提案いたします。",
+      ],
+    },
+    {
+      number: "04",
+      title: "お見積もり・ご契約",
+      body: [
+        "ご要望や仕様、納期などをすり合わせたうえで、お見積もりをご提示いたします。",
+        "内容にご納得いただき、双方の合意が確認できましたら、契約書を締結いたします。",
+      ],
+    },
+    {
+      number: "05",
+      title: "お支払い",
+      body: [
+        "原則として、ご契約後にお支払いをお願いいたします。",
+        "なお、法人のお客様など一定の条件を満たす場合は、本人確認書類や登記情報等をご提示いただくことで、後払いにも対応可能です。",
+      ],
+      note: "※後払いの可否や条件については、個別にご相談ください。",
+    },
+    {
+      number: "06",
+      title: "開発・制作",
+      body: [
+        "ご契約内容に基づき、開発・制作を開始します。",
+        "進捗状況や確認事項については、必要に応じてご連絡しながら進行いたします。",
+      ],
+    },
+    {
+      number: "07",
+      title: "納品・修正",
+      body: [
+        "完成した成果物をご確認いただきます。",
+        "納品後、契約内容の範囲内で必要な修正にも対応いたします。",
+      ],
+    },
+    {
+      number: "08",
+      title: "アフターフォロー",
+      body: ["納品後も3ヶ月間のアフターフォローをご用意しています。"],
+      bullets: [
+        { label: "エラーが発生して正常に動作しない" },
+        { label: "納品後に操作方法が分からない" },
+        { label: "社員・関係者への使い方のレクチャーが必要" },
+        { label: "開発したシステムについて相談したい" },
+      ],
+      afterBullets: "など、納品後のお困りごとにも対応いたします。",
+      note: "※アフターフォローの対象範囲や対応内容は、開発・制作内容により異なります。",
+    },
+  ],
   contact: {
     eyebrow: "Contact",
     title: "お問い合わせ",
@@ -310,6 +424,7 @@ const en: Translations = {
       "From landing pages and websites to web systems, AI chatbots, and business automation. First-time clients are always welcome — we'll guide you every step of the way.",
     ctaPrimary: "Contact Us",
     ctaSecondary: "View Services",
+    developerProfileCta: "Meet the Developer",
   },
   targetAudience: {
     title: "Who We Help",
@@ -459,6 +574,99 @@ const en: Translations = {
       body: "Combining the ability to grasp user challenges cultivated through web and SEO work with technical skills in AI and web development, I support clients from organizing their challenges through to building AI-powered systems.",
     },
   ],
+  processSection: {
+    title: "Our Process",
+    description:
+      "From your first inquiry through delivery and after-launch support, we provide careful, attentive support every step of the way so you can request our services with confidence.",
+  },
+  processSteps: [
+    {
+      number: "01",
+      title: "Inquiry",
+      body: [
+        'Please feel free to reach out via our "Contact Form" to get started.',
+        'We also welcome inquiries at the consultation stage — questions like "Can AI do something like this?" or "I\'m not sure what I need" are always welcome.',
+      ],
+    },
+    {
+      number: "02",
+      title: "Hearing",
+      body: [
+        "After reviewing your inquiry, we'll follow up by email.",
+        "We'll ask you about the following:",
+      ],
+      bullets: [
+        { label: "Whether you're an individual or a company" },
+        {
+          label: "Your desired service / type of development",
+          subItems: [
+            "Landing page / website production",
+            "AI chatbot development",
+            "AI-powered business efficiency systems",
+            "Other AI / web development",
+          ],
+        },
+        { label: "Your desired deliverables and vision for the finished product" },
+        { label: "Reference sites or materials" },
+        { label: "Your desired timeline" },
+        { label: "Preferred date/time for an online meeting" },
+      ],
+    },
+    {
+      number: "03",
+      title: "Online Meeting",
+      body: [
+        "Based on the hearing, we'll discuss your detailed requirements and challenges online.",
+        "Even if you're not sure what to build to solve your challenge, we'll ask about your goals and current situation and propose the best approach.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Quote & Contract",
+      body: [
+        "After aligning on requirements, specifications, and timeline, we'll provide a quote.",
+        "Once you're satisfied with the content and both parties agree, we'll sign a contract.",
+      ],
+    },
+    {
+      number: "05",
+      title: "Payment",
+      body: [
+        "In principle, payment is due after the contract is signed.",
+        "For corporate clients and others who meet certain conditions, deferred payment is also available upon providing identification documents or company registration information.",
+      ],
+      note: "※Please contact us individually to discuss eligibility and terms for deferred payment.",
+    },
+    {
+      number: "06",
+      title: "Development & Production",
+      body: [
+        "Development and production begin based on the contract terms.",
+        "We'll keep you updated on progress and confirm details with you as needed along the way.",
+      ],
+    },
+    {
+      number: "07",
+      title: "Delivery & Revisions",
+      body: [
+        "You'll review the completed deliverable.",
+        "After delivery, we handle any necessary revisions within the scope of the contract.",
+      ],
+    },
+    {
+      number: "08",
+      title: "After-Launch Support",
+      body: ["We also provide 3 months of after-launch support following delivery."],
+      bullets: [
+        { label: "An error occurs and something isn't working properly" },
+        { label: "You're not sure how to operate the system after delivery" },
+        { label: "You need training on how to use it for staff or other stakeholders" },
+        { label: "You'd like to consult about the system that was developed" },
+      ],
+      afterBullets: "and other post-delivery concerns — we're here to help.",
+      note: "※The scope and details of after-launch support vary depending on the development/production content.",
+    },
+  ],
   contact: {
     eyebrow: "Contact",
     title: "Contact",
@@ -500,6 +708,7 @@ const es: Translations = {
       "Desde landing pages y sitios web hasta sistemas web, chatbots con IA y automatización de procesos. Si es tu primera vez, no te preocupes: te acompañamos en todo el proceso.",
     ctaPrimary: "Contáctanos",
     ctaSecondary: "Ver Servicios",
+    developerProfileCta: "Conoce al Desarrollador",
   },
   targetAudience: {
     title: "A quién ayudamos",
@@ -647,6 +856,99 @@ const es: Translations = {
       year: "NOW",
       heading: "Socia de Desarrollo de IA | ATSUSAGI LAB",
       body: "Combinando la capacidad de comprender los desafíos del usuario, cultivada a través del trabajo web y SEO, con habilidades técnicas en IA y desarrollo web, apoyo a los clientes desde la organización de sus desafíos hasta la construcción de sistemas impulsados por IA.",
+    },
+  ],
+  processSection: {
+    title: "Nuestro Proceso",
+    description:
+      "Desde el primer contacto hasta la entrega y el soporte posterior, te acompañamos con atención en cada paso para que puedas solicitar nuestros servicios con total confianza.",
+  },
+  processSteps: [
+    {
+      number: "01",
+      title: "Contacto",
+      body: [
+        "Ponte en contacto con nosotros a través del formulario de contacto.",
+        'También recibimos consultas en la etapa de exploración: preguntas como "¿esto se puede hacer con IA?" o "no sé qué necesito" son bienvenidas.',
+      ],
+    },
+    {
+      number: "02",
+      title: "Entrevista",
+      body: [
+        "Tras revisar tu consulta, te responderemos por correo electrónico.",
+        "Te preguntaremos lo siguiente:",
+      ],
+      bullets: [
+        { label: "Si eres particular o empresa" },
+        {
+          label: "El servicio o tipo de desarrollo que deseas",
+          subItems: [
+            "Creación de LP / sitio web",
+            "Desarrollo de chatbot con IA",
+            "Sistemas de eficiencia empresarial con IA",
+            "Otro desarrollo de IA / web",
+          ],
+        },
+        { label: "Los entregables deseados y tu visión del resultado final" },
+        { label: "Sitios o materiales de referencia" },
+        { label: "El plazo deseado" },
+        { label: "Fecha y hora preferidas para una reunión en línea" },
+      ],
+    },
+    {
+      number: "03",
+      title: "Reunión en Línea",
+      body: [
+        "A partir de la entrevista, conversaremos en línea sobre tus requisitos y desafíos en detalle.",
+        "Incluso si no sabes qué construir para resolver tu problema, te preguntaremos sobre tus objetivos y tu situación actual, y te propondremos la mejor solución.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Presupuesto y Contrato",
+      body: [
+        "Tras acordar requisitos, especificaciones y plazos, te presentaremos un presupuesto.",
+        "Una vez que estés conforme y ambas partes lleguemos a un acuerdo, firmaremos el contrato.",
+      ],
+    },
+    {
+      number: "05",
+      title: "Pago",
+      body: [
+        "En principio, el pago se realiza después de firmar el contrato.",
+        "Para empresas y otros casos que cumplan ciertas condiciones, también es posible el pago diferido, presentando documentos de identificación o información del registro mercantil.",
+      ],
+      note: "※Consulta con nosotros de forma individual sobre la disponibilidad y condiciones del pago diferido.",
+    },
+    {
+      number: "06",
+      title: "Desarrollo y Producción",
+      body: [
+        "El desarrollo y la producción comienzan según lo acordado en el contrato.",
+        "Te mantendremos informado sobre el progreso y confirmaremos los detalles necesarios a lo largo del proceso.",
+      ],
+    },
+    {
+      number: "07",
+      title: "Entrega y Ajustes",
+      body: [
+        "Revisarás el resultado final terminado.",
+        "Después de la entrega, atendemos los ajustes necesarios dentro del alcance del contrato.",
+      ],
+    },
+    {
+      number: "08",
+      title: "Soporte Posterior",
+      body: ["También ofrecemos 3 meses de soporte posterior a la entrega."],
+      bullets: [
+        { label: "Se produce un error y algo no funciona correctamente" },
+        { label: "No sabes cómo operar el sistema después de la entrega" },
+        { label: "Necesitas capacitación para el personal u otras partes interesadas" },
+        { label: "Quieres consultar sobre el sistema desarrollado" },
+      ],
+      afterBullets: "y otras inquietudes posteriores a la entrega: estamos aquí para ayudarte.",
+      note: "※El alcance y los detalles del soporte posterior varían según el contenido del desarrollo/producción.",
     },
   ],
   contact: {

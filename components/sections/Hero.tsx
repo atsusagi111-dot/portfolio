@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { CodeShowcase } from "@/components/ui/CodeShowcase";
+import { DeveloperProfileBadge } from "@/components/ui/DeveloperProfileBadge";
 import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function Hero() {
@@ -11,6 +12,7 @@ export function Hero() {
     <section className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div className="flex flex-col items-start gap-6">
+          <DeveloperProfileBadge />
           <h1 className="max-w-2xl text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
             {t.hero.title}
           </h1>
