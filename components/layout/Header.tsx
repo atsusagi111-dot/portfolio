@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
-import { CursorFollowHint } from "@/components/ui/CursorFollowHint";
 import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function Header() {
@@ -36,11 +35,9 @@ export function Header() {
             </Link>
           ))}
           <LanguageSwitcher />
-          <CursorFollowHint>
-            <Button href="/contact" className="px-5 py-2 text-sm">
-              {t.nav.contactCta}
-            </Button>
-          </CursorFollowHint>
+          <Button href="/contact" className="px-5 py-2 text-sm">
+            {t.nav.contactCta}
+          </Button>
         </nav>
 
         <button
