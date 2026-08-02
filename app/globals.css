@@ -31,3 +31,30 @@ body {
   background: var(--color-surface);
   color: var(--color-ink);
 }
+
+@keyframes rabbit-run {
+  from {
+    transform: translateX(-20vw);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes rabbit-hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.animate-rabbit-run {
+  animation: rabbit-run 1.5s cubic-bezier(0.35, 0, 0.65, 1) forwards;
+}
+
+.animate-rabbit-hop {
+  animation: rabbit-hop 0.35s ease-in-out infinite;
+}
