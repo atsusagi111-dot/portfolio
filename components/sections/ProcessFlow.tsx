@@ -9,7 +9,6 @@ export function ProcessFlow() {
 
   return (
     <Section
-      className="bg-surface-card"
       title={t.processSection.title}
       description={t.processSection.description}
     >

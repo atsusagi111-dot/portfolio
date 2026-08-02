@@ -11,6 +11,7 @@ export function ServicesSummaryGrid() {
 
   return (
     <Section
+      className="bg-surface-card"
       title={t.servicesSection.title}
       description={t.servicesSection.homeDescription}
     >

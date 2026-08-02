@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { CodeShowcase } from "@/components/ui/CodeShowcase";
 import { DeveloperProfileBadge } from "@/components/ui/DeveloperProfileBadge";
+import { CursorFollowHint } from "@/components/ui/CursorFollowHint";
 import { useTranslations } from "@/components/i18n/LanguageProvider";
 
 export function Hero() {
@@ -20,9 +21,11 @@ export function Hero() {
             {t.hero.description}
           </p>
           <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-            <Button href="/contact" variant="primary">
-              {t.hero.ctaPrimary}
-            </Button>
+            <CursorFollowHint className="w-full sm:w-auto">
+              <Button href="/contact" variant="primary" className="w-full sm:w-auto">
+                {t.hero.ctaPrimary}
+              </Button>
+            </CursorFollowHint>
             <Button href="/services" variant="secondary">
               {t.hero.ctaSecondary}
             </Button>
