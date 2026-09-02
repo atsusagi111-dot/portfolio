@@ -7,14 +7,39 @@ import { useTranslations } from "@/components/i18n/LanguageProvider";
 const inputClasses =
   "w-full rounded-lg border border-navy-50 bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-muted focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy";
 
+type Status = "idle" | "submitting" | "submitted" | "error";
+
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
   const t = useTranslations();
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // TODO(v1.1): wire this up to a real email/backend service (e.g. Resend API route).
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("send_failed");
+      }
+
+      setStatus("submitted");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -63,13 +88,24 @@ export function ContactForm() {
         />
       </div>
 
-      <Button type="submit" variant="primary" className="w-full sm:w-auto">
-        {t.contact.submit}
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full sm:w-auto"
+        disabled={status === "submitting"}
+      >
+        {status === "submitting" ? t.contact.submitting : t.contact.submit}
       </Button>
 
-      {submitted && (
+      {status === "submitted" && (
         <p className="rounded-lg bg-gold-50 px-4 py-3 text-sm text-ink">
           {t.contact.submitted}
+        </p>
+      )}
+
+      {status === "error" && (
+        <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+          {t.contact.error}
         </p>
       )}
     </form>

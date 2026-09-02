@@ -127,7 +127,9 @@ export type Translations = {
     messageLabel: string;
     messagePlaceholder: string;
     submit: string;
+    submitting: string;
     submitted: string;
+    error: string;
   };
   footer: {
     tagline: string;
@@ -453,8 +455,11 @@ const ja: Translations = {
     messageLabel: "お問い合わせ内容",
     messagePlaceholder: "ご相談内容やご要望をご記入ください",
     submit: "送信する",
+    submitting: "送信中...",
     submitted:
-      "ご入力ありがとうございます。現在、送信機能は準備中です。お急ぎの場合はお手数ですが別途ご連絡方法をご案内するまでお待ちください。",
+      "お問い合わせありがとうございます。内容を確認のうえ、担当より折り返しご連絡いたします。",
+    error:
+      "送信に失敗しました。お手数ですが、時間をおいて再度お試しください。",
   },
   footer: {
     tagline: "AI開発パートナー",
@@ -783,8 +788,10 @@ const en: Translations = {
     messageLabel: "Message",
     messagePlaceholder: "Please describe your inquiry or request",
     submit: "Send",
+    submitting: "Sending...",
     submitted:
-      "Thank you for your message. Our online submission feature is currently in preparation. If your matter is urgent, we apologize for the inconvenience — please wait while we arrange an alternative way to reach you.",
+      "Thank you for your message. We'll review it and get back to you shortly.",
+    error: "Something went wrong while sending. Please try again in a moment.",
   },
   footer: {
     tagline: "AI Development Partner",
@@ -1113,8 +1120,11 @@ const es: Translations = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Describe tu consulta o solicitud",
     submit: "Enviar",
+    submitting: "Enviando...",
     submitted:
-      "Gracias por tu mensaje. La función de envío en línea está actualmente en preparación. Si es urgente, disculpa las molestias: espera mientras te proporcionamos otro medio de contacto.",
+      "Gracias por tu mensaje. Lo revisaremos y nos pondremos en contacto contigo en breve.",
+    error:
+      "Ocurrió un error al enviar el mensaje. Por favor, inténtalo de nuevo en unos momentos.",
   },
   footer: {
     tagline: "Socio de Desarrollo de IA",
