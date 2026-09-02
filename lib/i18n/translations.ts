@@ -53,6 +53,11 @@ export type ProcessBullet = {
   subItems?: string[];
 };
 
+export type PricingNote = {
+  label: string;
+  body: string;
+};
+
 export type ProcessStep = {
   number: string;
   title: string;
@@ -89,8 +94,10 @@ export type Translations = {
     readMore: string;
     priceLabel: string;
     achievementLabel: string;
+    notesTitle: string;
   };
   services: Record<ServiceId, ServiceContent>;
+  pricingNotes: PricingNote[];
   achievementsSection: {
     title: string;
     techStackLabel: string;
@@ -170,6 +177,7 @@ const ja: Translations = {
     readMore: "詳しく見る →",
     priceLabel: "料金目安",
     achievementLabel: "実績：",
+    notesTitle: "ご利用にあたって",
   },
   services: {
     homepage: {
@@ -177,16 +185,26 @@ const ja: Translations = {
       shortDescription:
         "企業・店舗・個人向けのホームページ制作。スマートフォンにも対応した、見やすく使いやすいデザイン。",
       fullDescription:
-        "企業・店舗・個人事業主向けに、目的に合わせたホームページを制作します。スマートフォンにも対応した、見やすく使いやすいデザインをご提供します。",
-      price: "10万円〜",
+        "企業・店舗・個人事業主向けに、目的に合わせたホームページを制作します。スマートフォンにも対応した、見やすく使いやすいデザインをご提供します。実装込み・トップページ＋基本下層ページの料金で、初校は最短3日でお出しします。",
+      price: "30万円〜",
+      examples: [
+        "採用ページカスタマイズ（動画演出など） +5万円〜",
+        "AIチャットボット追加 +10万円〜・月額3万円〜（シナリオ更新・セキュリティ保守込み）",
+        "SEO記事作成（求人効果を高める記事／Google上位対策） 文字単価5円〜",
+        "GA4（Googleアナリティクス4）初期設定代行 3万円〜",
+      ],
     },
     lp: {
       name: "LP制作",
       shortDescription:
         "商品・サービスを紹介し、お問い合わせや申し込みにつなげる1ページのWebサイト制作。",
       fullDescription:
-        "商品やサービスの魅力を分かりやすく伝え、お問い合わせや申し込みにつながるページを制作します。",
-      price: "5万円〜",
+        "商品やサービスの魅力を分かりやすく伝え、お問い合わせや申し込みにつながるページを制作します。既存のホームページを元にした制作と、新規制作の2パターンをご用意しています。",
+      price: "20万円〜",
+      examples: [
+        "ホームページを元にLP制作：20万円〜（初校最短1日〜）",
+        "新規でLP制作：25万円〜（初校最短2日〜）",
+      ],
     },
     "web-system": {
       name: "Webシステム開発",
@@ -205,8 +223,8 @@ const ja: Translations = {
       shortDescription:
         "ホームページやLINEで、お客様の質問に24時間自動で回答するAIチャットボットの構築。",
       fullDescription:
-        "ホームページやLINEにAIを導入し、お客様からの質問に24時間自動で回答できる仕組みを構築します。",
-      price: "10万円〜",
+        "ホームページやLINEにAIを導入し、お客様からの質問に24時間自動で回答できる仕組みを構築します。月額費用にはシナリオ更新・セキュリティ対策などの保守が含まれます。",
+      price: "+10万円〜・月額3万円〜",
       examples: [
         "商品についての質問",
         "サービス内容の案内",
@@ -219,8 +237,9 @@ const ja: Translations = {
       shortDescription:
         "AIを利用して、お問い合わせ対応や情報検索などを自動化する仕組みを構築。",
       fullDescription:
-        "AIを活用して、お問い合わせ対応や情報検索など、これまで人が行っていた作業を自動化します。業務の負担を減らし、より効率的な運営をサポートします。",
-      price: "10万円〜",
+        "AIを活用して、お問い合わせ対応や情報検索など、これまで人が行っていた作業を自動化します。業務の負担を減らし、より効率的な運営をサポートします。「こんなこともAIでできる？」というご相談だけでも歓迎です。",
+      price: "時給3,000円〜",
+      examples: ["GA4（Googleアナリティクス4）初期設定代行 3万円〜"],
     },
     "system-integration": {
       name: "システム連携・業務自動化",
@@ -237,6 +256,28 @@ const ja: Translations = {
       ],
     },
   },
+  pricingNotes: [
+    {
+      label: "修正回数",
+      body: "軽微な修正は3回まで対応いたします。4回目以降の修正、および大幅な変更・追加については別途お見積もりとなります。",
+    },
+    {
+      label: "素材について",
+      body: "ロゴ・写真・文章などの素材はお客様にご準備いただいております。素材画像のご提供も可能です。",
+    },
+    {
+      label: "キャンセルについて",
+      body: "ご契約後の原則キャンセル不可です。やむを得ずキャンセルされる場合は、制作費の8割を頂戴いたします。",
+    },
+    {
+      label: "お支払い条件",
+      body: "月末締め、翌月3営業日以内のお支払いをお願いいたします。",
+    },
+    {
+      label: "決済方法",
+      body: "銀行振込・クレジットカード決済に対応しております。",
+    },
+  ],
   achievementsSection: {
     title: "実績",
     techStackLabel: "技術構成",
@@ -387,7 +428,9 @@ const ja: Translations = {
     {
       number: "08",
       title: "アフターフォロー",
-      body: ["納品後も3ヶ月間のアフターフォローをご用意しています。"],
+      body: [
+        "【期間限定】今なら、通常月額3万円〜のアフターフォローを6ヶ月間無料でご提供しています。",
+      ],
       bullets: [
         { label: "エラーが発生して正常に動作しない" },
         { label: "納品後に操作方法が分からない" },
@@ -395,7 +438,7 @@ const ja: Translations = {
         { label: "開発したシステムについて相談したい" },
       ],
       afterBullets: "など、納品後のお困りごとにも対応いたします。",
-      note: "※アフターフォローの対象範囲や対応内容は、開発・制作内容により異なります。",
+      note: "※アフターフォローの対象範囲や対応内容は、開発・制作内容により異なります。無料期間終了後は月額3万円〜で継続いただけます。",
     },
   ],
   contact: {
@@ -464,6 +507,7 @@ const en: Translations = {
     readMore: "Learn more →",
     priceLabel: "Starting Price",
     achievementLabel: "Case Study: ",
+    notesTitle: "Terms of Service",
   },
   services: {
     homepage: {
@@ -471,16 +515,26 @@ const en: Translations = {
       shortDescription:
         "Website production for businesses, shops, and individuals. Clear, user-friendly designs that also work great on smartphones.",
       fullDescription:
-        "We build websites tailored to your goals for businesses, shops, and sole proprietors, with clear, user-friendly designs that work great on smartphones too.",
-      price: "From ¥100,000",
+        "We build websites tailored to your goals for businesses, shops, and sole proprietors, with clear, user-friendly designs that work great on smartphones too. Price includes implementation for a top page plus core sub-pages, with a first draft in as little as 3 days.",
+      price: "From ¥300,000",
+      examples: [
+        "Recruitment page customization (video, etc.) +¥50,000〜",
+        "Add an AI chatbot +¥100,000〜, ¥30,000〜/month (includes scenario updates & security maintenance)",
+        "SEO article writing (recruitment-focused, aimed at top Google rankings) From ¥5/character",
+        "GA4 (Google Analytics 4) initial setup From ¥30,000",
+      ],
     },
     lp: {
       name: "Landing Page Production",
       shortDescription:
         "A single-page website that showcases your product or service and drives inquiries and sign-ups.",
       fullDescription:
-        "We create pages that clearly communicate the appeal of your products and services and lead to inquiries and applications.",
-      price: "From ¥50,000",
+        "We create pages that clearly communicate the appeal of your products and services and lead to inquiries and applications. Available either built from your existing website or created entirely from scratch.",
+      price: "From ¥200,000",
+      examples: [
+        "Built from your existing website: From ¥200,000 (first draft in as little as 1 day)",
+        "Built from scratch: From ¥250,000 (first draft in as little as 2 days)",
+      ],
     },
     "web-system": {
       name: "Web System Development",
@@ -499,8 +553,8 @@ const en: Translations = {
       shortDescription:
         "AI chatbots that automatically answer customer questions 24/7 on your website or LINE.",
       fullDescription:
-        "We integrate AI into your website or LINE to automatically answer customer questions around the clock.",
-      price: "From ¥100,000",
+        "We integrate AI into your website or LINE to automatically answer customer questions around the clock. The monthly fee includes ongoing maintenance such as scenario updates and security measures.",
+      price: "+¥100,000〜, ¥30,000〜/month",
       examples: [
         "Questions about products",
         "Information about services",
@@ -513,8 +567,9 @@ const en: Translations = {
       shortDescription:
         "We use AI to automate tasks like inquiry response and information search.",
       fullDescription:
-        "We use AI to automate tasks that used to be done manually, such as handling inquiries and searching for information — reducing workload and supporting more efficient operations.",
-      price: "From ¥100,000",
+        "We use AI to automate tasks that used to be done manually, such as handling inquiries and searching for information — reducing workload and supporting more efficient operations. Even a quick \"can AI do this?\" question is welcome.",
+      price: "From ¥3,000/hour",
+      examples: ["GA4 (Google Analytics 4) initial setup From ¥30,000"],
     },
     "system-integration": {
       name: "System Integration & Automation",
@@ -531,6 +586,28 @@ const en: Translations = {
       ],
     },
   },
+  pricingNotes: [
+    {
+      label: "Revisions",
+      body: "Minor revisions are included up to 3 rounds. From the 4th round onward, and for major changes or additions, a separate quote will apply.",
+    },
+    {
+      label: "Materials",
+      body: "Please prepare materials such as logos, photos, and text on your end. We can also supply image materials if needed.",
+    },
+    {
+      label: "Cancellation",
+      body: "In principle, cancellations are not accepted once a contract is signed. If cancellation is unavoidable, 80% of the project fee will be charged.",
+    },
+    {
+      label: "Payment Terms",
+      body: "Billing is closed at month-end, with payment due within 3 business days of the following month.",
+    },
+    {
+      label: "Payment Methods",
+      body: "We accept bank transfer and credit card payment.",
+    },
+  ],
   achievementsSection: {
     title: "Achievements",
     techStackLabel: "Tech Stack",
@@ -681,7 +758,9 @@ const en: Translations = {
     {
       number: "08",
       title: "After-Launch Support",
-      body: ["We also provide 3 months of after-launch support following delivery."],
+      body: [
+        "【Limited-time offer】Get 6 months of after-launch support free of charge — normally from ¥30,000/month.",
+      ],
       bullets: [
         { label: "An error occurs and something isn't working properly" },
         { label: "You're not sure how to operate the system after delivery" },
@@ -689,7 +768,7 @@ const en: Translations = {
         { label: "You'd like to consult about the system that was developed" },
       ],
       afterBullets: "and other post-delivery concerns — we're here to help.",
-      note: "※The scope and details of after-launch support vary depending on the development/production content.",
+      note: "※The scope and details of after-launch support vary depending on the development/production content. After the free period ends, support can continue from ¥30,000/month.",
     },
   ],
   contact: {
@@ -758,6 +837,7 @@ const es: Translations = {
     readMore: "Ver más →",
     priceLabel: "Precio Estimado",
     achievementLabel: "Logro: ",
+    notesTitle: "Condiciones del Servicio",
   },
   services: {
     homepage: {
@@ -765,16 +845,26 @@ const es: Translations = {
       shortDescription:
         "Creación de sitios web para empresas, comercios y particulares. Diseños claros y fáciles de usar, también optimizados para móviles.",
       fullDescription:
-        "Creamos sitios web adaptados a tus objetivos para empresas, comercios y autónomos, con diseños claros y fáciles de usar que también funcionan muy bien en móviles.",
-      price: "Desde ¥100,000",
+        "Creamos sitios web adaptados a tus objetivos para empresas, comercios y autónomos, con diseños claros y fáciles de usar que también funcionan muy bien en móviles. El precio incluye la implementación de la página principal y las subpáginas básicas, con un primer borrador en tan solo 3 días.",
+      price: "Desde ¥300,000",
+      examples: [
+        "Personalización de página de empleo (vídeo, etc.) +¥50,000〜",
+        "Añadir chatbot con IA +¥100,000〜, ¥30,000〜/mes (incluye actualización de guiones y mantenimiento de seguridad)",
+        "Redacción de artículos SEO (enfocados a empleo, para posicionar en Google) Desde ¥5/carácter",
+        "Configuración inicial de GA4 (Google Analytics 4) Desde ¥30,000",
+      ],
     },
     lp: {
       name: "Creación de Landing Pages",
       shortDescription:
         "Un sitio web de una sola página que presenta tu producto o servicio y genera consultas y registros.",
       fullDescription:
-        "Creamos páginas que comunican claramente el atractivo de tus productos y servicios, generando consultas y solicitudes.",
-      price: "Desde ¥50,000",
+        "Creamos páginas que comunican claramente el atractivo de tus productos y servicios, generando consultas y solicitudes. Disponible tanto a partir de tu sitio web existente como creada completamente desde cero.",
+      price: "Desde ¥200,000",
+      examples: [
+        "A partir de tu sitio web existente: Desde ¥200,000 (primer borrador en tan solo 1 día)",
+        "Creación desde cero: Desde ¥250,000 (primer borrador en tan solo 2 días)",
+      ],
     },
     "web-system": {
       name: "Desarrollo de Sistemas Web",
@@ -793,8 +883,8 @@ const es: Translations = {
       shortDescription:
         "Chatbots con IA que responden automáticamente a las preguntas de los clientes las 24 horas en tu sitio web o LINE.",
       fullDescription:
-        "Integramos IA en tu sitio web o LINE para responder automáticamente a las preguntas de los clientes las 24 horas.",
-      price: "Desde ¥100,000",
+        "Integramos IA en tu sitio web o LINE para responder automáticamente a las preguntas de los clientes las 24 horas. La cuota mensual incluye mantenimiento continuo, como actualización de guiones y medidas de seguridad.",
+      price: "+¥100,000〜, ¥30,000〜/mes",
       examples: [
         "Preguntas sobre productos",
         "Información sobre servicios",
@@ -807,8 +897,9 @@ const es: Translations = {
       shortDescription:
         "Utilizamos IA para automatizar tareas como la respuesta a consultas y la búsqueda de información.",
       fullDescription:
-        "Utilizamos IA para automatizar tareas que antes se hacían manualmente, como la atención de consultas y la búsqueda de información, reduciendo la carga de trabajo y apoyando una operación más eficiente.",
-      price: "Desde ¥100,000",
+        "Utilizamos IA para automatizar tareas que antes se hacían manualmente, como la atención de consultas y la búsqueda de información, reduciendo la carga de trabajo y apoyando una operación más eficiente. Consúltanos incluso si solo quieres saber si algo se puede hacer con IA.",
+      price: "Desde ¥3,000/hora",
+      examples: ["Configuración inicial de GA4 (Google Analytics 4) Desde ¥30,000"],
     },
     "system-integration": {
       name: "Integración de Sistemas y Automatización",
@@ -825,6 +916,28 @@ const es: Translations = {
       ],
     },
   },
+  pricingNotes: [
+    {
+      label: "Revisiones",
+      body: "Incluimos hasta 3 rondas de revisiones menores. A partir de la 4ª ronda, así como para cambios o adiciones importantes, se aplicará un presupuesto aparte.",
+    },
+    {
+      label: "Materiales",
+      body: "Te pedimos que prepares materiales como logo, fotos y textos. También podemos proporcionar imágenes si es necesario.",
+    },
+    {
+      label: "Cancelación",
+      body: "En principio, no se aceptan cancelaciones una vez firmado el contrato. Si la cancelación es inevitable, se cobrará el 80% del importe del proyecto.",
+    },
+    {
+      label: "Condiciones de Pago",
+      body: "La facturación se cierra a fin de mes, con pago dentro de los 3 días hábiles siguientes.",
+    },
+    {
+      label: "Métodos de Pago",
+      body: "Aceptamos transferencia bancaria y pago con tarjeta de crédito.",
+    },
+  ],
   achievementsSection: {
     title: "Logros",
     techStackLabel: "Stack Tecnológico",
@@ -975,7 +1088,9 @@ const es: Translations = {
     {
       number: "08",
       title: "Soporte Posterior",
-      body: ["También ofrecemos 3 meses de soporte posterior a la entrega."],
+      body: [
+        "【Oferta por tiempo limitado】Ahora incluimos 6 meses de soporte posterior gratuito, normalmente desde ¥30,000/mes.",
+      ],
       bullets: [
         { label: "Se produce un error y algo no funciona correctamente" },
         { label: "No sabes cómo operar el sistema después de la entrega" },
@@ -983,7 +1098,7 @@ const es: Translations = {
         { label: "Quieres consultar sobre el sistema desarrollado" },
       ],
       afterBullets: "y otras inquietudes posteriores a la entrega: estamos aquí para ayudarte.",
-      note: "※El alcance y los detalles del soporte posterior varían según el contenido del desarrollo/producción.",
+      note: "※El alcance y los detalles del soporte posterior varían según el contenido del desarrollo/producción. Tras finalizar el periodo gratuito, el soporte puede continuar desde ¥30,000/mes.",
     },
   ],
   contact: {

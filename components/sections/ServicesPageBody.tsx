@@ -44,6 +44,22 @@ export function ServicesPageBody() {
           />
         ))}
       </div>
+
+      <div className="mt-12 rounded-2xl border border-navy-50 bg-surface-card p-8">
+        <h3 className="text-lg font-bold text-ink">
+          {t.servicesSection.notesTitle}
+        </h3>
+        <dl className="mt-4 flex flex-col gap-4">
+          {t.pricingNotes.map((note) => (
+            <div key={note.label}>
+              <dt className="text-sm font-semibold text-gold">{note.label}</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-ink-muted">
+                {note.body}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </Section>
   );
 }
