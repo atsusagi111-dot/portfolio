@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Atsusagi Lab ポートフォリオサイト
 
-## Getting Started
+Atsusagi Lab のポートフォリオ／サービス紹介サイトです。ホームページ制作・LP制作・Webシステム開発・AIチャットボット・業務自動化などのサービスを紹介する、多言語対応（i18n）の Next.js サイトです。
 
-First, run the development server:
+- **GitHub**: https://github.com/atsusagi111-dot/portfolio
+- **本番URL (Vercel)**: https://portfolio-three-alpha-2lkobfo48b.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 技術スタック
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- ESLint (eslint-config-next)
+- デプロイ: Vercel
+
+## ディレクトリ構成
+
+```
+app/                          # ルーティング（/, /profile, /services, /contact）、レイアウト、グローバルCSS
+components/layout/            # Header, Footer, Section
+components/sections/          # 各ページのセクション（Hero, Achievements, ServicesPageBody, ContactPageBody, ProcessFlow など）
+components/ui/                # 汎用UI部品（Button, ServiceCard, LanguageSwitcher, RevealOnScroll など）
+components/forms/ContactForm.tsx  # お問い合わせフォーム
+components/i18n/LanguageProvider.tsx + lib/i18n/translations.ts  # 多言語対応
+lib/hooks/                    # useIsMobile, usePrefersReducedMotion
+portfolio-requirements.md     # サービス内容・ターゲット・掲載文言の要件定義
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## セットアップ
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+依存パッケージをインストールします。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+```
 
-## Learn More
+## 開発コマンド
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev    # 開発サーバーを起動
+npm run build  # 本番ビルド
+npm run start  # 本番サーバーを起動
+npm run lint   # ESLint によるコードチェック
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm run dev` を実行したら、ブラウザで以下のURLにアクセスしてください。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**http://localhost:3000**
 
-## Deploy on Vercel
+ファイルを編集すると自動的にページが更新されます。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ページ構成
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| パス | 内容 |
+|------|------|
+| `/` | トップページ |
+| `/profile` | プロフィール |
+| `/services` | サービス紹介 |
+| `/contact` | お問い合わせ |
+
+## デプロイ
+
+このプロジェクトは [Vercel](https://vercel.com) にデプロイされています。`main` ブランチへのプッシュで自動的に本番環境に反映されます。
