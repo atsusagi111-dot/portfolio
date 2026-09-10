@@ -214,7 +214,7 @@ const ja: Translations = {
         "予約・顧客管理・問い合わせ管理など、業務を便利にするWebシステムの開発。",
       fullDescription:
         "予約管理・顧客管理・お問い合わせ管理など、日々の業務を効率化するオリジナルシステムを開発します。",
-      price: "15万円〜",
+      price: "25万円〜",
       examples: [
         "データ管理・予約管理システムの開発",
         "お客様の目的に合わせたオリジナルシステムの開発",
@@ -249,7 +249,7 @@ const ja: Translations = {
         "複数のサービスを連携し、データ入力・通知・情報共有などの作業を自動化。",
       fullDescription:
         "複数のサービスを連携し、データ入力や通知などの繰り返し作業を自動化します。お客様の業務に合わせたシステムを構築します。",
-      price: "10万円〜",
+      price: "25万円〜",
       examples: [
         "フォームの内容を自動で管理表へ登録",
         "LINEやメールへ自動通知",
@@ -547,7 +547,7 @@ const en: Translations = {
         "Web systems for reservations, customer management, inquiry management, and more to streamline your operations.",
       fullDescription:
         "We develop custom systems for reservation management, customer management, inquiry management, and more to streamline your day-to-day operations.",
-      price: "From ¥150,000",
+      price: "From ¥250,000",
       examples: [
         "Development of data and reservation management systems",
         "Custom systems built around your specific goals",
@@ -582,7 +582,7 @@ const en: Translations = {
         "We connect multiple services to automate data entry, notifications, information sharing, and more.",
       fullDescription:
         "We connect multiple services to automate repetitive tasks like data entry and notifications, building systems tailored to your business.",
-      price: "From ¥100,000",
+      price: "From ¥250,000",
       examples: [
         "Automatically registering form submissions into a management spreadsheet",
         "Automatic notifications via LINE or email",
@@ -879,7 +879,7 @@ const es: Translations = {
         "Sistemas web para reservas, gestión de clientes, gestión de consultas y más, para optimizar tus operaciones.",
       fullDescription:
         "Desarrollamos sistemas personalizados para la gestión de reservas, clientes, consultas y más, optimizando tus operaciones diarias.",
-      price: "Desde ¥150,000",
+      price: "Desde ¥250,000",
       examples: [
         "Desarrollo de sistemas de gestión de datos y reservas",
         "Sistemas personalizados adaptados a tus objetivos específicos",
@@ -914,7 +914,7 @@ const es: Translations = {
         "Conectamos varios servicios para automatizar la entrada de datos, notificaciones, el intercambio de información y más.",
       fullDescription:
         "Conectamos varios servicios para automatizar tareas repetitivas como la entrada de datos y las notificaciones, creando sistemas adaptados a tu negocio.",
-      price: "Desde ¥100,000",
+      price: "Desde ¥250,000",
       examples: [
         "Registro automático de formularios en una hoja de gestión",
         "Notificaciones automáticas por LINE o correo electrónico",
