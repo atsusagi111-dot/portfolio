@@ -1,38 +1,38 @@
-"use client";
-
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { CodeShowcase } from "@/components/ui/CodeShowcase";
-import { DeveloperProfileBadge } from "@/components/ui/DeveloperProfileBadge";
-import { useTranslations } from "@/components/i18n/LanguageProvider";
+import { hero } from "@/data/home";
 
 export function Hero() {
-  const t = useTranslations();
-
   return (
-    <section className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <div className="flex flex-col items-start gap-6">
-          <DeveloperProfileBadge />
-          <h1 className="max-w-2xl text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
-            {t.hero.title}
-          </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-            {t.hero.description}
-          </p>
-          <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-            <Button href="/contact" variant="primary">
-              {t.hero.ctaPrimary}
-            </Button>
-            <Button href="/services" variant="secondary">
-              {t.hero.ctaSecondary}
-            </Button>
-          </div>
-        </div>
-
-        <div className="hidden justify-center sm:flex lg:justify-end">
-          <CodeShowcase />
+    <section className="relative overflow-hidden px-4 pb-24 pt-20 sm:px-6 sm:pb-36 sm:pt-32 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <p className="flex items-center gap-3 font-en text-lg tracking-wide text-gold-600 sm:text-xl">
+          <span aria-hidden="true" className="h-px w-8 bg-gold" />
+          {hero.label}
+        </p>
+        <h1 className="mt-6 max-w-4xl text-[1.75rem] font-bold leading-[1.5] text-ink sm:text-5xl sm:leading-[1.45] lg:text-[3.5rem]">
+          {hero.title}
+        </h1>
+        <p className="mt-8 max-w-2xl text-base leading-loose text-ink-muted sm:text-lg sm:leading-loose">
+          {hero.description}
+        </p>
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <Button href="/contact/" variant="primary" className="sm:px-10">
+            {hero.ctaPrimary}
+          </Button>
+          <Button href="/services/" variant="secondary" className="sm:px-10">
+            {hero.ctaSecondary}
+          </Button>
         </div>
       </div>
+      {/* ブランドモチーフのうさぎ。装飾なので読み上げ対象外 */}
+      <Image
+        src="/images/rabbit/rabbit-run.webp"
+        alt=""
+        width={480}
+        height={278}
+        className="pointer-events-none absolute -bottom-2 right-4 hidden h-auto w-40 opacity-25 sm:block lg:right-16 lg:w-56"
+      />
     </section>
   );
 }

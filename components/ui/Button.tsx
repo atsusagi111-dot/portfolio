@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { MouseEventHandler, ReactNode } from "react";
 
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "inverse";
 
 type ButtonProps = {
   variant?: Variant;
@@ -14,11 +14,12 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors sm:text-base";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 sm:text-base";
 
 const variants: Record<Variant, string> = {
   primary: "bg-navy text-white hover:bg-navy-700",
   secondary: "border border-navy text-navy hover:bg-navy-50",
+  inverse: "bg-white text-navy hover:bg-gold-50",
 };
 
 export function Button({

@@ -1,148 +1,75 @@
-import Image from "next/image";
-import type { AchievementScreenshot, TechItem } from "@/lib/i18n/translations";
+import { TextLink } from "@/components/ui/TextLink";
+import { servicesSection, type Service } from "@/data/services";
+import { getWork } from "@/data/works";
 
-type RelatedAchievement = {
-  labelPrefix: string;
-  title: string;
-  screenshots: AchievementScreenshot[];
-  techStack: TechItem[];
-  techStackLabel: string;
-  supportTools: TechItem[];
-  supportToolsLabel: string;
-  urls: string[];
-  urlLabel: string;
-};
+export function ServiceDetail({ service, index }: { service: Service; index: number }) {
+  const relatedWork = service.relatedWorkId ? getWork(service.relatedWorkId) : undefined;
 
-type ServiceDetailProps = {
-  id: string;
-  name: string;
-  fullDescription: string;
-  price: string;
-  priceLabel: string;
-  examples?: string[];
-  relatedAchievement?: RelatedAchievement;
-};
-
-function TagList({ items }: { items: TechItem[] }) {
-  return (
-    <div className="mt-2 flex flex-wrap gap-2">
-      {items.map((item) => (
-        <span
-          key={item.name}
-          className="rounded-xl border border-navy-50 bg-surface px-3 py-1.5 text-xs font-medium text-ink"
-        >
-          {item.name}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-export function ServiceDetail({
-  id,
-  name,
-  fullDescription,
-  price,
-  priceLabel,
-  examples,
-  relatedAchievement,
-}: ServiceDetailProps) {
   return (
     <article
-      id={id}
-      className="scroll-mt-24 rounded-2xl border border-navy-50 bg-surface-card p-8"
+      id={service.id}
+      className="rounded-2xl border border-navy-50 bg-surface p-6 sm:p-10"
     >
-      <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
-        <h3 className="text-xl font-bold text-ink sm:text-2xl">{name}</h3>
-        <div className="flex items-baseline gap-2 sm:flex-col sm:items-end sm:gap-0">
-          <span className="text-xs text-ink-muted">{priceLabel}</span>
-          <span className="text-lg font-bold text-navy">{price}</span>
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+        <div>
+          <span className="font-en text-2xl text-gold-600">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h2 className="mt-1 text-xl font-bold text-ink sm:text-2xl">{service.name}</h2>
+        </div>
+        <p className="flex shrink-0 items-baseline gap-3 sm:flex-col sm:items-end sm:gap-0">
+          <span className="text-xs text-ink-muted">{servicesSection.priceLabel}</span>
+          <span className="text-xl font-bold text-navy">{service.price}</span>
+        </p>
+      </div>
+
+      <p className="mt-6 leading-loose text-ink-muted">{service.fullDescription}</p>
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="rounded-xl bg-gold-50 p-6">
+          <h3 className="text-sm font-bold text-ink">{servicesSection.concernsLabel}</h3>
+          <ul className="mt-4 flex flex-col gap-3">
+            {service.concerns.map((concern) => (
+              <li key={concern} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-600"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12.5l4.5 4.5L19 7.5" />
+                </svg>
+                {concern}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-xl bg-surface-alt p-6">
+          <h3 className="text-sm font-bold text-ink">{service.examplesLabel}</h3>
+          <ul className="mt-4 flex flex-col gap-3">
+            {service.examples.map((example) => (
+              <li key={example} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
+                <span
+                  aria-hidden="true"
+                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+                />
+                {example}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <p className="mt-4 leading-relaxed text-ink-muted">{fullDescription}</p>
-      {examples && examples.length > 0 && (
-        <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {examples.map((example) => (
-            <li
-              key={example}
-              className="flex items-start gap-2 text-sm leading-relaxed text-ink"
-            >
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-              {example}
-            </li>
-          ))}
-        </ul>
-      )}
 
-      {relatedAchievement && (
-        <div className="mt-6 border-t border-navy-50 pt-6">
-          <p className="text-sm font-semibold text-gold">
-            {relatedAchievement.labelPrefix}
-            {relatedAchievement.title}
-          </p>
-
-          {relatedAchievement.screenshots.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-4">
-              {relatedAchievement.screenshots.map((shot) => (
-                <figure
-                  key={shot.label}
-                  className="w-52 overflow-hidden rounded-lg border border-navy-50 bg-surface sm:w-64"
-                >
-                  <figcaption className="border-b border-navy-50 bg-surface-card px-2 py-1 text-xs font-semibold text-ink">
-                    {shot.label}
-                  </figcaption>
-                  <Image
-                    src={shot.src}
-                    alt={shot.label}
-                    width={787}
-                    height={786}
-                    className="h-auto w-full"
-                  />
-                </figure>
-              ))}
-            </div>
-          )}
-
-          {relatedAchievement.techStack.length > 0 && (
-            <>
-              <h4 className="mt-5 text-xs font-semibold text-gold">
-                {relatedAchievement.techStackLabel}
-              </h4>
-              <TagList items={relatedAchievement.techStack} />
-            </>
-          )}
-
-          {relatedAchievement.supportTools.length > 0 && (
-            <>
-              <h4 className="mt-5 text-xs font-semibold text-gold">
-                {relatedAchievement.supportToolsLabel}
-              </h4>
-              <TagList items={relatedAchievement.supportTools} />
-            </>
-          )}
-
-          {relatedAchievement.urls.length > 0 && (
-            <>
-              <h4 className="mt-5 text-xs font-semibold text-gold">
-                {relatedAchievement.urlLabel}
-              </h4>
-              <ul className="mt-2 flex flex-col gap-1">
-                {relatedAchievement.urls.map((url) => (
-                  <li key={url}>
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm break-all text-navy underline hover:text-navy-700"
-                    >
-                      {url}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+      {relatedWork && (
+        <p className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-navy-50 pt-6 text-sm">
+          <span className="text-ink-muted">実績：{relatedWork.title}</span>
+          <TextLink href={`/works/#${relatedWork.id}`}>この実績を見る</TextLink>
+        </p>
       )}
     </article>
   );

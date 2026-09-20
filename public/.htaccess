@@ -1,0 +1,89 @@
+# ATSUSAGI LAB 公式サイト用 .htaccess（ConoHa WING / Apache）
+# ビルドすると out/.htaccess にコピーされる。out/ の中身と一緒に公開フォルダ直下へアップロードする。
+
+# ---- 文字コード・ディレクトリ一覧の禁止 ----
+AddDefaultCharset UTF-8
+Options -Indexes
+
+# ---- 404ページ（Next.js が出力する out/404.html）----
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ---- HTTPS を強制 ----
+  # ConoHa WING はリバースプロキシ構成のため、X-Forwarded-Proto も確認する（リダイレクトループ防止）
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # ---- www あり → www なしに統一 ----
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# 末尾スラッシュなしのURL（/services）は、Apache の mod_dir が自動で /services/ へリダイレクトする
+DirectoryIndex index.html
+
+# ---- 直接アクセスさせないファイル ----
+# お問い合わせフォームの設定（メールアドレス）
+<Files "config.php">
+  Require all denied
+</Files>
+# Next.js がクライアント遷移用に出力する内部データ（.txt）は検索結果に出さない
+<IfModule mod_headers.c>
+  <FilesMatch "\.txt$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+  <Files "robots.txt">
+    Header unset X-Robots-Tag
+  </Files>
+</IfModule>
+
+# ---- セキュリティヘッダー ----
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# ---- MIMEタイプ ----
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+</IfModule>
+
+# ---- 圧縮 ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---- キャッシュ ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # HTMLは更新をすぐ反映させるためキャッシュしない
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/plain "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType application/rss+xml "access plus 1 hour"
+  # 画像・フォントは1か月
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # /_next/static/ 配下はファイル名にハッシュが入るため、1年間キャッシュしてよい
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

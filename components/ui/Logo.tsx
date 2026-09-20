@@ -2,12 +2,12 @@ import Image from "next/image";
 
 const LOGOS = {
   horizontal: {
-    src: "/logo/atsusagi-lab-horizontal.png",
+    src: "/images/logo/atsusagi-lab-horizontal.webp",
     width: 1331,
     height: 294,
   },
   badge: {
-    src: "/logo/atsusagi-lab-badge.png",
+    src: "/images/logo/atsusagi-lab-badge.webp",
     width: 445,
     height: 443,
   },

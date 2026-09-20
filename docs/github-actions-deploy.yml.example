@@ -1,0 +1,47 @@
+# GitHub Actions による ConoHa WING への自動デプロイ（案）
+# 使うときは .github/workflows/deploy.yml としてコピーし、docs/deploy.md の手順で Secrets を登録する。
+
+name: Deploy to ConoHa WING
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - name: Build (static export -> out/)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Upload out/ via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./out/
+          # FTPアカウントの接続先を公開フォルダ（public_html/ドメイン名/）にしておくこと
+          server-dir: ./
+          # config.php をサーバーに手動で置く運用にする場合は、次の行のコメントを外す
+          # exclude: |
+          #   contact/config.php

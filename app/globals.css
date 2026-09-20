@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
+/* 白ベース＋基調色（ネイビー）＋アクセント（ゴールド）。ロゴの2色に合わせている */
 :root {
   --color-navy: #192c44;
   --color-navy-700: #101d2d;
-  --color-navy-50: #eef1f6;
+  --color-navy-50: #e6eaf0;
   --color-gold: #b08d57;
-  --color-gold-600: #96784a;
+  --color-gold-600: #8a6d3f;
   --color-gold-50: #f7f1e7;
-  --color-surface: #f7f6f3;
-  --color-surface-card: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f7f9;
   --color-ink: #192c44;
-  --color-ink-muted: #5b6472;
+  --color-ink-muted: #556070;
 }
 
 @theme inline {
@@ -21,68 +22,116 @@
   --color-gold-600: var(--color-gold-600);
   --color-gold-50: var(--color-gold-50);
   --color-surface: var(--color-surface);
-  --color-surface-card: var(--color-surface-card);
+  --color-surface-alt: var(--color-surface-alt);
   --color-ink: var(--color-ink);
   --color-ink-muted: var(--color-ink-muted);
   --font-sans: var(--font-noto-sans-jp);
+  --font-en: var(--font-en);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--color-surface);
   color: var(--color-ink);
+  line-height: 1.8;
+  font-feature-settings: "palt";
+  /* 日本語を文節単位で折り返す（「ご対／応します」のような語中の改行を防ぐ）。未対応ブラウザでは通常の折り返しになる */
+  word-break: auto-phrase;
 }
 
-@keyframes rabbit-run {
-  from {
-    transform: translateX(-20vw);
-  }
-  to {
-    transform: translateX(120vw);
-  }
+/* 見出しは行の長さをそろえる */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-@keyframes rabbit-hop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-16px);
-  }
+:focus-visible {
+  outline: 2px solid var(--color-gold-600);
+  outline-offset: 2px;
 }
 
-.animate-rabbit-run {
-  animation: rabbit-run 3s cubic-bezier(0.35, 0, 0.65, 1) forwards;
-}
-
-.animate-rabbit-hop {
-  animation: rabbit-hop 0.55s ease-in-out infinite;
-}
-
-@keyframes logo-reveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-.animate-logo-reveal {
-  clip-path: inset(0 100% 0 0);
-  animation: logo-reveal 0.6s ease-out 1.4s both;
+/* コラム記事本文（Markdownから生成されるHTML） */
+.article-body {
+  font-size: 1rem;
+  line-height: 2;
 }
-
-@keyframes nudge-right {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(4px);
-  }
+.article-body > * + * {
+  margin-top: 1.5em;
 }
-
-.animate-nudge {
-  animation: nudge-right 1.2s ease-in-out infinite;
+.article-body h2 {
+  margin-top: 3em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--color-navy-50);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.article-body h3 {
+  margin-top: 2.5em;
+  padding-left: 0.75em;
+  border-left: 3px solid var(--color-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.article-body a {
+  color: var(--color-navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.article-body ul,
+.article-body ol {
+  padding-left: 1.5em;
+}
+.article-body ul {
+  list-style: disc;
+}
+.article-body ol {
+  list-style: decimal;
+}
+.article-body li + li {
+  margin-top: 0.5em;
+}
+.article-body blockquote {
+  padding: 1em 1.25em;
+  border-left: 3px solid var(--color-navy-50);
+  background: var(--color-surface-alt);
+  color: var(--color-ink-muted);
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.article-body th,
+.article-body td {
+  padding: 0.75em 1em;
+  border: 1px solid var(--color-navy-50);
+  text-align: left;
+}
+.article-body th {
+  background: var(--color-surface-alt);
+  font-weight: 700;
+}
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.article-body code {
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+  background: var(--color-surface-alt);
+  font-size: 0.9em;
 }

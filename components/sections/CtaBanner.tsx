@@ -1,26 +1,26 @@
-"use client";
-
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { useTranslations } from "@/components/i18n/LanguageProvider";
+import { ctaBanner } from "@/data/home";
 
+/** 全ページ下部に表示する共通のお問い合わせCTA（app/layout.tsx で配置） */
 export function CtaBanner() {
-  const t = useTranslations();
-
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 rounded-3xl bg-navy px-6 py-14 text-center sm:px-12">
-        <h2 className="text-2xl font-bold text-white sm:text-3xl">
-          {t.ctaBanner.title}
+    <section aria-labelledby="cta-title" className="bg-navy px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <Image
+          src="/images/rabbit/rabbit-run.webp"
+          alt=""
+          width={480}
+          height={278}
+          className="h-auto w-20 opacity-90"
+        />
+        <p className="mt-6 font-en text-xl tracking-wide text-gold">Contact</p>
+        <h2 id="cta-title" className="mt-3 text-2xl font-bold leading-snug text-white sm:text-3xl">
+          {ctaBanner.title}
         </h2>
-        <p className="max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
-          {t.ctaBanner.description}
-        </p>
-        <Button
-          href="/contact"
-          variant="secondary"
-          className="border-white bg-white text-navy hover:bg-white/90"
-        >
-          {t.ctaBanner.button}
+        <p className="mt-5 leading-loose text-white/80">{ctaBanner.description}</p>
+        <Button href="/contact/" variant="inverse" className="mt-10 w-full sm:w-auto sm:px-12">
+          {ctaBanner.button}
         </Button>
       </div>
     </section>
