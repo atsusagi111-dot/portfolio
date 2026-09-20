@@ -1,64 +1,128 @@
-# Atsusagi Lab ポートフォリオサイト
+# ATSUSAGI LAB 公式サイト
 
-Atsusagi Lab のポートフォリオ／サービス紹介サイトです。ホームページ制作・LP制作・Webシステム開発・AIチャットボット・業務自動化などのサービスを紹介する、多言語対応（i18n）の Next.js サイトです。
+中小企業の経営者向けのコーポレートサイトです（日本語のみ）。
+Next.js の**静的エクスポート**で作っており、最終的な公開先は ConoHa WING（共用レンタルサーバー）です。
 
-- **GitHub**: https://github.com/atsusagi111-dot/portfolio
-- **本番URL (Vercel)**: https://portfolio-three-alpha-2lkobfo48b.vercel.app/
+- **GitHub**: https://github.com/atsusagi111-dot/portfolio （公開リポジトリ）
+- **現在の本番（旧サイト・Vercel）**: https://portfolio-three-alpha-2lkobfo48b.vercel.app/ … `main` ブランチ
+- **リニューアル版のプレビュー（Vercel）**: `renewal` ブランチを push するたびに自動で作られます。URL は GitHub のコミット横の ✓ マーク、または Vercel の管理画面（Deployments → Preview）で確認できます。閲覧には Vercel へのログインが必要です
+- **最終的な公開先（ConoHa WING）**: 【後で指定】atsusagi-lab.◯◯
 
-## 技術スタック
+> ⚠️ **`main` ブランチへ push／マージすると、Vercel の本番（旧サイト）が新サイトに置き換わります。**
+> 新サイトのお問い合わせフォームは ConoHa 上の PHP で動くため、Vercel 上では送信できません。
+> 素材とドメインが揃うまでは `renewal` ブランチで作業してください。
 
-- Next.js 16 (App Router)
-- React 19
-- TypeScript
-- Tailwind CSS v4
-- ESLint (eslint-config-next)
-- デプロイ: Vercel
+---
 
-## ディレクトリ構成
+## 📌 明日やること
 
-```
-app/                          # ルーティング（/, /profile, /services, /contact）、レイアウト、グローバルCSS
-components/layout/            # Header, Footer, Section
-components/sections/          # 各ページのセクション（Hero, Achievements, ServicesPageBody, ContactPageBody, ProcessFlow など）
-components/ui/                # 汎用UI部品（Button, ServiceCard, LanguageSwitcher, RevealOnScroll など）
-components/forms/ContactForm.tsx  # お問い合わせフォーム
-components/i18n/LanguageProvider.tsx + lib/i18n/translations.ts  # 多言語対応
-lib/hooks/                    # useIsMobile, usePrefersReducedMotion
-portfolio-requirements.md     # サービス内容・ターゲット・掲載文言の要件定義
-```
+### 1. 決めること（決まらないと先に進めないもの）
 
-## セットアップ
+- [ ] **本番ドメインの末尾** … `atsusagi-lab` の後ろを `.com` / `.jp` / `.co.jp` などから決めて、取得する
+- [ ] **お問い合わせの受信アドレス** … フォームの内容をどのメールアドレスで受け取るか
+- [ ] **送信元アドレス** … ドメイン取得後、ConoHa で作る独自ドメインのアドレス（例：`info@ドメイン`）
+- [ ] **メールアドレスを GitHub に載せるか** … このリポジトリは**公開**なので、`public/contact/config.php` に書いたアドレスは誰でも見られます。
+      載せたくない場合は、`config.php` だけサーバーに手動で置く運用にする（`docs/deploy.md` の 5 を参照）か、リポジトリを非公開にする
+- [ ] **運営者情報の公開範囲** … 代表者名（本名／活動名）、所在地（都道府県まで／市区町村まで／全部）、電話番号・メールアドレス、設立年月を、それぞれ載せるかどうか
+- [ ] **FAQ「相談や見積もりに費用はかかりますか？」の回答** … 無料なら「無料です」と一言いただければ反映します。不要ならこの質問ごと削除します
+- [ ] **お客様の声を載せるか** … 載せる場合は、掲載許可をいただけるお客様がいるか
+- [ ] **旧サイト（Vercel）の扱い** … ConoHa で公開した後、停止するか、プレビュー用に残すか
 
-依存パッケージをインストールします。
+### 2. 確認すること（私が下書きした文章。事実と違う・言い回しを変えたい箇所を教えてください）
 
-```bash
-npm install
-```
+プレビュー、または `npm run dev` → http://localhost:3000 で確認できます。
+
+- [ ] ホーム「こんなお悩みはありませんか」（6項目） … `data/home.ts`
+- [ ] 各サービスの「こんな課題をお持ちの方に」（6サービス×3項目） … `data/services.ts`
+- [ ] よくあるご質問（11問） … `data/faq.ts`
+- [ ] プライバシーポリシー … `data/privacy.ts`（法的な最終確認はご自身でお願いします）
+- [ ] サンプルのコラム記事 … `content/column/homepage-order-checklist.md`（残す／書き換える／削除する）
+- [ ] デザイン全体 … スマホ実機・PC の両方で、見づらい箇所や崩れがないか
+- [ ] 自分で決めた変更点の可否 … フォームに「会社名・屋号」（任意）を追加／プロフィール写真の枠を円形に／英字フォント（Cormorant Garamond）
+
+### 3. 用意する素材（詳細・文字数の目安は `docs/materials.md`）
+
+- [ ] 代表者の表示名
+- [ ] 仕事への姿勢・代表メッセージ（300〜500字）
+- [ ] 専門領域（3〜5項目、各30字＋補足60字程度）
+- [ ] 保有資格（あれば）
+- [ ] 実績「某大手退職代行業者｜LP制作」の **課題** と **成果**（各100〜200字。数値は事実のみ。定性的な変化でも可）
+- [ ] 追加の実績（あれば）
+- [ ] お客様の声（載せる場合。1件100〜250字、実名 or 業種＋役職）
+
+サイト上で**金色の点線枠**になっている箇所が、未提供の素材です。
+
+### 4. 素材・ドメインが揃ったあとの作業（Claude に依頼できます）
+
+- [ ] 素材を `data/` に反映し、`docs/materials.md` の提供状況を「済」に更新
+- [ ] `.env.local` に `NEXT_PUBLIC_SITE_URL=https://本番ドメイン` を設定
+- [ ] `public/contact/config.php` にメールアドレスを設定
+- [ ] Lighthouse を計測し、90点未満の項目を改善（**未計測**）
+- [ ] ConoHa WING の初期設定（ドメイン追加・無料SSL・メールアドレス作成・PHP 8.x）→ `docs/deploy.md` の 0
+- [ ] `out/` をアップロードし、公開後チェックリストを確認（フォームの実送信、HTTPS転送、404、`config.php` が 403 になること）→ `docs/deploy.md` の 3〜4
+- [ ] Google Search Console に登録し、sitemap.xml を送信
+- [ ] （任意）GitHub Actions による自動デプロイを設定 → `docs/deploy.md` の 5
+
+---
 
 ## 開発コマンド
 
 ```bash
-npm run dev    # 開発サーバーを起動
-npm run build  # 本番ビルド
-npm run start  # 本番サーバーを起動
-npm run lint   # ESLint によるコードチェック
+npm install      # 初回、または package.json が変わったとき
+npm run dev      # 開発サーバー（http://localhost:3000）。フォームは送信せず完了ページへ進みます
+npm run build    # 本番ビルド（静的エクスポート）。出力先は out/
+npm run preview  # out/ をローカルの静的サーバーで配信（本番と同じ挙動の確認用）
+npm run lint     # ESLint
+npm run images   # assets-src/ の画像を WebP に変換（dev / build の前にも自動実行されます）
 ```
-
-`npm run dev` を実行したら、ブラウザで以下のURLにアクセスしてください。
-
-**http://localhost:3000**
-
-ファイルを編集すると自動的にページが更新されます。
 
 ## ページ構成
 
 | パス | 内容 |
-|------|------|
-| `/` | トップページ |
-| `/profile` | プロフィール |
-| `/services` | サービス紹介 |
-| `/contact` | お問い合わせ |
+|---|---|
+| `/` | ホーム（お悩み・サービス・実績・プロフィール・流れ・コラムの要約） |
+| `/services/` | サービス内容（6サービスと料金目安、ご利用にあたって） |
+| `/works/` | 実績（課題→対応→成果） |
+| `/flow/` | ご依頼の流れ（8ステップ）＋よくあるご質問 |
+| `/profile/` | 代表プロフィール・運営者情報 |
+| `/column/` | コラム一覧（`/column/category/<カテゴリ>/`、`/column/page/<n>/`） |
+| `/column/<slug>/` | コラム記事 |
+| `/contact/` | お問い合わせ（送信後は `/contact/thanks/`） |
+| `/privacy/` | プライバシーポリシー |
 
-## デプロイ
+## ディレクトリ構成
 
-このプロジェクトは [Vercel](https://vercel.com) にデプロイされています。`main` ブランチへのプッシュで自動的に本番環境に反映されます。
+```
+app/                 ルーティング、sitemap.ts、robots.ts、feed.xml/、not-found.tsx
+components/          layout / sections / ui / column / forms / seo
+data/                掲載文言・表示フラグ（素材の反映はここを書き換える）
+content/column/      コラム記事（Markdown）
+lib/                 コラムのMarkdown処理、メタデータ生成
+assets-src/          元画像（差し替えはここ。ビルド時に public/images/ へ WebP 変換）
+public/              .htaccess、contact/send.php・config.php（ConoHa上で動作）、画像
+scripts/             画像最適化、OGP画像生成
+docs/                materials.md（素材一覧）／deploy.md（デプロイ手順）／column.md（記事の追加手順）
+```
+
+## よく触るファイル
+
+| やりたいこと | ファイル |
+|---|---|
+| お客様の声・運営者情報の表示を切り替える | `data/site.ts` の `flags` |
+| サービス内容・料金を変える | `data/services.ts` |
+| 実績を追加・修正する | `data/works.ts`（画像は `assets-src/works/`） |
+| プロフィール・経歴を変える | `data/profile.ts`（写真は `assets-src/profile/profile.png`） |
+| コラムを追加する | `content/column/` に `.md` を追加（手順は `docs/column.md`） |
+| ヘッダー・フッターのメニューを変える | `data/navigation.ts` |
+
+## 守るルール（詳細は `CLAUDE.md`）
+
+1. **静的エクスポート前提**（`output: 'export'`、`trailingSlash: true`）。APIルート・Server Actions・middleware・next/image の自動最適化は使わない
+2. **実績・数値・お客様の声・経歴・資格を創作しない**。情報がない箇所は `【要素材：〇〇】` のままにする
+3. 参考サイトの文言・画像・配色・レイアウトを流用しない
+
+## 自動コミットについて
+
+`.claude/settings.json` のフックにより、Claude Code の作業が一区切りつくたびに、
+**ビルド → コミット → 現在のブランチを GitHub へ push** が自動で行われます（push 先は作業中のブランチです）。
+`renewal` ブランチで作業している限り、Vercel の本番（`main`）には影響しません。
