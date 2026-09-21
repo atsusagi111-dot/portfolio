@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   useCallback,
@@ -21,24 +22,6 @@ import {
 } from "./chat-storage";
 
 type Status = "idle" | "loading";
-
-function ChatIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-7 w-7"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-4.2 3.4c-.3.25-.8.03-.8-.37V5.5Z" />
-      <path d="M8 8.5h8M8 12h5" />
-    </svg>
-  );
-}
 
 function CloseIcon() {
   return (
@@ -92,8 +75,13 @@ export function ChatWidget() {
   // 初回表示時に sessionStorage から復元（ページ遷移しても開閉状態と履歴が残る）
   useEffect(() => {
     // sessionStorage はサーバーにないため、初回描画後に読み込んで同期する（意図的な setState）
+    // 初回訪問（未保存）なら、PC では開いた状態で始める
+    const saved = loadChatState();
+    const desktop = window.matchMedia("(min-width: 640px)").matches;
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setState(loadChatState());
+    setState(
+      saved ?? { ...emptyState, open: chat.openByDefaultOnDesktop && desktop },
+    );
     setHydrated(true);
   }, []);
 
@@ -274,9 +262,15 @@ export function ChatWidget() {
           <p className="flex items-center gap-2 font-bold">
             <span
               aria-hidden="true"
-              className="font-en text-lg tracking-wide text-gold"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white ring-1 ring-gold/60"
             >
-              Q&amp;A
+              <Image
+                src={chat.botAvatar}
+                alt=""
+                width={158}
+                height={227}
+                className="h-6 w-auto"
+              />
             </span>
             {chat.title}
           </p>
@@ -369,7 +363,7 @@ export function ChatWidget() {
         </form>
       </div>
 
-      {/* ランチャー */}
+      {/* ランチャー：丸ロゴ＋吹き出しバッジ。スマホで開いている間は入力欄と重なるため隠す（パネルの×で閉じる） */}
       <button
         ref={launcherRef}
         type="button"
@@ -377,9 +371,43 @@ export function ChatWidget() {
         aria-label={state.open ? chat.launcherCloseLabel : chat.launcherLabel}
         aria-expanded={state.open}
         aria-controls="chat-panel"
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white shadow-[0_12px_28px_-10px_rgba(25,44,68,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-navy-700 motion-reduce:transition-none"
+        className={`group fixed bottom-5 right-5 z-50 h-16 w-16 rounded-full bg-white shadow-[0_12px_28px_-10px_rgba(25,44,68,0.7)] ring-1 ring-navy-50 transition-all duration-200 hover:-translate-y-0.5 motion-reduce:transition-none ${
+          state.open ? "hidden sm:block" : ""
+        }`}
       >
-        {state.open ? <CloseIcon /> : <ChatIcon />}
+        <Image
+          src={chat.launcherLogo}
+          alt=""
+          width={506}
+          height={506}
+          priority
+          className="h-full w-full rounded-full object-cover"
+        />
+        {/* 吹き出しバッジ（開いているときは×） */}
+        <span
+          aria-hidden="true"
+          className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-navy text-white ring-2 ring-white transition-colors group-hover:bg-navy-700"
+        >
+          {state.open ? (
+            <svg
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+            >
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9.2l-3.8 3.1c-.5.4-1.4.1-1.4-.6V5.5Z" />
+              <circle cx="8.5" cy="9.5" r="1.1" fill="#192c44" />
+              <circle cx="12" cy="9.5" r="1.1" fill="#192c44" />
+              <circle cx="15.5" cy="9.5" r="1.1" fill="#192c44" />
+            </svg>
+          )}
+        </span>
       </button>
     </>
   );
@@ -396,7 +424,23 @@ function Bubble({
 }) {
   const user = role === "user";
   return (
-    <div className={`flex ${user ? "justify-end" : "justify-start"}`}>
+    <div
+      className={`flex items-end gap-2 ${user ? "justify-end" : "justify-start"}`}
+    >
+      {!user && (
+        <span
+          aria-hidden="true"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-gold/50"
+        >
+          <Image
+            src={chat.botAvatar}
+            alt=""
+            width={158}
+            height={227}
+            className="h-6 w-auto"
+          />
+        </span>
+      )}
       <div
         className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
           user

@@ -23,6 +23,13 @@ export const chat = {
   /** 開発サーバー（PHPが動かない）で自由入力したときのダミー回答 */
   devReply:
     "（開発環境のためAIには接続していません。本番ではここにAIの回答が表示されます）",
+  /** 回答するうさぎ（ボットのアイコン）。assets-src/rabbit/rabbit-front.png */
+  botAvatar: "/images/rabbit/rabbit-front.webp",
+  botName: "ATSUSAGI LAB",
+  /** ランチャーに使う丸ロゴ。assets-src/logo/logo-circle.png */
+  launcherLogo: "/images/logo/logo-circle.webp",
+  /** 初回訪問時にパネルを開いた状態にするか（PC のみ。スマホは画面を覆うため閉じた状態で始める） */
+  openByDefaultOnDesktop: true,
   /** 中継エンドポイント（ConoHa WING 上のPHP）。public/chat/chat.php */
   endpoint: "/chat/chat.php",
   maxInputLength: 300,

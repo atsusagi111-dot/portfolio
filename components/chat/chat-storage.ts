@@ -23,10 +23,11 @@ export const emptyState: ChatState = {
   freeCount: 0,
 };
 
-export function loadChatState(): ChatState {
+/** 保存された状態を返す。未保存（初回訪問）なら null */
+export function loadChatState(): ChatState | null {
   try {
     const raw = sessionStorage.getItem(KEY);
-    if (!raw) return emptyState;
+    if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<ChatState>;
     return {
       open: Boolean(parsed.open),
