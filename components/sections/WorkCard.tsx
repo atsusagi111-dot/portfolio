@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MaterialText } from "@/components/ui/MaterialText";
+import { TextLink } from "@/components/ui/TextLink";
 import { worksSection, type TechItem, type Work } from "@/data/works";
 
 function TechList({ items }: { items: TechItem[] }) {
@@ -50,6 +51,13 @@ export function WorkCard({
           {work.title}
         </Heading>
         <p className="mt-4 leading-loose text-ink-muted">{work.summary}</p>
+        {work.siteUrl && (
+          <p className="mt-4">
+            <TextLink href={work.siteUrl} external>
+              {worksSection.siteLinkLabel}
+            </TextLink>
+          </p>
+        )}
 
         <ol className="mt-8 grid gap-4 lg:grid-cols-3">
           {steps.map((step, index) => (
@@ -113,47 +121,52 @@ export function WorkCard({
           </div>
         )}
 
-        {detailed && (
-          <div className="mt-10 grid gap-8 border-t border-navy-50 pt-8 sm:grid-cols-2">
-            <div>
-              <SubHeading className="text-sm font-bold text-ink">
-                {worksSection.techStackLabel}
-              </SubHeading>
-              <TechList items={work.techStack} />
-            </div>
-            <div className="flex flex-col gap-8">
-              {work.supportTools.length > 0 && (
+        {detailed &&
+          (work.techStack.length > 0 ||
+            work.supportTools.length > 0 ||
+            work.urls.length > 0) && (
+            <div className="mt-10 grid gap-8 border-t border-navy-50 pt-8 sm:grid-cols-2">
+              {work.techStack.length > 0 && (
                 <div>
                   <SubHeading className="text-sm font-bold text-ink">
-                    {worksSection.supportToolsLabel}
+                    {worksSection.techStackLabel}
                   </SubHeading>
-                  <TechList items={work.supportTools} />
+                  <TechList items={work.techStack} />
                 </div>
               )}
-              {work.urls.length > 0 && (
-                <div>
-                  <SubHeading className="text-sm font-bold text-ink">
-                    {worksSection.urlLabel}
-                  </SubHeading>
-                  <ul className="mt-3 flex flex-col gap-1">
-                    {work.urls.map((url) => (
-                      <li key={url}>
-                        <a
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="break-all text-sm text-navy underline underline-offset-4 hover:text-navy-700"
-                        >
-                          {url}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="flex flex-col gap-8">
+                {work.supportTools.length > 0 && (
+                  <div>
+                    <SubHeading className="text-sm font-bold text-ink">
+                      {worksSection.supportToolsLabel}
+                    </SubHeading>
+                    <TechList items={work.supportTools} />
+                  </div>
+                )}
+                {work.urls.length > 0 && (
+                  <div>
+                    <SubHeading className="text-sm font-bold text-ink">
+                      {worksSection.urlLabel}
+                    </SubHeading>
+                    <ul className="mt-3 flex flex-col gap-1">
+                      {work.urls.map((url) => (
+                        <li key={url}>
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="break-all text-sm text-navy underline underline-offset-4 hover:text-navy-700"
+                          >
+                            {url}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </article>
   );
