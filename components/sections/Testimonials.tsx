@@ -12,7 +12,7 @@ export function Testimonials() {
     <Section eyebrow="Voice" title={testimonialsSection.title}>
       <ul className="grid gap-6 md:grid-cols-2">
         {testimonials.map((item) => (
-          <li key={item.body} className="rounded-2xl border border-navy-50 bg-surface p-8">
+          <li key={item.body} className="rounded-2xl border border-navy-50/80 bg-surface p-8 shadow-[var(--shadow-card)]">
             <blockquote className="leading-loose text-ink">
               <MaterialText text={item.body} />
             </blockquote>

@@ -57,7 +57,7 @@ export function FlowDiagram({ hrefBase = "" }: FlowDiagramProps) {
                 <li key={step.number} className="relative">
                   <a
                     href={`${hrefBase}#step-${step.number}`}
-                    className="flex h-full flex-col gap-2 rounded-xl border border-navy-50 bg-surface p-5 transition-colors hover:border-gold hover:bg-gold-50/40 sm:p-6"
+                    className="flex h-full flex-col gap-2 rounded-2xl border border-navy-50/80 bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[var(--shadow-card-hover)] sm:p-6"
                   >
                     <span className="font-en text-2xl leading-none text-gold-600">
                       {step.number}

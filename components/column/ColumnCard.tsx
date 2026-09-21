@@ -14,7 +14,7 @@ export function ColumnCard({
   return (
     <article className="group relative flex h-full flex-col">
       {/* 比率固定（1200×630 と同じ 40:21）のサムネイル枠 */}
-      <div className="relative aspect-[40/21] overflow-hidden rounded-xl border border-navy-50 bg-surface-alt">
+      <div className="relative aspect-[40/21] overflow-hidden rounded-2xl border border-navy-50/80 bg-surface-alt shadow-[var(--shadow-card)] transition-shadow duration-300 group-hover:shadow-[var(--shadow-card-hover)]">
         <Image
           src={column.thumbnail}
           alt=""

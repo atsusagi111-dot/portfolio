@@ -5,30 +5,27 @@ export function Worries() {
   return (
     <Section tone="alt" eyebrow="Problem" title={worries.title} center>
       <ul className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-        {worries.items.map((item) => (
+        {worries.items.map((item, index) => (
           <li
             key={item}
-            className="flex items-start gap-4 rounded-xl border border-navy-50 bg-surface p-6 leading-relaxed text-ink"
+            className="group flex items-start gap-5 rounded-2xl border border-navy-50/80 bg-surface p-6 leading-relaxed text-ink shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[var(--shadow-card-hover)]"
           >
-            <svg
+            <span
               aria-hidden="true"
-              viewBox="0 0 24 24"
-              className="mt-0.5 h-5 w-5 shrink-0 text-gold"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-50 font-en text-lg text-gold-600 transition-colors group-hover:bg-gold group-hover:text-white"
             >
-              <path d="M5 12.5l4.5 4.5L19 7.5" />
-            </svg>
-            {item}
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span className="pt-1.5">{item}</span>
           </li>
         ))}
       </ul>
-      <p className="mx-auto mt-12 max-w-2xl text-center text-base font-medium leading-loose text-ink sm:text-lg sm:leading-loose">
-        {worries.closing}
-      </p>
+      <div className="mx-auto mt-14 max-w-2xl text-center">
+        <span aria-hidden="true" className="mx-auto mb-6 block h-10 w-px bg-gradient-to-b from-gold to-transparent" />
+        <p className="text-base font-medium leading-loose text-ink sm:text-lg sm:leading-loose">
+          {worries.closing}
+        </p>
+      </div>
     </Section>
   );
 }

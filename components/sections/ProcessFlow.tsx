@@ -9,10 +9,10 @@ export function ProcessFlow() {
         return (
           <li key={step.number} id={`step-${step.number}`} className="flex scroll-mt-28 gap-5 sm:gap-8">
             <div className="flex flex-col items-center">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy font-en text-lg text-white sm:h-14 sm:w-14 sm:text-xl">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy font-en text-lg text-white shadow-[0_10px_24px_-12px_rgba(25,44,68,0.7)] ring-4 ring-surface sm:h-14 sm:w-14 sm:text-xl">
                 {step.number}
               </span>
-              {!last && <span aria-hidden="true" className="w-px flex-1 bg-navy-50" />}
+              {!last && <span aria-hidden="true" className="w-px flex-1 bg-gradient-to-b from-gold/60 to-navy-50" />}
             </div>
 
             <div className={`flex-1 ${last ? "" : "pb-12"}`}>

@@ -8,7 +8,7 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
   return (
     <article
       id={service.id}
-      className="rounded-2xl border border-navy-50 bg-surface p-6 sm:p-10"
+      className="rounded-2xl border border-navy-50/80 bg-surface p-6 shadow-[var(--shadow-card)] sm:p-10"
     >
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
         <div>

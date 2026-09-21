@@ -12,6 +12,9 @@
   --color-surface-alt: #f6f7f9;
   --color-ink: #192c44;
   --color-ink-muted: #556070;
+  /* カード用の柔らかい影（ネイビーを薄く落とす） */
+  --shadow-card: 0 1px 2px rgba(25, 44, 68, 0.04), 0 16px 40px -20px rgba(25, 44, 68, 0.18);
+  --shadow-card-hover: 0 2px 4px rgba(25, 44, 68, 0.05), 0 28px 56px -24px rgba(25, 44, 68, 0.28);
 }
 
 @theme inline {
@@ -27,6 +30,8 @@
   --color-ink-muted: var(--color-ink-muted);
   --font-sans: var(--font-noto-sans-jp);
   --font-en: var(--font-en);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
 }
 
 html {
@@ -48,6 +53,66 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: var(--color-gold-50);
+  color: var(--color-navy);
+}
+
+/* 細かなドットの背景。ヒーローや下層ページのタイトル部分に敷く */
+.bg-dots {
+  background-image: radial-gradient(rgba(25, 44, 68, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.bg-dots-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* 中抜きの英字（背景の装飾用） */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(25, 44, 68, 0.12);
+}
+
+/* ヒーローの登場アニメーション */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rise {
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-rise-delay-1 {
+  animation-delay: 0.12s;
+}
+.animate-rise-delay-2 {
+  animation-delay: 0.24s;
+}
+.animate-rise-delay-3 {
+  animation-delay: 0.36s;
+}
+
+/* うさぎのゆるやかな浮遊 */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
 }
 
 :focus-visible {
@@ -58,6 +123,10 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .animate-rise,
+  .animate-float {
+    animation: none;
   }
 }
 

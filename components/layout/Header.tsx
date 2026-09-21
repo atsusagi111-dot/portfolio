@@ -17,7 +17,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-navy-50 bg-surface/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-navy-50/70 bg-surface/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0" aria-label="ATSUSAGI LAB ホーム" onClick={close}>
           <Logo variant="horizontal" className="h-8 w-auto sm:h-10" priority />
@@ -32,10 +32,8 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={current ? "page" : undefined}
-                    className={`relative py-2 text-sm font-medium transition-colors hover:text-navy ${
-                      current
-                        ? "text-navy after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-gold"
-                        : "text-ink-muted"
+                    className={`relative py-2 text-sm font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:bg-gold after:transition-transform after:duration-300 hover:text-navy hover:after:scale-x-100 ${
+                      current ? "text-navy after:scale-x-100" : "text-ink-muted after:scale-x-0"
                     }`}
                   >
                     {item.label}
@@ -52,7 +50,7 @@ export function Header() {
             href={contactNav.href}
             onClick={close}
             aria-current={isCurrent(pathname, contactNav.href) ? "page" : undefined}
-            className="inline-flex items-center justify-center rounded-full bg-navy px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-navy-700 sm:px-6 sm:py-2.5"
+            className="inline-flex items-center justify-center rounded-full bg-navy px-4 py-2 text-sm font-medium text-white shadow-[0_8px_20px_-10px_rgba(25,44,68,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy-700 sm:px-6 sm:py-2.5"
           >
             {contactNav.label}
           </Link>

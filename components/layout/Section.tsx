@@ -36,16 +36,19 @@ export function Section({
           <div className={`mb-12 max-w-2xl sm:mb-16 ${center ? "mx-auto text-center" : ""}`}>
             {eyebrow && (
               <p
-                className={`mb-3 flex items-center gap-3 font-en text-xl tracking-wide text-gold-600 ${
+                className={`mb-4 flex items-center gap-3 font-en text-xl tracking-[0.08em] text-gold-600 ${
                   center ? "justify-center" : ""
                 }`}
               >
-                <span aria-hidden="true" className="h-px w-8 bg-gold" />
+                <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-gold to-gold/30" />
                 {eyebrow}
+                {center && (
+                  <span aria-hidden="true" className="h-px w-10 bg-gradient-to-l from-gold to-gold/30" />
+                )}
               </p>
             )}
             {title && (
-              <h2 className="text-2xl font-bold leading-snug text-ink sm:text-3xl">
+              <h2 className="text-2xl font-bold leading-snug text-ink sm:text-[2.125rem]">
                 {title}
               </h2>
             )}

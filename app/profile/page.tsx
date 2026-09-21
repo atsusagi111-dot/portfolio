@@ -27,17 +27,21 @@ export default function ProfilePage() {
         <div className="grid gap-10 md:grid-cols-[280px_1fr] md:gap-16">
           <div>
             {/* 比率固定（1:1）の写真枠。assets-src/profile/ の画像を差し替えるだけで反映される */}
-            <div className="relative mx-auto aspect-square w-56 overflow-hidden rounded-full bg-surface-alt md:w-full">
-              <Image
-                src={profile.photo}
-                alt={profile.photoAlt}
-                fill
-                priority
-                sizes="(min-width: 768px) 280px, 224px"
-                className="object-cover"
-              />
+            <div className="relative mx-auto aspect-square w-56 rounded-full p-1.5 ring-1 ring-gold/50 ring-offset-4 ring-offset-surface md:w-full">
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-surface-alt">
+                <Image
+                  src={profile.photo}
+                  alt={profile.photoAlt}
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 280px, 224px"
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <p className="mt-6 text-center text-sm text-ink-muted md:text-left">{profile.role}</p>
+            <p className="mt-6 text-center text-sm text-ink-muted md:text-left">
+              {profile.role}
+            </p>
             <p className="mt-1 text-center text-xl font-bold text-ink md:text-left">
               <MaterialText text={profile.name} />
             </p>
@@ -55,7 +59,9 @@ export default function ProfilePage() {
                 </p>
               ))}
             </div>
-            <p className="mt-6 text-right font-bold text-ink">{profile.messageSignature}</p>
+            <p className="mt-6 text-right font-bold text-ink">
+              {profile.messageSignature}
+            </p>
 
             {profile.qualifications.length > 0 && (
               <>
@@ -83,7 +89,9 @@ export default function ProfilePage() {
                 className="absolute -left-[38.5px] top-2.5 h-3 w-3 rounded-full bg-gold ring-4 ring-surface-alt"
               />
               <p className="font-en text-2xl text-gold-600">{item.year}</p>
-              <h3 className="mt-1 text-lg font-bold text-ink sm:text-xl">{item.heading}</h3>
+              <h3 className="mt-1 text-lg font-bold text-ink sm:text-xl">
+                {item.heading}
+              </h3>
               <p className="mt-3 leading-loose text-ink-muted">{item.body}</p>
               {item.highlight && (
                 <p className="mt-4 inline-block rounded-lg bg-gold-50 px-4 py-2 text-sm font-bold text-navy">
@@ -95,7 +103,12 @@ export default function ProfilePage() {
         </ol>
       </Section>
 
-      <Section id="operator" eyebrow="About" title={operatorSection.title} center>
+      <Section
+        id="operator"
+        eyebrow="About"
+        title={operatorSection.title}
+        center
+      >
         <OperatorInfo />
       </Section>
     </>
