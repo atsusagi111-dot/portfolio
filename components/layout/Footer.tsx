@@ -11,7 +11,7 @@ export function Footer() {
       <div aria-hidden="true" className="bg-dots-light absolute inset-0 opacity-40" />
       <p
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-en text-[5rem] leading-none tracking-[0.12em] text-white/[0.04] sm:text-[9rem]"
+        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-en text-[5rem] leading-none tracking-[0.12em] text-white/[0.04] sm:text-[9rem]"
       >
         ATSUSAGI LAB
       </p>
@@ -49,7 +49,7 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="relative border-t border-white/10">
+      <div className="relative">
         <p className="mx-auto max-w-6xl px-4 py-6 text-center text-xs tracking-wider text-white/50 sm:px-6 lg:px-8">
           &copy; {year} {site.name}
         </p>

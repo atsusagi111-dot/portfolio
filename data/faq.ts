@@ -16,7 +16,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "相談や見積もりに費用はかかりますか？",
-    answer: "【要素材：ご相談・お見積もりの費用の有無】",
+    answer: "いいえ。無料でご相談いただけます。",
   },
   {
     question: "料金はどのくらいかかりますか？",
