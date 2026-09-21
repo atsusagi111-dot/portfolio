@@ -24,14 +24,6 @@ export type Work = {
   siteUrl?: string;
   /** リンクの文言。未指定なら worksSection.siteLinkLabel */
   siteLinkLabel?: string;
-  /** 概要文と3カラムの間に表示する横長の画像（レポートのイメージなど）。元画像は assets-src/works/ に置く */
-  featureImage?: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    caption?: string;
-  };
 };
 
 export const worksSection = {
@@ -94,7 +86,9 @@ export const works: Work[] = [
     result:
       "ドメイン取得から公開までをワンストップで完了しました。開業と同時に、検索・AI検索・Googleマップからの集客に対応できる土台が整いました。",
     // 画面キャプチャ・技術構成は未提供（届いたら追加）
-    screenshots: [],
+    screenshots: [
+      { label: "トップページ", src: "/images/works/minato-atelier-piano.webp" },
+    ],
     techStack: [],
     supportTools: [],
     urls: ["https://atelier-minato.com/"],
@@ -113,17 +107,13 @@ export const works: Work[] = [
       "サイトの表示速度やセキュリティなどを項目ごとに診断。良い点と改善点を整理し、優先度をつけた一覧としてレポートにまとめました。",
     result:
       "サイトの現状と改善の優先順位が明確に。今すぐ無料で取り組める具体的な改善策もあわせてご提案しました。",
-    // 元画像：assets-src/works/takanofarm-report.jpg（ビルド時に public/images/works/takanofarm-report.webp へ変換）
-    // width / height は元画像の縦横比に合わせて更新する
-    featureImage: {
-      src: "/images/works/takanofarm-report.webp",
-      alt: "髙野養鶏場様 Webサイト診断レポートのイメージ",
-      width: 1200,
-      height: 848,
-      caption:
-        "※診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
-    },
-    screenshots: [],
+    screenshots: [
+      {
+        label:
+          "診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
+        src: "/images/works/takanofarm-report.webp",
+      },
+    ],
     techStack: [],
     supportTools: [],
     urls: ["https://takanofarm.jp/"],

@@ -61,25 +61,6 @@ export function WorkCard({
           </p>
         )}
 
-        {work.featureImage && (
-          <figure className="mt-8">
-            <Image
-              src={work.featureImage.src}
-              alt={work.featureImage.alt}
-              width={work.featureImage.width}
-              height={work.featureImage.height}
-              loading="lazy"
-              sizes="(min-width: 1152px) 1040px, 100vw"
-              className="h-auto w-full rounded-xl border border-navy-50/80 bg-surface-alt"
-            />
-            {work.featureImage.caption && (
-              <figcaption className="mt-2 text-xs leading-relaxed text-ink-muted">
-                {work.featureImage.caption}
-              </figcaption>
-            )}
-          </figure>
-        )}
-
         <ol className="mt-8 grid gap-4 lg:grid-cols-3">
           {steps.map((step, index) => (
             <li
