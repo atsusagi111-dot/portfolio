@@ -5,7 +5,7 @@ Next.js の**静的エクスポート**で作っており、最終的な公開�
 
 - **GitHub**: https://github.com/atsusagi111-dot/portfolio （公開リポジトリ）
 - **現在の本番（旧サイト・Vercel）**: https://portfolio-three-alpha-2lkobfo48b.vercel.app/ … `main` ブランチ
-- **リニューアル版のプレビュー（Vercel）**: `renewal` ブランチを push するたびに自動で作られます。URL は GitHub のコミット横の ✓ マーク、または Vercel の管理画面 https://vercel.com/atsu4/portfolio （Deployments → Preview）で確認できます。閲覧には Vercel へのログインが必要です
+- **リニューアル版のプレビュー（Vercel）**: https://portfolio-git-renewal-atsu4.vercel.app/ （`renewal` ブランチを push するたびに自動更新。閲覧には Vercel へのログインが必要。管理画面は https://vercel.com/atsu4/portfolio ）
 - **最終的な公開先（ConoHa WING）**: 【後で指定】atsusagi-lab.◯◯
 
 > ⚠️ **`main` ブランチへ push／マージすると、Vercel の本番（旧サイト）が新サイトに置き換わります。**
@@ -18,7 +18,7 @@ Next.js の**静的エクスポート**で作っており、最終的な公開�
 
 **画面確認**（すぐ開けるリンク）
 - ローカル: `npm run dev` を実行して http://localhost:3000/ （Claude に「dev サーバーを起動して」と頼めば起動します）
-- Vercel プレビュー（`renewal` ブランチの最新 push を自動反映。閲覧には Vercel へのログインが必要）: https://vercel.com/atsu4/portfolio → Deployments → 一番上の Preview を開く
+- Vercel プレビュー（`renewal` ブランチの最新 push を自動反映）: **https://portfolio-git-renewal-atsu4.vercel.app/** （開くと Vercel のログイン画面が出るので、ログインすると表示されます。お問い合わせフォームの送信は ConoHa 公開後のみ動きます）
 
 ### 0. 次に作業すること（2026-09-22）
 
