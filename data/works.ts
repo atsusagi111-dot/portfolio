@@ -1,6 +1,7 @@
 // 実績。「課題→対応→成果」で見せる。
 // 【厳守】オーナーから提供された情報だけを書く。未提供の項目は【要素材：〇〇】のままにする。
-// 2026-09-21：実績①の課題・成果、実績②（Minato Piano Atelier）をオーナーから提供。
+// 2026-09-21：実績①の課題・成果、実績②（Minato Piano Atelier）、実績③（髙野養鶏場）をオーナーから提供。
+// 文体は「ですます調」で統一する。
 
 export type TechItem = { name: string; note: string };
 
@@ -19,8 +20,18 @@ export type Work = {
   techStack: TechItem[];
   supportTools: TechItem[];
   urls: string[];
-  /** 公開サイトへの導線（タイトル直下に「サイトを見る」リンクとして表示） */
+  /** 公開サイトへの導線（概要文の直下にテキストリンクとして表示） */
   siteUrl?: string;
+  /** リンクの文言。未指定なら worksSection.siteLinkLabel */
+  siteLinkLabel?: string;
+  /** 概要文と3カラムの間に表示する横長の画像（レポートのイメージなど）。元画像は assets-src/works/ に置く */
+  featureImage?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption?: string;
+  };
 };
 
 export const worksSection = {
@@ -43,13 +54,13 @@ export const works: Work[] = [
     category: "LP制作",
     title: "某大手退職代行業者｜LP制作",
     summary:
-      "某大手退職代行業者紹介LPを制作(メール問い合わせ・メール＆LINE問い合わせの2種)。デザイン・コーディング・レスポンシブ対応・公開まで担当。",
+      "某大手退職代行業者の紹介LPを制作しました（メール問い合わせ・メール＆LINE問い合わせの2種）。デザイン・コーディング・レスポンシブ対応・公開まで担当しました。",
     challenge:
-      "集客のためアフィリエイトサイトに出稿したい。専用LPがなくHPのみで、知識がないため制作できない。",
+      "集客のためアフィリエイトサイトに出稿したいものの、専用LPがなくHPのみで、知識がないため制作できない状態でした。",
     approach:
-      "メール問い合わせ用と、メール＆LINE問い合わせ用の2種類のLPを制作。デザイン・コーディング・レスポンシブ対応・公開まで担当。",
+      "メール問い合わせ用と、メール＆LINE問い合わせ用の2種類のLPを制作しました。デザイン・コーディング・レスポンシブ対応・公開まで担当しました。",
     result:
-      "既存のHPをもとにLPを制作・納品。問い合わせ導線を「メールのみ」「メール・LINEのみ」に絞った2パターンを用意することで、掲載条件の異なるメディアにも対応できるようになり、掲載先の拡大に貢献。",
+      "既存のHPをもとにLPを制作・納品しました。問い合わせ導線を「メールのみ」「メール・LINEのみ」に絞った2パターンを用意することで、掲載条件の異なるメディアにも対応できるようになり、掲載先の拡大に貢献しています。",
     screenshots: [
       {
         label: "メール・LINE動線",
@@ -58,19 +69,19 @@ export const works: Work[] = [
       { label: "メール動線", src: "/images/works/lp-email-flow.webp" },
     ],
     techStack: [
-      { name: "Vite", note: "開発を高速に進めるためのツール" },
-      { name: "React", note: "部品を組み合わせて画面を作るツール" },
-      { name: "TypeScript", note: "バグを防ぎやすくする言語" },
+      { name: "Vite", note: "開発を高速に進めるためのツールです" },
+      { name: "React", note: "部品を組み合わせて画面を作るツールです" },
+      { name: "TypeScript", note: "バグを防ぎやすくする言語です" },
       {
         name: "Tailwind CSS",
-        note: "あらかじめ用意されたスタイルを組み合わせてCSSを書く手間を減らすツール",
+        note: "あらかじめ用意されたスタイルを組み合わせて、CSSを書く手間を減らすツールです",
       },
-      { name: "lucide-react", note: "Webサイトで使えるアイコン集" },
-      { name: "ESLint", note: "コードチェックツール" },
-      { name: "Render", note: "インターネット上へ公開するサービス" },
+      { name: "lucide-react", note: "Webサイトで使えるアイコン集です" },
+      { name: "ESLint", note: "コードをチェックするツールです" },
+      { name: "Render", note: "インターネット上へ公開するサービスです" },
     ],
     supportTools: [
-      { name: "Bolt.new", note: "AIとの対話でページを作成するツール" },
+      { name: "Bolt.new", note: "AIとの対話でページを作成するツールです" },
     ],
     urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
   },
@@ -80,19 +91,49 @@ export const works: Work[] = [
     category: "HP制作",
     title: "Minato Piano Atelier｜HP制作",
     summary:
-      "出張型ピアノ教室の開業にあわせてHPを新規制作。ドメイン取得・サーバー設定から、デザイン・コーディング・レスポンシブ対応・公開まで一貫して担当。",
+      "出張型ピアノ教室の開業にあわせてHPを新規制作しました。ドメイン取得・サーバー設定から、デザイン・コーディング・レスポンシブ対応・公開まで一貫して担当しました。",
     challenge:
-      "出張型のピアノ教室を新たに始めるにあたり、教室の顔となるHPが必要に。富裕層向けというコンセプトを、Web上でどう表現し、どう見つけてもらうかが課題でした。",
+      "出張型のピアノ教室を新たに始めるにあたり、教室の顔となるHPが必要になりました。富裕層向けというコンセプトを、Web上でどう表現し、どう見つけてもらうかが課題でした。",
     approach:
-      "「富裕層向けの教室」というコンセプトのもと、上質感のあるデザインを設計。SEO・AIO（AI検索対策）・MEOを意識した構成とし、ドメイン取得からサーバー設定、公開まで対応。",
+      "「富裕層向けの教室」というコンセプトのもと、上質感のあるデザインを設計しました。SEO・AIO（AI検索対策）・MEOを意識した構成とし、ドメイン取得からサーバー設定、公開まで対応しました。",
     result:
-      "ドメイン取得から公開までをワンストップで完了。開業と同時に、検索・AI検索・Googleマップからの集客に対応できる土台が整いました。",
+      "ドメイン取得から公開までをワンストップで完了しました。開業と同時に、検索・AI検索・Googleマップからの集客に対応できる土台が整いました。",
     // 画面キャプチャ・技術構成は未提供（届いたら追加）
     screenshots: [],
     techStack: [],
     supportTools: [],
     urls: ["https://atelier-minato.com/"],
     siteUrl: "https://atelier-minato.com/",
+  },
+  {
+    id: "takano-farm-site-audit",
+    client: "髙野養鶏場",
+    category: "サイト診断",
+    title: "髙野養鶏場｜Webサイト診断",
+    summary:
+      "新鮮たまごの産地直送「髙野養鶏場」様のWebサイト診断を担当しました。集客強化を目的に、表示速度やセキュリティの状態を診断し、レポートとしてご提出しました。",
+    challenge:
+      "集客を強化するにあたり、現在のサイトの状態を客観的に把握し、どこから手をつけるべきかを明確にする必要がありました。",
+    approach:
+      "サイトの表示速度やセキュリティなどを項目ごとに診断。良い点と改善点を整理し、優先度をつけた一覧としてレポートにまとめました。",
+    result:
+      "サイトの現状と改善の優先順位が明確に。今すぐ無料で取り組める具体的な改善策もあわせてご提案しました。",
+    // 元画像：assets-src/works/takanofarm-report.jpg（ビルド時に public/images/works/takanofarm-report.webp へ変換）
+    // width / height は元画像の縦横比に合わせて更新する
+    featureImage: {
+      src: "/images/works/takanofarm-report.webp",
+      alt: "髙野養鶏場様 Webサイト診断レポートのイメージ",
+      width: 1200,
+      height: 848,
+      caption:
+        "※診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
+    },
+    screenshots: [],
+    techStack: [],
+    supportTools: [],
+    urls: ["https://takanofarm.jp/"],
+    siteUrl: "https://takanofarm.jp/",
+    siteLinkLabel: "公式HPを見る",
   },
 ];
 

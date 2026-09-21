@@ -29,6 +29,8 @@
 | 実績②（Minato Piano Atelier HP）の課題・対応・成果 | — | 済 | `data/works.ts` |
 | 実績②の画面キャプチャ（任意） | 正方形（1:1）、1200×1200px 以上 | 未（なければ非表示のまま） | `assets-src/works/` ＋ `data/works.ts` |
 | 実績②の技術構成（任意） | 使用ツール名と一言説明 | 未（なければ非表示のまま） | `data/works.ts` |
+| 実績③（髙野養鶏場 サイト診断）の課題・対応・成果 | — | 済 | `data/works.ts` |
+| 実績③の診断レポート画像 | 横長。`assets-src/works/takanofarm-report.jpg` に置くと自動で WebP 化 | 未（受け取ったら `data/works.ts` の width / height も更新） | `assets-src/works/` |
 | 追加の実績（あれば） | 上記と同じ項目一式。社名の公開可否も | 未 | `data/works.ts` |
 
 ## 3. お客様の声 ※掲載しない（2026-09-21 決定）

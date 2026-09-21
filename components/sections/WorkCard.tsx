@@ -5,11 +5,16 @@ import { worksSection, type TechItem, type Work } from "@/data/works";
 
 function TechList({ items }: { items: TechItem[] }) {
   return (
-    <ul className="mt-3 flex flex-col gap-2">
+    <ul className="mt-4 flex flex-col gap-2.5">
       {items.map((item) => (
-        <li key={item.name} className="text-sm leading-relaxed">
-          <span className="font-medium text-ink">{item.name}</span>
-          <span className="text-ink-muted">　{item.note}</span>
+        <li
+          key={item.name}
+          className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm leading-relaxed"
+        >
+          <span className="inline-block rounded-md border border-navy-50 bg-surface-alt px-2.5 py-0.5 font-en text-base font-semibold tracking-wide text-navy">
+            {item.name}
+          </span>
+          <span className="text-ink-muted">{item.note}</span>
         </li>
       ))}
     </ul>
@@ -54,9 +59,28 @@ export function WorkCard({
         {work.siteUrl && (
           <p className="mt-4">
             <TextLink href={work.siteUrl} external>
-              {worksSection.siteLinkLabel}
+              {work.siteLinkLabel ?? worksSection.siteLinkLabel}
             </TextLink>
           </p>
+        )}
+
+        {work.featureImage && (
+          <figure className="mt-8">
+            <Image
+              src={work.featureImage.src}
+              alt={work.featureImage.alt}
+              width={work.featureImage.width}
+              height={work.featureImage.height}
+              loading="lazy"
+              sizes="(min-width: 1152px) 1040px, 100vw"
+              className="h-auto w-full rounded-xl border border-navy-50/80 bg-surface-alt"
+            />
+            {work.featureImage.caption && (
+              <figcaption className="mt-2 text-xs leading-relaxed text-ink-muted">
+                {work.featureImage.caption}
+              </figcaption>
+            )}
+          </figure>
         )}
 
         <ol className="mt-8 grid gap-4 lg:grid-cols-3">
