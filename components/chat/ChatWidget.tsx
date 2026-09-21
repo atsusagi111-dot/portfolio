@@ -294,15 +294,7 @@ export function ChatWidget() {
           aria-live="polite"
         >
           <Bubble role="bot" text={chat.welcome} />
-          {state.messages.map((m) => (
-            <Bubble key={m.id} role={m.role} text={m.text} link={m.link} />
-          ))}
-          {status === "loading" && (
-            <p className="text-xs text-ink-muted" aria-live="assertive">
-              {chat.typing}
-            </p>
-          )}
-          {/* よくある質問：会話の末尾に常に表示する（回答のあとも消さない） */}
+          {/* よくある質問：最初のあいさつの直後に置き、押した回答はその下に追加されていく */}
           <div className="flex items-end gap-2">
             <BotAvatar />
             <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-navy-50 bg-surface-alt px-3.5 py-3">
@@ -325,6 +317,14 @@ export function ChatWidget() {
               </ul>
             </div>
           </div>
+          {state.messages.map((m) => (
+            <Bubble key={m.id} role={m.role} text={m.text} link={m.link} />
+          ))}
+          {status === "loading" && (
+            <p className="text-xs text-ink-muted" aria-live="assertive">
+              {chat.typing}
+            </p>
+          )}
         </div>
 
         {/* 入力欄 */}
