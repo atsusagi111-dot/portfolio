@@ -302,27 +302,29 @@ export function ChatWidget() {
               {chat.typing}
             </p>
           )}
-        </div>
-
-        {/* よくある質問ボタン（常時表示） */}
-        <div className="border-t border-navy-50 px-4 pb-2 pt-3">
-          <p className="mb-2 text-[11px] font-medium tracking-wide text-ink-muted">
-            {chat.faqHeading}
-          </p>
-          <ul className="flex flex-wrap gap-1.5">
-            {faqButtons.map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => answerFaq(item)}
-                  disabled={status === "loading"}
-                  className="rounded-full border border-navy-50 bg-surface px-3 py-1 text-xs text-navy transition-colors hover:border-gold hover:bg-gold-50 disabled:opacity-50"
-                >
-                  {item.buttonLabel ?? item.question}
-                </button>
-              </li>
-            ))}
-          </ul>
+          {/* よくある質問：会話の末尾に常に表示する（回答のあとも消さない） */}
+          <div className="flex items-end gap-2">
+            <BotAvatar />
+            <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-navy-50 bg-surface-alt px-3.5 py-3">
+              <p className="mb-2 text-xs font-medium text-ink-muted">
+                {chat.faqHeading}
+              </p>
+              <ul className="flex flex-wrap gap-1.5">
+                {faqButtons.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => answerFaq(item)}
+                      disabled={status === "loading"}
+                      className="rounded-full border border-navy/30 bg-surface px-3 py-1.5 text-xs font-medium text-navy transition-colors hover:border-gold hover:bg-gold-50 disabled:opacity-50"
+                    >
+                      {item.buttonLabel ?? item.question}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* 入力欄 */}
@@ -413,6 +415,24 @@ export function ChatWidget() {
   );
 }
 
+/** 回答するうさぎ（ボットのアイコン） */
+function BotAvatar() {
+  return (
+    <span
+      aria-hidden="true"
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-gold/50"
+    >
+      <Image
+        src={chat.botAvatar}
+        alt=""
+        width={158}
+        height={227}
+        className="h-6 w-auto"
+      />
+    </span>
+  );
+}
+
 function Bubble({
   role,
   text,
@@ -427,20 +447,7 @@ function Bubble({
     <div
       className={`flex items-end gap-2 ${user ? "justify-end" : "justify-start"}`}
     >
-      {!user && (
-        <span
-          aria-hidden="true"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-gold/50"
-        >
-          <Image
-            src={chat.botAvatar}
-            alt=""
-            width={158}
-            height={227}
-            className="h-6 w-auto"
-          />
-        </span>
-      )}
+      {!user && <BotAvatar />}
       <div
         className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
           user

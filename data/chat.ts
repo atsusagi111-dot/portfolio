@@ -8,7 +8,7 @@ export const chat = {
   note: "AIによる自動回答です。正確な内容はお問い合わせにてご確認ください。",
   welcome:
     "ATSUSAGI LABへのご質問にお答えします。下のボタンから選ぶか、ご質問を入力してください。",
-  faqHeading: "よくある質問",
+  faqHeading: "よくある質問から選ぶ",
   faqLink: { href: "/flow/#faq", label: "よくある質問ページを見る →" },
   contactLink: { href: "/contact/", label: "お問い合わせフォームへ →" },
   placeholder: "ご質問を入力（300文字まで）",

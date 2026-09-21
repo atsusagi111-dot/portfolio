@@ -15,8 +15,8 @@ export type Work = {
   challenge: string;
   approach: string;
   result: string;
-  /** 画像は 1:1 の枠に表示（assets-src/works/ に元画像を置く） */
-  screenshots: { label: string; src: string }[];
+  /** 制作画面。切り抜かず元の比率で表示する（width / height は元画像の実寸。assets-src/works/ に元画像を置く） */
+  screenshots: { label: string; src: string; width: number; height: number }[];
   /** 複数ページを横一列に隙間なく並べて見せる画像（レポートなど）。ratio は 1 枚の「幅/高さ」 */
   strip?: {
     label: string;
@@ -63,8 +63,15 @@ export const works: Work[] = [
       {
         label: "メール・LINE動線",
         src: "/images/works/lp-email-line-flow.webp",
+        width: 803,
+        height: 777,
       },
-      { label: "メール動線", src: "/images/works/lp-email-flow.webp" },
+      {
+        label: "メール動線",
+        src: "/images/works/lp-email-flow.webp",
+        width: 787,
+        height: 786,
+      },
     ],
     techStack: [
       { name: "Vite" },
@@ -93,7 +100,12 @@ export const works: Work[] = [
       "ドメイン取得から公開までをワンストップで完了しました。開業と同時に、検索・AI検索・Googleマップからの集客に対応できる土台が整いました。",
     // 画面キャプチャ・技術構成は未提供（届いたら追加）
     screenshots: [
-      { label: "トップページ", src: "/images/works/minato-atelier-piano.webp" },
+      {
+        label: "トップページ",
+        src: "/images/works/minato-atelier-piano.webp",
+        width: 1200,
+        height: 543,
+      },
     ],
     techStack: [],
     supportTools: [],

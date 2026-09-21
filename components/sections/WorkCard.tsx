@@ -101,17 +101,18 @@ export function WorkCard({
             <SubHeading className="text-sm font-bold text-ink">
               {worksSection.screenshotsLabel}
             </SubHeading>
-            <div className="mt-4 grid gap-6 sm:grid-cols-2">
+            <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-3">
               {work.screenshots.map((shot) => (
                 <figure key={shot.src}>
-                  {/* 比率固定（1:1）の枠。差し替えてもレイアウトが崩れない */}
-                  <div className="relative aspect-square overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]">
+                  {/* 切り抜かず、元の比率のまま小さめに表示 */}
+                  <div className="overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]">
                     <Image
                       src={shot.src}
                       alt={`${work.title}の制作画面（${shot.label}）`}
-                      fill
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      className="object-cover object-top"
+                      width={shot.width}
+                      height={shot.height}
+                      sizes="(min-width: 640px) 33vw, 50vw"
+                      className="h-auto w-full"
                     />
                   </div>
                   <figcaption className="mt-2 text-xs text-ink-muted">
@@ -130,7 +131,7 @@ export function WorkCard({
             </SubHeading>
             {/* 複数ページを横一列に隙間なく並べる。各ページは同じ比率の枠に収める */}
             <div
-              className="mt-4 grid overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]"
+              className="mt-4 grid overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)] sm:max-w-[50%]"
               style={{
                 gridTemplateColumns: `repeat(${work.strip.pages.length}, minmax(0, 1fr))`,
               }}
@@ -145,7 +146,7 @@ export function WorkCard({
                     src={page.src}
                     alt={page.alt}
                     fill
-                    sizes="(min-width: 1152px) 260px, 25vw"
+                    sizes="(min-width: 1152px) 130px, 12vw"
                     className="object-contain"
                   />
                 </div>
