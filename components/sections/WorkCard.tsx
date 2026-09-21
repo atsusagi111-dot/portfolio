@@ -5,16 +5,13 @@ import { worksSection, type TechItem, type Work } from "@/data/works";
 
 function TechList({ items }: { items: TechItem[] }) {
   return (
-    <ul className="mt-4 flex flex-col gap-2.5">
+    <ul className="mt-4 flex flex-wrap gap-2">
       {items.map((item) => (
         <li
           key={item.name}
-          className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm leading-relaxed"
+          className="rounded-md border border-navy-50 bg-surface-alt px-3 py-1 font-en text-base font-semibold tracking-wide text-navy"
         >
-          <span className="inline-block rounded-md border border-navy-50 bg-surface-alt px-2.5 py-0.5 font-en text-base font-semibold tracking-wide text-navy">
-            {item.name}
-          </span>
-          <span className="text-ink-muted">{item.note}</span>
+          {item.name}
         </li>
       ))}
     </ul>

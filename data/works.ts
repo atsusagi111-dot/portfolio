@@ -3,7 +3,7 @@
 // 2026-09-21：実績①の課題・成果、実績②（Minato Piano Atelier）、実績③（髙野養鶏場）をオーナーから提供。
 // 文体は「ですます調」で統一する。
 
-export type TechItem = { name: string; note: string };
+export type TechItem = { name: string };
 
 export type Work = {
   id: string;
@@ -69,20 +69,15 @@ export const works: Work[] = [
       { label: "メール動線", src: "/images/works/lp-email-flow.webp" },
     ],
     techStack: [
-      { name: "Vite", note: "開発を高速に進めるためのツールです" },
-      { name: "React", note: "部品を組み合わせて画面を作るツールです" },
-      { name: "TypeScript", note: "バグを防ぎやすくする言語です" },
-      {
-        name: "Tailwind CSS",
-        note: "あらかじめ用意されたスタイルを組み合わせて、CSSを書く手間を減らすツールです",
-      },
-      { name: "lucide-react", note: "Webサイトで使えるアイコン集です" },
-      { name: "ESLint", note: "コードをチェックするツールです" },
-      { name: "Render", note: "インターネット上へ公開するサービスです" },
+      { name: "Vite" },
+      { name: "React" },
+      { name: "TypeScript" },
+      { name: "Tailwind CSS" },
+      { name: "lucide-react" },
+      { name: "ESLint" },
+      { name: "Render" },
     ],
-    supportTools: [
-      { name: "Bolt.new", note: "AIとの対話でページを作成するツールです" },
-    ],
+    supportTools: [{ name: "Bolt.new" }],
     urls: ["https://momuri.com/lp/", "https://momuri.com/lp2/"],
   },
   {
