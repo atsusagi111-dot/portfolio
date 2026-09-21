@@ -30,10 +30,6 @@ DirectoryIndex index.html
 <Files "config.php">
   Require all denied
 </Files>
-# AIチャットの設定・ログ（万一 public 配下に置いた場合の保険）
-<FilesMatch "^(chat-config\.php|questions\.log|rate_.*\.json)$">
-  Require all denied
-</FilesMatch>
 # Next.js がクライアント遷移用に出力する内部データ（.txt）は検索結果に出さない
 <IfModule mod_headers.c>
   <FilesMatch "\.txt$">

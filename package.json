@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "images": "node scripts/optimize-images.mjs",
-    "predev": "node scripts/optimize-images.mjs && node scripts/copy-faq.mjs",
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/optimize-images.mjs && node scripts/copy-faq.mjs",
+    "prebuild": "node scripts/optimize-images.mjs",
     "build": "next build",
     "preview": "npx serve out",
     "lint": "eslint"

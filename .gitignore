@@ -14,9 +14,6 @@ build/
 .env
 .env*.local
 
-# AIチャットの設定（APIキー）。ひな形は config.php.example
-public/chat/config.php
-
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts

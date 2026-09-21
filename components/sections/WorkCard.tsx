@@ -131,29 +131,33 @@ export function WorkCard({
             </SubHeading>
             {/* 複数ページを横一列に隙間なく並べる。各ページは同じ比率の枠に収める */}
             <div
-              className="mt-4 grid overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)] sm:max-w-[50%]"
+              className="mt-4 grid overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]"
               style={{
                 gridTemplateColumns: `repeat(${work.strip.pages.length}, minmax(0, 1fr))`,
               }}
             >
               {work.strip.pages.map((page) => (
-                <div
+                <a
                   key={page.src}
-                  className="relative"
+                  href={page.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="クリックで拡大"
+                  className="relative block transition-opacity hover:opacity-80"
                   style={{ aspectRatio: work.strip?.ratio }}
                 >
                   <Image
                     src={page.src}
                     alt={page.alt}
                     fill
-                    sizes="(min-width: 1152px) 130px, 12vw"
+                    sizes="(min-width: 1152px) 260px, 25vw"
                     className="object-contain"
                   />
-                </div>
+                </a>
               ))}
             </div>
             <figcaption className="mt-2 text-xs text-ink-muted">
-              {work.strip.label}
+              {work.strip.label}（クリックで拡大）
             </figcaption>
           </figure>
         )}

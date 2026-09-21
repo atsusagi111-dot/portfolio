@@ -12,7 +12,7 @@ const DEST = path.join("public", "images");
 const MAX_WIDTH = {
   logo: 720,
   profile: 800,
-  works: 1200,
+  works: 1600,
   rabbit: 480,
   testimonials: 400,
   column: 1200,

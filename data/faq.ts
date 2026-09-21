@@ -15,6 +15,8 @@ export type FaqItem = {
   fixedAnswerOnly?: boolean;
   /** 根拠にしたファイル */
   source?: string;
+  /** 自由入力の検索用の言い換え・関連語 */
+  keywords?: string[];
 };
 
 export const faqSection = {

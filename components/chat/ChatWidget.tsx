@@ -11,7 +11,8 @@ import {
   type KeyboardEvent,
 } from "react";
 import { chat } from "@/data/chat";
-import { faqButtons, type FaqItem } from "@/data/faq";
+import { faqButtons, faqItems, type FaqItem } from "@/data/faq";
+import { FAQ_MATCH, searchFaq } from "@/lib/faq-search";
 import {
   emptyState,
   loadChatState,
@@ -20,8 +21,6 @@ import {
   type ChatMessage,
   type ChatState,
 } from "./chat-storage";
-
-type Status = "idle" | "loading";
 
 function CloseIcon() {
   return (
@@ -63,7 +62,6 @@ function SendIcon() {
 export function ChatWidget() {
   const [state, setState] = useState<ChatState>(emptyState);
   const [hydrated, setHydrated] = useState(false);
-  const [status, setStatus] = useState<Status>("idle");
   const [input, setInput] = useState("");
   const [inputError, setInputError] = useState<string | null>(null);
 
@@ -89,11 +87,22 @@ export function ChatWidget() {
     if (hydrated) saveChatState(state);
   }, [state, hydrated]);
 
-  // 新着メッセージで末尾へスクロール
+  // 新着時のスクロール：直近の質問（ユーザー発言）が上端に来るようにして、その下の回答が見えるようにする
   useEffect(() => {
     const log = logRef.current;
-    if (log) log.scrollTop = log.scrollHeight;
-  }, [state.messages, status, state.open]);
+    if (!log) return;
+    const lastUser = [...state.messages]
+      .reverse()
+      .find((m) => m.role === "user");
+    const target = lastUser
+      ? log.querySelector<HTMLElement>(`[data-message-id="${lastUser.id}"]`)
+      : null;
+    if (target) {
+      log.scrollTop = Math.max(0, target.offsetTop - log.offsetTop - 12);
+    } else {
+      log.scrollTop = log.scrollHeight;
+    }
+  }, [state.messages, state.open]);
 
   // 開いたら入力欄へフォーカス（ユーザー操作で開いたときだけ。復元時はフォーカスを奪わない）
   useEffect(() => {
@@ -135,14 +144,17 @@ export function ChatWidget() {
     push(
       { id: newId(), role: "user", text: item.buttonLabel ?? item.question },
       { id: newId(), role: "bot", text: item.answer, link: chat.faqLink },
+      // 回答のあと、もう一度よくある質問を提示する
+      { id: newId(), role: "bot", text: chat.faqAgain, kind: "faq" },
     );
   };
 
   /** 自由入力：中継エンドポイント経由でAIに問い合わせる */
-  const submit = async (event?: FormEvent) => {
+  /** 自由入力：外部AIは使わず、FAQ の中から近い質問を探して回答する */
+  const submit = (event?: FormEvent) => {
     event?.preventDefault();
     const text = input.trim();
-    if (!text || status === "loading") return;
+    if (!text) return;
     if (text.length > chat.maxInputLength) {
       setInputError(chat.tooLong);
       return;
@@ -150,83 +162,45 @@ export function ChatWidget() {
     setInputError(null);
     setInput("");
 
-    if (state.freeCount >= chat.maxFreeMessages) {
+    const matches = searchFaq(text, faqItems);
+    const best = matches[0];
+    const userMessage: ChatMessage = { id: newId(), role: "user", text };
+
+    if (best && best.score >= FAQ_MATCH.confident) {
+      // 自信を持って答えられる：そのまま回答
       push(
-        { id: newId(), role: "user", text },
+        userMessage,
         {
           id: newId(),
           role: "bot",
-          text: chat.sessionLimit,
-          link: chat.contactLink,
+          text: best.item.answer,
+          link: chat.faqLink,
         },
+        { id: newId(), role: "bot", text: chat.faqAgain, kind: "faq" },
       );
-      return;
-    }
-
-    // 直近 N 往復だけを送る（コスト対策）
-    const history = state.messages
-      .filter((m) => m.role === "user" || m.role === "bot")
-      .slice(-chat.historyTurns * 2)
-      .map((m) => ({
-        role: m.role === "user" ? "user" : "assistant",
-        content: m.text,
-      }));
-
-    push({ id: newId(), role: "user", text });
-    setState((s) => ({ ...s, freeCount: s.freeCount + 1 }));
-    setStatus("loading");
-
-    try {
-      let answer: string;
-      let link: ChatMessage["link"] | undefined;
-
-      if (process.env.NODE_ENV === "development") {
-        // 開発サーバーではPHPが動かないためダミー回答を返す
-        await new Promise((r) => setTimeout(r, 600));
-        answer = chat.devReply;
-      } else {
-        const response = await fetch(chat.endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            messages: [...history, { role: "user", content: text }],
-          }),
-        });
-        const result = (await response.json().catch(() => null)) as
-          { ok: true; answer: string } | { ok: false; error?: string } | null;
-
-        if (
-          response.status === 429 ||
-          (result?.ok === false && result.error === "rate_limited")
-        ) {
-          answer = chat.rateLimited;
-          link = chat.contactLink;
-        } else if (
-          !response.ok ||
-          !result ||
-          !result.ok ||
-          typeof result.answer !== "string"
-        ) {
-          throw new Error("chat_failed");
-        } else {
-          answer = result.answer;
-        }
-      }
-      push({ id: newId(), role: "bot", text: answer, link });
-    } catch {
-      push({
+    } else if (best && best.score >= FAQ_MATCH.candidate) {
+      // 近い質問が複数：候補を提示して選んでもらう
+      const ids = matches
+        .filter((m) => m.score >= FAQ_MATCH.candidate)
+        .slice(0, FAQ_MATCH.maxCandidates)
+        .map((m) => m.item.id);
+      push(userMessage, {
         id: newId(),
         role: "bot",
-        text: chat.error,
+        text: chat.candidatesHeading,
+        kind: "candidates",
+        candidateIds: ids,
+      });
+    } else {
+      // 見つからない：お問い合わせフォームへ案内
+      push(userMessage, {
+        id: newId(),
+        role: "bot",
+        text: chat.noMatch,
         link: chat.contactLink,
       });
-    } finally {
-      setStatus("idle");
-      inputRef.current?.focus();
     }
+    inputRef.current?.focus();
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -251,7 +225,7 @@ export function ChatWidget() {
         role="dialog"
         aria-label={chat.dialogLabel}
         aria-hidden={!state.open}
-        className={`fixed inset-x-3 bottom-3 z-50 flex h-[78dvh] max-h-[640px] flex-col overflow-hidden rounded-2xl border border-navy-50/80 bg-surface shadow-[var(--shadow-card-hover)] transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none sm:inset-x-auto sm:bottom-24 sm:right-5 sm:h-[520px] sm:max-h-[70vh] sm:w-[360px] ${
+        className={`fixed inset-x-3 bottom-3 z-50 flex h-[85dvh] max-h-[760px] flex-col overflow-hidden rounded-2xl border border-navy-50/80 bg-surface shadow-[var(--shadow-card-hover)] transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none sm:inset-x-auto sm:bottom-24 sm:right-5 sm:h-[680px] sm:max-h-[85vh] sm:w-[420px] ${
           state.open
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0"
@@ -295,35 +269,36 @@ export function ChatWidget() {
         >
           <Bubble role="bot" text={chat.welcome} />
           {/* よくある質問：最初のあいさつの直後に置き、押した回答はその下に追加されていく */}
-          <div className="flex items-end gap-2">
-            <BotAvatar />
-            <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-navy-50 bg-surface-alt px-3.5 py-3">
-              <p className="mb-2 text-xs font-medium text-ink-muted">
-                {chat.faqHeading}
-              </p>
-              <ul className="flex flex-wrap gap-1.5">
-                {faqButtons.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      type="button"
-                      onClick={() => answerFaq(item)}
-                      disabled={status === "loading"}
-                      className="rounded-full border border-navy/30 bg-surface px-3 py-1.5 text-xs font-medium text-navy transition-colors hover:border-gold hover:bg-gold-50 disabled:opacity-50"
-                    >
-                      {item.buttonLabel ?? item.question}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          {state.messages.map((m) => (
-            <Bubble key={m.id} role={m.role} text={m.text} link={m.link} />
-          ))}
-          {status === "loading" && (
-            <p className="text-xs text-ink-muted" aria-live="assertive">
-              {chat.typing}
-            </p>
+          <FaqBubble
+            heading={chat.faqHeading}
+            disabled={false}
+            onSelect={answerFaq}
+          />
+          {state.messages.map((m) =>
+            m.kind === "faq" ? (
+              <FaqBubble
+                key={m.id}
+                heading={m.text}
+                disabled={false}
+                onSelect={answerFaq}
+              />
+            ) : m.kind === "candidates" ? (
+              <FaqBubble
+                key={m.id}
+                heading={m.text}
+                disabled={false}
+                onSelect={answerFaq}
+                items={faqItems.filter((f) => m.candidateIds?.includes(f.id))}
+              />
+            ) : (
+              <Bubble
+                key={m.id}
+                id={m.id}
+                role={m.role}
+                text={m.text}
+                link={m.link}
+              />
+            ),
           )}
         </div>
 
@@ -349,7 +324,7 @@ export function ChatWidget() {
             />
             <button
               type="submit"
-              disabled={status === "loading" || input.trim() === ""}
+              disabled={false || input.trim() === ""}
               aria-label={chat.send}
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-white transition-colors hover:bg-navy-700 disabled:cursor-not-allowed disabled:opacity-40"
             >
@@ -415,6 +390,43 @@ export function ChatWidget() {
   );
 }
 
+/** よくある質問のボタンをまとめた吹き出し */
+function FaqBubble({
+  heading,
+  disabled,
+  onSelect,
+  items = faqButtons,
+}: {
+  heading: string;
+  disabled: boolean;
+  onSelect: (item: FaqItem) => void;
+  /** 表示する質問。未指定なら showAsButton の項目 */
+  items?: FaqItem[];
+}) {
+  return (
+    <div className="flex items-end gap-2">
+      <BotAvatar />
+      <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-navy-50 bg-surface-alt px-3.5 py-3">
+        <p className="mb-2 text-xs font-medium text-ink-muted">{heading}</p>
+        <ul className="flex flex-wrap gap-1.5">
+          {items.map((item) => (
+            <li key={item.id}>
+              <button
+                type="button"
+                onClick={() => onSelect(item)}
+                disabled={disabled}
+                className="rounded-full border border-navy/30 bg-surface px-3 py-1.5 text-xs font-medium text-navy transition-colors hover:border-gold hover:bg-gold-50 disabled:opacity-50"
+              >
+                {item.buttonLabel ?? item.question}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 /** 回答するうさぎ（ボットのアイコン） */
 function BotAvatar() {
   return (
@@ -434,10 +446,12 @@ function BotAvatar() {
 }
 
 function Bubble({
+  id,
   role,
   text,
   link,
 }: {
+  id?: string;
   role: ChatMessage["role"];
   text: string;
   link?: ChatMessage["link"];
@@ -445,11 +459,12 @@ function Bubble({
   const user = role === "user";
   return (
     <div
+      data-message-id={id}
       className={`flex items-end gap-2 ${user ? "justify-end" : "justify-start"}`}
     >
       {!user && <BotAvatar />}
       <div
-        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+        className={`max-w-[85%] rounded-2xl px-4 py-3 text-[15px] leading-relaxed ${
           user
             ? "rounded-br-md bg-navy text-white"
             : "rounded-bl-md border border-navy-50 bg-surface-alt text-ink"

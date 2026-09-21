@@ -27,6 +27,10 @@
 - 参考サイト（consulting.crowdworks.co.jp / trail-inc.jp）から学ぶのは「ページ構成」と「信頼要素の置き方」だけ
 - 文言、画像、イラスト、配色、レイアウトの丸写しはしない
 
+# コミット・プッシュ
+
+- コミットと push は、オーナーが明示的に指示したときだけ行う（自動コミットのフックは無効化済み）
+
 # 素材の扱い
 
 - 顔写真、経歴、実績の詳細、お客様の声、運営者情報は後から提供される
@@ -41,8 +45,8 @@
 - `data/` — サイト設定・表示フラグ・サービス・実績・プロフィール・運営者情報・FAQ などの掲載データ
 - `content/column/*.md` — コラム記事（追加手順は `docs/column.md`）
 - `lib/` — コラムのMarkdown処理など
-- `public/` — 画像、`.htaccess`、`contact/send.php`（お問い合わせ送信）、`chat/chat.php`（AIチャット中継。いずれもConoHa上のPHPで動作）
-- `docs/` — `materials.md`（素材一覧）、`deploy.md`（デプロイ手順）、`column.md`（記事追加手順）、`chatbot.md`（AIチャットの設計と設定手順）
+- `public/` — 画像、`.htaccess`、`contact/send.php`（お問い合わせ送信。ConoHa上のPHPで動作）
+- `docs/` — `materials.md`（素材一覧）、`deploy.md`（デプロイ手順）、`column.md`（記事追加手順）、`chatbot.md`（チャットウィジェットの仕組み）
 
 # コマンド
 

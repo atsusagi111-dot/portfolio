@@ -5,7 +5,16 @@
     "answer": "はい、ご相談段階でのご連絡も歓迎しております。「こんなことはAIでできる？」「何を作ればいいか分からない」という場合も、オンライン面談で目的や現状をお聞きしたうえで、最適な方法をご提案いたします。",
     "source": "data/faq.ts（既存FAQ）",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "相談",
+      "決まっていない",
+      "何を作れば",
+      "わからない",
+      "分からない",
+      "アイデア",
+      "企画"
+    ]
   },
   {
     "id": "consultation-fee",
@@ -14,7 +23,16 @@
     "answer": "いいえ。無料でご相談いただけます。",
     "source": "data/faq.ts（既存FAQ）",
     "showAsButton": true,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "無料",
+      "相談料",
+      "見積もり",
+      "見積",
+      "費用",
+      "タダ",
+      "お金"
+    ]
   },
   {
     "id": "price",
@@ -23,7 +41,20 @@
     "answer": "ホームページ制作は30万円〜、LP制作は20万円〜、Webシステム開発とシステム連携・業務自動化は25万円〜が目安です。ご要望や仕様、納期などをすり合わせたうえで、お見積もりをご提示いたします。各サービスの料金目安は「サービス内容」のページをご覧ください。",
     "source": "data/faq.ts（既存FAQ）／data/services.ts",
     "showAsButton": true,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "料金",
+      "値段",
+      "価格",
+      "いくら",
+      "費用",
+      "予算",
+      "金額",
+      "相場",
+      "ホームページ",
+      "LP",
+      "システム"
+    ]
   },
   {
     "id": "lead-time",
@@ -32,7 +63,17 @@
     "answer": "ホームページ制作は初校を最短3日、LP制作は最短1日〜2日でお出ししています。Webシステム開発などは内容によって異なりますので、ヒアリングの際にご希望の納期をお聞かせください。",
     "source": "data/faq.ts（既存FAQ）",
     "showAsButton": true,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "納期",
+      "期間",
+      "いつ",
+      "日数",
+      "どのくらい",
+      "スピード",
+      "急ぎ",
+      "最短"
+    ]
   },
   {
     "id": "materials",
@@ -40,7 +81,16 @@
     "answer": "ロゴ・写真・文章などの素材はお客様にご準備いただいております。素材画像のご提供も可能ですので、ご相談ください。",
     "source": "data/faq.ts（既存FAQ）",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "素材",
+      "写真",
+      "文章",
+      "原稿",
+      "ロゴ",
+      "画像",
+      "用意"
+    ]
   },
   {
     "id": "revisions",
@@ -48,7 +98,14 @@
     "answer": "軽微な修正は3回まで対応いたします。4回目以降の修正、および大幅な変更・追加については別途お見積もりとなります。",
     "source": "data/faq.ts（既存FAQ）／data/services.ts（ご利用にあたって）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "修正",
+      "直し",
+      "変更",
+      "回数",
+      "何回"
+    ]
   },
   {
     "id": "payment",
@@ -57,7 +114,17 @@
     "answer": "銀行振込・クレジットカード決済に対応しております。原則として、ご契約後にお支払いをお願いしております。法人のお客様など一定の条件を満たす場合は、後払いにも対応可能ですので、個別にご相談ください。",
     "source": "data/faq.ts（既存FAQ）／data/flow.ts（05 お支払い）",
     "showAsButton": true,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "支払い",
+      "支払",
+      "振込",
+      "カード",
+      "決済",
+      "後払い",
+      "タイミング",
+      "いつ払う"
+    ]
   },
   {
     "id": "cancel",
@@ -65,7 +132,14 @@
     "answer": "ご契約後は原則としてキャンセル不可です。やむを得ずキャンセルされる場合は、制作費の8割を頂戴いたします。",
     "source": "data/faq.ts（既存FAQ）／data/services.ts（ご利用にあたって）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "キャンセル",
+      "解約",
+      "取り消し",
+      "中止",
+      "返金"
+    ]
   },
   {
     "id": "meeting",
@@ -73,7 +147,16 @@
     "answer": "お問い合わせ後、メールでヒアリングを行い、その内容をもとにオンライン面談で詳しいご要望や課題をお伺いします。",
     "source": "data/faq.ts（既存FAQ）／data/flow.ts",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "打ち合わせ",
+      "面談",
+      "ミーティング",
+      "オンライン",
+      "zoom",
+      "対面",
+      "来訪"
+    ]
   },
   {
     "id": "after-support",
@@ -82,7 +165,18 @@
     "answer": "はい。エラーへの対応、操作方法のご案内、社員・関係者の方へのレクチャー、システムに関するご相談など、納品後のお困りごとにも対応いたします。通常月額3万円〜のアフターフォローを、期間限定で6ヶ月間無料でご提供しています（対象範囲や対応内容は、開発・制作内容により異なります）。",
     "source": "data/faq.ts（既存FAQ）／data/flow.ts（08 アフターフォロー）",
     "showAsButton": true,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "サポート",
+      "保守",
+      "アフター",
+      "納品後",
+      "メンテナンス",
+      "運用",
+      "エラー",
+      "不具合",
+      "使い方"
+    ]
   },
   {
     "id": "individual",
@@ -90,7 +184,15 @@
     "answer": "はい、個人・法人を問わずご依頼いただけます。初めてWeb制作・システム開発を依頼される方も、お気軽にご相談ください。",
     "source": "data/faq.ts（既存FAQ）",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "個人",
+      "法人",
+      "会社",
+      "店舗",
+      "個人事業",
+      "フリーランス"
+    ]
   },
   {
     "id": "services-scope",
@@ -98,7 +200,20 @@
     "answer": "ホームページ制作、LP制作、Webシステム開発、AIチャットボット制作、AIを活用した業務効率化、システム連携・業務自動化に対応しています。予約・顧客管理システムの開発や、ホームページ・LINEへのAI導入、フォーム内容の自動転記や自動通知といった業務の自動化もご相談いただけます。",
     "source": "data/services.ts／app/services/page.tsx",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "サービス",
+      "何ができる",
+      "対応",
+      "依頼",
+      "できること",
+      "AI",
+      "チャットボット",
+      "自動化",
+      "LINE",
+      "予約",
+      "業務効率化"
+    ]
   },
   {
     "id": "flow",
@@ -106,7 +221,15 @@
     "answer": "お問い合わせ → メールでのヒアリング → オンライン面談 → お見積もり・ご契約 → お支払い → 開発・制作 → 納品・修正 → アフターフォロー、の8つのステップで進めます。詳しくは「ご依頼の流れ」のページをご覧ください。",
     "source": "data/flow.ts",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "流れ",
+      "手順",
+      "進め方",
+      "ステップ",
+      "納品まで",
+      "依頼方法"
+    ]
   },
   {
     "id": "payment-terms",
@@ -114,7 +237,14 @@
     "answer": "月末締め、翌月3営業日以内のお支払いをお願いいたします。原則として、ご契約後にお支払いをお願いしております。",
     "source": "data/services.ts（ご利用にあたって：お支払い条件）／data/flow.ts",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "期限",
+      "締め",
+      "翌月",
+      "支払日",
+      "いつまで"
+    ]
   },
   {
     "id": "lp-price",
@@ -122,7 +252,13 @@
     "answer": "既存のホームページを元にしたLP制作は20万円〜（初校最短1日〜）、新規でのLP制作は25万円〜（初校最短2日〜）です。ご要望をお伺いしたうえで、お見積もりをご提示いたします。",
     "source": "data/services.ts（LP制作：料金の内訳）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "LP",
+      "ランディングページ",
+      "内訳",
+      "LP制作"
+    ]
   },
   {
     "id": "chatbot-price",
@@ -130,7 +266,14 @@
     "answer": "AIチャットボットの追加は初期費用10万円〜、月額3万円〜です。月額費用にはシナリオ更新やセキュリティ対策などの保守が含まれます。",
     "source": "data/services.ts（AIチャットボット制作／ホームページ制作のオプション）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "チャットボット",
+      "AIチャット",
+      "月額",
+      "ボット",
+      "bot"
+    ]
   },
   {
     "id": "options",
@@ -138,7 +281,16 @@
     "answer": "採用ページのカスタマイズ（動画演出など）が5万円〜、AIチャットボットの追加が10万円〜（月額3万円〜）、SEO記事作成が文字単価5円〜、GA4（Googleアナリティクス4）の初期設定代行が3万円〜です。",
     "source": "data/services.ts（ホームページ制作：オプション）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "オプション",
+      "採用ページ",
+      "SEO",
+      "記事",
+      "GA4",
+      "アナリティクス",
+      "動画"
+    ]
   },
   {
     "id": "domain-server",
@@ -146,7 +298,16 @@
     "answer": "はい。ドメイン取得やサーバー設定から、デザイン・コーディング・公開まで一貫して対応した実績があります。ホームページをお持ちでない場合も、まとめてご相談ください。",
     "source": "data/works.ts（Minato Piano Atelier｜HP制作）",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "ドメイン",
+      "サーバー",
+      "サーバ",
+      "取得",
+      "公開",
+      "レンタルサーバー",
+      "ホスティング"
+    ]
   },
   {
     "id": "renewal",
@@ -154,7 +315,16 @@
     "answer": "はい。スマートフォンで見づらいホームページの作り直しや、古くなったホームページのリニューアルにも対応しています。既存のホームページを元にしたLP制作も可能です。",
     "source": "data/services.ts（ホームページ制作・LP制作）／data/home.ts",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "作り直し",
+      "リニューアル",
+      "古い",
+      "既存",
+      "スマホ対応",
+      "作り替え",
+      "刷新"
+    ]
   },
   {
     "id": "contract",
@@ -162,7 +332,13 @@
     "answer": "はい。ご要望や仕様、納期などをすり合わせたうえでお見積もりをご提示し、内容にご納得いただき双方の合意が確認できましたら、契約書を締結いたします。",
     "source": "data/flow.ts（04 お見積もり・ご契約）",
     "showAsButton": false,
-    "fixedAnswerOnly": false
+    "fixedAnswerOnly": false,
+    "keywords": [
+      "契約",
+      "契約書",
+      "書面",
+      "合意"
+    ]
   },
   {
     "id": "site-audit",
@@ -170,6 +346,15 @@
     "answer": "Webサイト診断のみのご依頼も承っております。料金はサイトの規模や診断内容によって異なりますので、お見積もりをご依頼ください。お問い合わせフォームからお気軽にご相談ください。",
     "source": "data/works.ts（髙野養鶏場｜Webサイト診断）／オーナー回答（2026-09-21：要見積もり）",
     "showAsButton": false,
-    "fixedAnswerOnly": true
+    "fixedAnswerOnly": true,
+    "keywords": [
+      "診断",
+      "サイト診断",
+      "チェック",
+      "分析",
+      "改善点",
+      "レポート",
+      "見てほしい"
+    ]
   }
 ]

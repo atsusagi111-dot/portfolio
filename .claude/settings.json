@@ -11,18 +11,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/stop-auto-commit-push.sh",
-            "timeout": 120,
-            "statusMessage": "変更をコミット・プッシュ中..."
-          }
-        ]
-      }
     ]
   }
 }

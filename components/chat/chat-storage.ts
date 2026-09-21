@@ -4,6 +4,9 @@ export type ChatMessage = {
   id: string;
   role: "user" | "bot";
   text: string;
+  /** "faq" は text を見出しにしてよくある質問のボタンを表示、"candidates" は candidateIds の質問だけを表示する */
+  kind?: "faq" | "candidates";
+  candidateIds?: string[];
   /** 回答の末尾に添えるリンク（FAQボタンの回答など） */
   link?: { href: string; label: string };
 };
@@ -11,7 +14,7 @@ export type ChatMessage = {
 export type ChatState = {
   open: boolean;
   messages: ChatMessage[];
-  /** このセッションで自由入力を送った回数（上限あり） */
+  /** 旧仕様（外部AI）の名残。互換のため残す */
   freeCount: number;
 };
 
