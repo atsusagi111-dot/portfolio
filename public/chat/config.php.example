@@ -1,0 +1,31 @@
+<?php
+// AIチャットの設定（ひな形）。
+//
+// 【推奨】このファイルは公開ディレクトリの外に置く：
+//   /home/<アカウント>/atsusagi-private/chat-config.php   ← public_html と同じ階層に atsusagi-private フォルダを作る
+// 公開ディレクトリの外に置けない場合だけ、このフォルダに config.php という名前でコピーする
+// （.htaccess でブラウザからのアクセスを禁止しているが、リポジトリには含めないこと）。
+//
+// 環境変数 OPENAI_API_KEY / OPENAI_MODEL が設定されていれば、そちらが優先される。
+
+return [
+    // OpenAI の API キー（sk- で始まる文字列）
+    'api_key' => '',
+
+    // 使用するモデル。料金は https://developers.openai.com/api/docs/pricing で確認
+    'model' => 'gpt-5-nano',
+
+    // 推論モデル（gpt-5 系）の推論の強さ。最小にして推論トークンの課金を抑える。
+    // 推論に対応しないモデル（gpt-4.1-nano など）を使う場合は '' にする
+    'reasoning_effort' => 'minimal',
+
+    // 回答の出力トークン上限
+    'max_output_tokens' => 400,
+
+    // レート制限（同一IPあたり）
+    'rate_per_minute' => 5,
+    'rate_per_day' => 30,
+
+    // 質問ログを保存するか（質問文と日時のみ。IP は保存しない）
+    'log_questions' => true,
+];

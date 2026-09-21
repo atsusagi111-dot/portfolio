@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CtaSlot } from "@/components/layout/CtaSlot";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl, site } from "@/data/site";
@@ -54,6 +55,7 @@ export default function RootLayout({
           <CtaBanner />
         </CtaSlot>
         <Footer />
+        <ChatWidget />
         <JsonLd
           data={{
             "@context": "https://schema.org",

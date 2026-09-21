@@ -41,8 +41,8 @@
 - `data/` — サイト設定・表示フラグ・サービス・実績・プロフィール・運営者情報・FAQ などの掲載データ
 - `content/column/*.md` — コラム記事（追加手順は `docs/column.md`）
 - `lib/` — コラムのMarkdown処理など
-- `public/` — 画像、`.htaccess`、`contact/send.php`（お問い合わせ送信。ConoHa上のPHPで動作）
-- `docs/` — `materials.md`（素材一覧）、`deploy.md`（デプロイ手順）、`column.md`（記事追加手順）
+- `public/` — 画像、`.htaccess`、`contact/send.php`（お問い合わせ送信）、`chat/chat.php`（AIチャット中継。いずれもConoHa上のPHPで動作）
+- `docs/` — `materials.md`（素材一覧）、`deploy.md`（デプロイ手順）、`column.md`（記事追加手順）、`chatbot.md`（AIチャットの設計と設定手順）
 
 # コマンド
 

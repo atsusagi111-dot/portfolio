@@ -59,6 +59,8 @@ Next.js の**静的エクスポート**で作っており、最終的な公開�
 - [ ] Lighthouse を計測し、90点未満の項目を改善（**未計測**）
 - [ ] ConoHa WING の初期設定（ドメイン追加・無料SSL・メールアドレス作成・PHP 8.x）→ `docs/deploy.md` の 0
 - [ ] `out/` をアップロードし、公開後チェックリストを確認（フォームの実送信、HTTPS転送、404、`config.php` が 403 になること）→ `docs/deploy.md` の 3〜4
+- [ ] 髙野養鶏場の診断レポート画像 ①〜④（高解像度）を `assets-src/works/takanofarm-report-1.jpg` 〜 `-4.jpg` として上書き（今は仮画像）
+- [ ] AIチャットの設定ファイル（APIキー）を `atsusagi-private/chat-config.php` としてサーバーに置く → `docs/chatbot.md`
 - [ ] Google Search Console に登録し、sitemap.xml を送信
 - [ ] 公開後チェックがすべて済んだら、旧サイト（Vercel）を停止する（Vercel 管理画面 → `portfolio` → Settings → Delete Project）
 - [ ] （任意）GitHub Actions による自動デプロイを設定 → `docs/deploy.md` の 5
@@ -89,6 +91,7 @@ npm run images   # assets-src/ の画像を WebP に変換（dev / build の前�
 | `/column/<slug>/` | コラム記事 |
 | `/contact/` | お問い合わせ（送信後は `/contact/thanks/`） |
 | `/privacy/` | プライバシーポリシー |
+| （全ページ右下） | AIチャットウィジェット（FAQボタン＋自由入力。仕組みと設定は `docs/chatbot.md`） |
 
 ## ディレクトリ構成
 
@@ -113,6 +116,7 @@ docs/                materials.md（素材一覧）／deploy.md（デプロイ�
 | 実績を追加・修正する | `data/works.ts`（画像は `assets-src/works/`） |
 | プロフィール・経歴を変える | `data/profile.ts`（写真は `assets-src/profile/profile.png`） |
 | コラムを追加する | `content/column/` に `.md` を追加（手順は `docs/column.md`） |
+| よくある質問・チャットのFAQを変える | `data/faq.json`（FAQページ・チャットボタン・AIの指示文に共通で反映） |
 | ヘッダー・フッターのメニューを変える | `data/navigation.ts` |
 
 ## 守るルール（詳細は `CLAUDE.md`）

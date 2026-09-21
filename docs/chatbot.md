@@ -83,3 +83,67 @@ scripts/copy-faq.mjs              コピー処理（新規、prebuild に追加�
 docs/chatbot.md                   この文書＋運用手順
 data/privacy.ts                   チャットの質問ログについて追記（文案は別途提示）
 ```
+
+---
+
+# 運用手順（実装済み・2026-09-21）
+
+## 追加・変更したファイル
+
+| ファイル | 内容 |
+|---|---|
+| `data/faq.json` | FAQ の正データ（新規）。FAQページ・チャットのボタン・AIへの指示文が共通で参照 |
+| `data/faq.ts` | faq.json を読み込むよう変更（【要確認】の項目は除外） |
+| `data/chat.ts` | ウィジェットの文言・上限値（新規） |
+| `components/chat/ChatWidget.tsx` | ウィジェット本体（新規） |
+| `components/chat/chat-storage.ts` | sessionStorage の読み書き（新規） |
+| `app/layout.tsx` | `<ChatWidget />` を1行追加 |
+| `public/chat/chat.php` | 中継エンドポイント（新規） |
+| `public/chat/config.php.example` | 設定のひな形（新規）。`config.php` は `.gitignore` 済み |
+| `public/chat/faq.json` | ビルド時に `data/faq.json` から自動生成（`scripts/copy-faq.mjs`） |
+| `scripts/copy-faq.mjs` | 上記コピー処理（新規）。`predev` / `prebuild` に追加 |
+| `public/.htaccess` | チャットの設定・ログファイルの閲覧禁止を追記 |
+| `.gitignore` | `public/chat/config.php` を追加 |
+
+## APIキーとモデルの設定（ConoHa WING）
+
+ConoHa WING では環境変数を直接設定できないため、**公開ディレクトリの外に設定ファイルを置く**方法を使う。
+
+1. ファイルマネージャー（または FTP）で、`public_html` と同じ階層に `atsusagi-private` フォルダを作る
+   （例：`/home/アカウント名/atsusagi-private/`。`public_html/ドメイン/` が公開ディレクトリの場合は、その1つ上の階層）
+2. `public/chat/config.php.example` をコピーして `chat-config.php` という名前で保存し、`api_key` に OpenAI の API キーを入れて、そのフォルダにアップロードする
+3. モデルを変えたいときは同じファイルの `model` を書き換える（初期値 `gpt-5-nano`）
+4. `atsusagi-private` フォルダに書き込み権限があること（レート制限のカウンタと質問ログがここに保存される）
+
+補足：`.htaccess` に `SetEnv OPENAI_API_KEY sk-...` と書く方法もあるが、`.htaccess` はリポジトリに含まれるため非推奨。
+
+## ローカルでの動作確認
+
+- `npm run dev` → 右下のボタンから開く。FAQボタンは本番と同じ動き。自由入力は「開発環境のため…」というダミー回答になる（PHP が動かないため）
+- 本番と同じ動きを確認するには、ConoHa にアップロードしてから `https://ドメイン/` で試す
+
+## 公開後の確認
+
+- [ ] `https://ドメイン/chat/chat.php` に GET でアクセス → `{"ok":false,"error":"method_not_allowed"}` が返る
+- [ ] `https://ドメイン/chat/config.php` → 403（置いている場合）
+- [ ] ウィジェットから自由入力して回答が返る（返らない場合：`atsusagi-private/chat-config.php` の場所・API キー・PHP の curl 拡張を確認）
+- [ ] 6回連続で送ると「しばらく時間をおいて…」と表示される（レート制限）
+- [ ] `atsusagi-private/questions.log` に質問が追記される
+
+## 質問ログ
+
+`atsusagi-private/questions.log` に1行1件の JSON（日時と質問文のみ）。IP・ユーザーエージェントは記録しない。FAQ に追加したい質問が溜まったら `data/faq.json` に追記してビルド・アップロードする。
+
+## プライバシーポリシーへの追記案（未反映）
+
+「1. 取得する情報」に追加：
+
+> また、当サイトのAIチャット機能をご利用いただいた場合、入力された質問文と送信日時を取得します。IPアドレスなど個人を特定できる情報は記録しません。
+
+「2. 利用目的」のリストに追加：
+
+> AIチャットの回答精度向上、およびよくあるご質問の改善
+
+「3. 第三者への提供」の後に追加（または同項に追記）：
+
+> AIチャット機能の回答生成のため、入力された質問文はOpenAI, L.L.C.（米国）のAPIに送信されます。送信した内容は同社のモデル学習には使用されません。個人情報はチャットに入力しないようお願いいたします。

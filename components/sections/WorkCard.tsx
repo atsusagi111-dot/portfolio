@@ -103,34 +103,17 @@ export function WorkCard({
             </SubHeading>
             <div className="mt-4 grid gap-6 sm:grid-cols-2">
               {work.screenshots.map((shot) => (
-                <figure
-                  key={shot.src}
-                  className={shot.wide ? "sm:col-span-2" : ""}
-                >
-                  {shot.wide ? (
-                    /* 横長画像：2列分の幅で、切り抜かずに全体を表示 */
-                    <div className="overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]">
-                      <Image
-                        src={shot.src}
-                        alt={`${work.title}の制作画面（${shot.label}）`}
-                        width={shot.wide.width}
-                        height={shot.wide.height}
-                        sizes="(min-width: 1152px) 1040px, 100vw"
-                        className="h-auto w-full"
-                      />
-                    </div>
-                  ) : (
-                    /* 比率固定（1:1）の枠。差し替えてもレイアウトが崩れない */
-                    <div className="relative aspect-square overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]">
-                      <Image
-                        src={shot.src}
-                        alt={`${work.title}の制作画面（${shot.label}）`}
-                        fill
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                        className="object-cover object-top"
-                      />
-                    </div>
-                  )}
+                <figure key={shot.src}>
+                  {/* 比率固定（1:1）の枠。差し替えてもレイアウトが崩れない */}
+                  <div className="relative aspect-square overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]">
+                    <Image
+                      src={shot.src}
+                      alt={`${work.title}の制作画面（${shot.label}）`}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
                   <figcaption className="mt-2 text-xs text-ink-muted">
                     {shot.label}
                   </figcaption>
@@ -138,6 +121,40 @@ export function WorkCard({
               ))}
             </div>
           </div>
+        )}
+
+        {work.strip && (
+          <figure className="mt-10">
+            <SubHeading className="text-sm font-bold text-ink">
+              {worksSection.screenshotsLabel}
+            </SubHeading>
+            {/* 複数ページを横一列に隙間なく並べる。各ページは同じ比率の枠に収める */}
+            <div
+              className="mt-4 grid overflow-hidden rounded-xl border border-navy-50 bg-surface-alt shadow-[var(--shadow-card)]"
+              style={{
+                gridTemplateColumns: `repeat(${work.strip.pages.length}, minmax(0, 1fr))`,
+              }}
+            >
+              {work.strip.pages.map((page) => (
+                <div
+                  key={page.src}
+                  className="relative"
+                  style={{ aspectRatio: work.strip?.ratio }}
+                >
+                  <Image
+                    src={page.src}
+                    alt={page.alt}
+                    fill
+                    sizes="(min-width: 1152px) 260px, 25vw"
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+            <figcaption className="mt-2 text-xs text-ink-muted">
+              {work.strip.label}
+            </figcaption>
+          </figure>
         )}
 
         {detailed &&

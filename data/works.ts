@@ -16,12 +16,13 @@ export type Work = {
   approach: string;
   result: string;
   /** 画像は 1:1 の枠に表示（assets-src/works/ に元画像を置く） */
-  /** 画像は 1:1 の枠に表示。wide を付けた画像は 2 列分の幅で、元の縦横比のまま全体を表示する（width / height は元画像の実寸） */
-  screenshots: {
+  screenshots: { label: string; src: string }[];
+  /** 複数ページを横一列に隙間なく並べて見せる画像（レポートなど）。ratio は 1 枚の「幅/高さ」 */
+  strip?: {
     label: string;
-    src: string;
-    wide?: { width: number; height: number };
-  }[];
+    ratio: number;
+    pages: { src: string; alt: string }[];
+  };
   techStack: TechItem[];
   supportTools: TechItem[];
   urls: string[];
@@ -112,14 +113,17 @@ export const works: Work[] = [
       "サイトの表示速度やセキュリティなどを項目ごとに診断。良い点と改善点を整理し、優先度をつけた一覧としてレポートにまとめました。",
     result:
       "サイトの現状と改善の優先順位が明確に。今すぐ無料で取り組める具体的な改善策もあわせてご提案しました。",
-    screenshots: [
-      {
-        label:
-          "診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
-        src: "/images/works/takanofarm-report.webp",
-        wide: { width: 800, height: 282 },
-      },
-    ],
+    screenshots: [],
+    // 元画像：assets-src/works/takanofarm-report-1.jpg 〜 -4.jpg（A4 縦）。差し替えは同名で上書き
+    strip: {
+      label:
+        "診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
+      ratio: 2481 / 3508,
+      pages: [1, 2, 3, 4].map((n) => ({
+        src: `/images/works/takanofarm-report-${n}.webp`,
+        alt: `Webサイト診断レポート ${n}ページ目`,
+      })),
+    },
     techStack: [],
     supportTools: [],
     urls: ["https://takanofarm.jp/"],
