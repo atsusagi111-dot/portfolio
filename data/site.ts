@@ -16,7 +16,7 @@ export const site = {
 
 // 素材が揃っていないセクションは false にするとセクションごと非表示になる
 export const flags = {
-  /** お客様の声（ホーム・実績ページ） */
+  /** お客様の声（ホーム・実績ページ）。掲載しない方針（2026-09-21 決定）のため false のまま */
   showTestimonials: false,
   /** 運営者情報：代表者名 */
   showOperatorRepresentative: false,

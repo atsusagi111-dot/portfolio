@@ -81,6 +81,7 @@ npm run preview  # http://localhost:3000 で out/ を配信
 - [ ] `https://ドメイン/contact/config.php` にアクセスすると 403（閲覧禁止）になる
 - [ ] `https://ドメイン/sitemap.xml` と `/robots.txt` の URL が本番ドメインになっている
 - [ ] Google Search Console にサイトを登録し、sitemap.xml を送信する
+- [ ] 上記がすべて確認できたら、旧サイト（Vercel）を停止する（Vercel の管理画面 → プロジェクト `portfolio` → Settings → Delete Project。2026-09-21 決定）
 
 ### うまくいかないとき
 

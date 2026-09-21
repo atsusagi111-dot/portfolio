@@ -31,7 +31,7 @@ export function Hero() {
         alt=""
         width={480}
         height={278}
-        className="pointer-events-none absolute -bottom-2 right-4 hidden h-auto w-40 opacity-25 sm:block lg:right-16 lg:w-56"
+        className="pointer-events-none absolute bottom-6 right-4 hidden h-auto w-40 opacity-25 sm:block lg:bottom-8 lg:right-16 lg:w-56"
       />
     </section>
   );
