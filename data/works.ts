@@ -16,7 +16,12 @@ export type Work = {
   approach: string;
   result: string;
   /** 画像は 1:1 の枠に表示（assets-src/works/ に元画像を置く） */
-  screenshots: { label: string; src: string }[];
+  /** 画像は 1:1 の枠に表示。wide を付けた画像は 2 列分の幅で、元の縦横比のまま全体を表示する（width / height は元画像の実寸） */
+  screenshots: {
+    label: string;
+    src: string;
+    wide?: { width: number; height: number };
+  }[];
   techStack: TechItem[];
   supportTools: TechItem[];
   urls: string[];
@@ -112,6 +117,7 @@ export const works: Work[] = [
         label:
           "診断レポートのイメージ（内容は非公開のためぼかし加工をしています）",
         src: "/images/works/takanofarm-report.webp",
+        wide: { width: 800, height: 282 },
       },
     ],
     techStack: [],
