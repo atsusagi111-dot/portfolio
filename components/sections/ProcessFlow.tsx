@@ -7,7 +7,7 @@ export function ProcessFlow() {
       {processSteps.map((step, index) => {
         const last = index === processSteps.length - 1;
         return (
-          <li key={step.number} className="flex gap-5 sm:gap-8">
+          <li key={step.number} id={`step-${step.number}`} className="flex scroll-mt-28 gap-5 sm:gap-8">
             <div className="flex flex-col items-center">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy font-en text-lg text-white sm:h-14 sm:w-14 sm:text-xl">
                 {step.number}

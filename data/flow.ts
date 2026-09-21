@@ -5,6 +5,8 @@ export type ProcessBullet = { label: string; subItems?: string[] };
 export type ProcessStep = {
   number: string;
   title: string;
+  /** フロー図に表示する一言（20字程度） */
+  summary: string;
   body: string[];
   bullets?: ProcessBullet[];
   afterBullets?: string;
@@ -21,6 +23,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "01",
     title: "お問い合わせ",
+    summary: "フォームからお気軽にご連絡ください",
     body: [
       "まずは「お問い合わせフォーム」よりお気軽にご連絡ください。",
       "ご相談段階でのご連絡も歓迎しております。「こんなことはAIでできる？」「何を作ればいいか分からない」といったご相談もお気軽にお問い合わせください。",
@@ -29,6 +32,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "02",
     title: "ヒアリング",
+    summary: "メールでご要望をお伺いします",
     body: [
       "お問い合わせ内容を確認後、メールにてご連絡いたします。",
       "以下の内容をお伺いします。",
@@ -53,6 +57,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "03",
     title: "オンライン面談",
+    summary: "課題やご要望を詳しく伺います",
     body: [
       "ヒアリング内容をもとに、オンラインで詳しいご要望や課題をお伺いします。",
       "「何を作れば課題を解決できるか分からない」という場合も、目的や現状をお聞きしたうえで、最適な方法をご提案いたします。",
@@ -61,6 +66,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "04",
     title: "お見積もり・ご契約",
+    summary: "内容合意のうえ契約書を締結します",
     body: [
       "ご要望や仕様、納期などをすり合わせたうえで、お見積もりをご提示いたします。",
       "内容にご納得いただき、双方の合意が確認できましたら、契約書を締結いたします。",
@@ -69,6 +75,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "05",
     title: "お支払い",
+    summary: "原則ご契約後にお支払い",
     body: [
       "原則として、ご契約後にお支払いをお願いいたします。",
       "なお、法人のお客様など一定の条件を満たす場合は、本人確認書類や登記情報等をご提示いただくことで、後払いにも対応可能です。",
@@ -78,6 +85,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "06",
     title: "開発・制作",
+    summary: "進捗をご連絡しながら進行します",
     body: [
       "ご契約内容に基づき、開発・制作を開始します。",
       "進捗状況や確認事項については、必要に応じてご連絡しながら進行いたします。",
@@ -86,6 +94,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "07",
     title: "納品・修正",
+    summary: "成果物をご確認・必要な修正に対応",
     body: [
       "完成した成果物をご確認いただきます。",
       "納品後、契約内容の範囲内で必要な修正にも対応いたします。",
@@ -94,6 +103,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "08",
     title: "アフターフォロー",
+    summary: "納品後のお困りごとにも対応します",
     body: [
       "【期間限定】今なら、通常月額3万円〜のアフターフォローを6ヶ月間無料でご提供しています。",
     ],

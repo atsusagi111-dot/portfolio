@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "代表プロフィール・運営者情報",
   description:
-    "ATSUSAGI LAB代表のプロフィール（経歴・専門領域・仕事への姿勢）と、運営者情報を掲載しています。",
+    "ATSUSAGI LAB代表のプロフィール（仕事への姿勢・経歴）と、運営者情報を掲載しています。",
   path: "/profile/",
 });
 
@@ -55,23 +55,7 @@ export default function ProfilePage() {
                 </p>
               ))}
             </div>
-
-            <h2 className="mt-14 flex items-center gap-3 text-xl font-bold text-ink sm:text-2xl">
-              <span aria-hidden="true" className="h-px w-8 bg-gold" />
-              {profile.specialtiesTitle}
-            </h2>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-              {profile.specialties.map((item) => (
-                <li key={item.name} className="rounded-xl border border-navy-50 p-5">
-                  <p className="font-bold leading-relaxed text-ink">
-                    <MaterialText text={item.name} />
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                    <MaterialText text={item.description} />
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-6 text-right font-bold text-ink">{profile.messageSignature}</p>
 
             {profile.qualifications.length > 0 && (
               <>

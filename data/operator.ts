@@ -17,7 +17,7 @@ export const operatorRows: OperatorRow[] = [
   { label: "屋号", value: "ATSUSAGI LAB", show: true },
   {
     label: "代表者",
-    value: "【要素材：代表者名】",
+    value: "平良敦子",
     show: flags.showOperatorRepresentative,
   },
   {

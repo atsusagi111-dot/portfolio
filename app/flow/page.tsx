@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/layout/Section";
 import { Faq } from "@/components/sections/Faq";
+import { FlowDiagram } from "@/components/sections/FlowDiagram";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { faqSection } from "@/data/faq";
 import { flowSection } from "@/data/flow";
@@ -22,7 +23,10 @@ export default function FlowPage() {
         description={flowSection.description}
         breadcrumb={[{ label: flowSection.title, href: "/flow/" }]}
       />
-      <Section eyebrow="Step" title="お問い合わせから納品後まで、8つのステップ" center>
+      <Section tone="alt" eyebrow="Step" title="お問い合わせから納品後まで、8つのステップ" center>
+        <FlowDiagram />
+      </Section>
+      <Section eyebrow="Detail" title="各ステップの詳細" center>
         <ProcessFlow />
       </Section>
       <Section id="faq" tone="alt" eyebrow="FAQ" title={faqSection.title} center>
